@@ -1,0 +1,123 @@
+.contenedor-publicacion {
+    max-width: 58%;
+    -webkit-box-shadow: -2px 7px 21px -8px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -2px 7px 21px -8px rgba(0, 0, 0, 0.75);
+    box-shadow: -2px 7px 21px -8px rgba(0, 0, 0, 0.75);
+    margin: 15vh auto 0 auto;
+    padding: 2rem;
+    border-radius: 4px;
+    font-family: sans-serif;
+}
+
+.contenedor_central__contenido {
+    top: 0vh;
+}
+
+.contenedor-publicacion .campos textarea, .contenedor-publicacion .campos input {
+    display: block;
+    margin: 0.3rem auto 1.4rem auto;
+    width: 100%;
+    border: 1px solid #a8a8a8;
+    outline: none;
+    padding: 0.4rem 0;
+    font-size: 1rem;
+    text-indent: 0.5rem;
+    font-family: 'oswald', sans-serif;
+}
+
+.contenedor-publicacion .campos label {
+    font-weight: 700;
+    color: #3f3d3d;
+}
+
+.contenedor-publicacion .campos textarea {
+    height: 5rem;
+}
+
+.contenedor-publicacion input[type="file"] {
+    margin-left: 0;
+    position: relative;
+    top: 0;
+    font-size: 0.9rem;
+}
+
+.contenedor-publicacion .publicar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contenedor-publicacion .publicar button {
+    padding: 0.6rem 3.5rem;
+    background-color: #59b548;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: white;
+    font-size: 1.1rem;
+    transition: background-color .4s linear;
+}
+
+.contenedor-publicacion .publicar button:hover {
+    background-color: #66d154;
+}
+
+.barra-avance {
+    height: 30px;
+    width: 100%;
+    margin: 2rem auto 0 auto;
+    max-width: 800px;
+    background-color: #f2f2f2;
+}
+
+.porcentaje {
+    height: 100%;
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+    background-size: 1rem 1rem;
+    transition: width .5s linear;
+}
+
+.porcentaje p {
+    width: 100%;
+    text-align: center;
+    font-size: 1.3rem;
+    color: white;
+}
+
+@media (max-width: 840px) {
+    .contenedor-publicacion {
+        max-width: 98%;
+    }
+    .contenedor-publicacion .publicar {
+        flex-direction: column;
+    }
+    .contenedor-publicacion .publicar button {
+        margin-top: 1rem;
+    }
+}
+
+.error-mensaje {
+    color: red;
+    font-family: arial, sans-serif;
+    font-weight: 600;
+    font-size: 15px !important;
+    margin-bottom: 1rem;
+}
+
+.input-video {
+    display: block;
+    width: 50%;
+    padding: 0.5rem;
+    outline-color: #a8a8a8;
+    border: 0.5px solid rgb(110, 109, 109);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.ocultar {
+    display: none;
+}
+
+.mostrar {
+    display: block;
+}

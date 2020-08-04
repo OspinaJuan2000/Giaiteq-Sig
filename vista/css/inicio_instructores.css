@@ -1,0 +1,28 @@
+.opciones__menu {
+  width: 90%;
+  margin-left: 10%;
+  margin-top: 50px;
+}
+
+.opciones__menu li {
+  list-style: none;
+  margin-bottom: 15px;
+}
+
+.opciones__menu a {
+  display: inline-block;
+  width: 100%;
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+}
+
+.opciones__menu a:hover {
+  text-decoration: underline;
+}
+
+.salir {
+  width: 100%;
+  position: absolute;
+  bottom: 10vh;
+}
