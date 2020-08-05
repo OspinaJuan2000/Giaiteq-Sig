@@ -8,11 +8,11 @@ if (isset($_POST) && !empty($_POST)) {
         $upload = $ruta . $nombreArchivo;
         $megabytesMaximos = round($_FILES['video']['size'] / 1e+6);
 
-        if ($formato === 'video/mp4') {
+        if ($formato === 'video/mp4' || $formato === 'video/webm') {
             if ($megabytesMaximos > 50) {
                 $response = array(
                     'mensaje' => 'peso_excedido',
-                );
+                );                
             } else {
                 if (file_exists($upload)) {
                     $response = array(
@@ -65,7 +65,7 @@ if (isset($_POST) && !empty($_POST)) {
             }
         } else {
             $response = array(
-                'mensaje' => 'solo_mp4',
+                'mensaje' => 'solo_mp4_webm',
             );
         }
     }
