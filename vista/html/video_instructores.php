@@ -56,7 +56,7 @@ $sesion->accesoGeneral();
                         </div>
                         <div class="publicar">
                             <input type="file" id="video" name="video" accept="video/*">
-                            <button>Enviar</button>
+                            <button>Publicar</button>
                         </div>
                         <div class="renderizar-video">
 
