@@ -20,9 +20,9 @@
     border: 1px solid #a8a8a8;
     outline: none;
     padding: 0.4rem 0;
-    font-size: 1rem;
+    font-size: .9rem;
     text-indent: 0.5rem;
-    font-family: 'oswald', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 .contenedor-publicacion .campos label {
