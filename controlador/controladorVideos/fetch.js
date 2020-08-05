@@ -16,8 +16,7 @@ export function peticion_subirVideo(datosVideo) {
 
             if (mensaje === 'peso_excedido') {
                 tituloAlerta = 'Peso máximo excedido.';
-                mensajeAlerta =
-                    'El vídeo excede el peso límite, intente subiéndolo desde Youtube.';
+                mensajeAlerta = 'El vídeo excede el peso límite.';
                 iconoAlerta = 'error';
             } else if (mensaje === 'ya_existe') {
                 tituloAlerta = 'El archivo ya existe.';
@@ -27,9 +26,9 @@ export function peticion_subirVideo(datosVideo) {
                 tituloAlerta = 'Error en la subida.';
                 mensajeAlerta = 'Error al subir el vídeo, intente más tarde.';
                 iconoAlerta = 'error';
-            } else if (mensaje === 'solo_mp4') {
-                tituloAlerta = 'Solo se permite fórmato MP4.';
-                mensajeAlerta = 'Intente nuevamente subiendo el vídeo en fórmato MP4.';
+            } else if (mensaje === 'solo_mp4_webm') {
+                tituloAlerta = 'Solo se permite fórmato MP4 y WEBM.';
+                mensajeAlerta = 'Intente nuevamente subiendo el vídeo en fórmato MP4 o formato WEBM.';
                 iconoAlerta = 'info';
             } else if (mensaje === 'subido') {
                 tituloAlerta = `Vídeo subido correctamente.`;
@@ -43,7 +42,10 @@ export function peticion_subirVideo(datosVideo) {
                     text: mensajeAlerta,
                     icon: iconoAlerta,
                 })
-                .then(() => funciones.eliminarBarraProgreso());
+                .then(() => {
+                    funciones.eliminarBarraProgreso();
+                    funciones.eliminarVideoRenderizado();
+                });
         })
         .catch((err) => {
             console.log(err);

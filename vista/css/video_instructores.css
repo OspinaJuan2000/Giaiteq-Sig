@@ -121,3 +121,13 @@
 .mostrar {
     display: block;
 }
+
+.renderizar-video  {
+    display: block;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.renderizar-video video {
+    max-width: 80%;
+}

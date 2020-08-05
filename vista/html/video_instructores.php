@@ -58,6 +58,9 @@ $sesion->accesoGeneral();
                             <input type="file" id="video" name="video" accept="video/*">
                             <button>Enviar</button>
                         </div>
+                        <div class="renderizar-video">
+
+                        </div>
                         <div class="avance">
                             <div id="barra-avance" class="barra-avance">
                                 <div id="porcentaje" class="porcentaje">

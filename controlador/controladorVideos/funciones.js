@@ -1,21 +1,47 @@
 import * as peticiones from './fetch.js';
 
 const formVideos = document.querySelector('#form-videos');
+const inputVideos = document.querySelector('#video');
 
 export function validarFormulario() {
     formVideos.addEventListener('submit', (e) => {
         e.preventDefault();
-
+        
         const datosVideo = new FormData(formVideos);
+        const pesoVideo = datosVideo.get('video').size;
+        const megaBytesMaximo = pesoVideo / 1e+6;
 
-        if (
-            datosVideo.get('titulo').trim() === '' ||
-            datosVideo.get('descripcion').trim() === '' ||
-            datosVideo.get('video').name === ''
-        ) {
+        if (megaBytesMaximo > 50) {
+            swal.fire({
+                title: 'Peso máximo excedido.',
+                text: 'El vídeo excede el peso límite.',
+                icon: 'error',
+            });
+        } else if (datosVideo.get('titulo').trim() === '' || datosVideo.get('descripcion').trim() === '' || datosVideo.get('video').name === '') {
             mensajeVideos('Todos los campos son requeridos', 'error-mensaje');
         } else {
             peticiones.peticion_subirVideo(datosVideo);
+        }
+    });
+}
+
+export function renderizarVideo() {
+    inputVideos.addEventListener('change', (e) => {
+        const video = e.target.files[0];
+        const formatoVideo = video.type;
+        const enlaceVistaPrevia = URL.createObjectURL(video);
+        const renderVideoHTML = document.querySelector('.renderizar-video');
+
+        if (formatoVideo === 'video/mp4' || formatoVideo === 'video/webm') {
+            eliminarVideoRenderizado();
+
+            const videoHTML = document.createElement('video');
+            videoHTML.setAttribute('controls', '');
+            videoHTML.innerHTML = `
+                <source src="${enlaceVistaPrevia}" type="video/mp4">
+                <source src="${enlaceVistaPrevia}" type="video/webm">
+            `;
+            renderVideoHTML.appendChild(videoHTML);
         }
     });
 }
@@ -52,6 +78,12 @@ export function eliminarBarraProgreso() {
     const porcentaje = document.querySelector('#porcentaje');
 
     porcentaje.style.width = '0';
+}
+
+export function eliminarVideoRenderizado() {
+    const renderVideoHTML = document.querySelector('.renderizar-video');
+
+    while (renderVideoHTML.firstChild) renderVideoHTML.removeChild(renderVideoHTML.firstChild);
 }
 
 export function mensajeVideos(mensaje, error) {
