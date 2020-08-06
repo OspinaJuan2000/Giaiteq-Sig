@@ -71,6 +71,11 @@ $sesion->accesoGeneral();
                 </form>
             </div>
         </div>
+        <div class="lista-videos">
+            <div class="contenedor-video">
+                
+            </div>
+        </div>
     </div>
     <script src="../../vista/js/sweetalert2.js"></script>
     <script src="../../controlador/controladorVideos/controlador.js" type="module"></script>

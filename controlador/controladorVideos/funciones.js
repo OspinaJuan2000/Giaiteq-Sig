@@ -20,12 +20,12 @@ export function validarFormulario() {
         } else if (datosVideo.get('titulo').trim() === '' || datosVideo.get('descripcion').trim() === '' || datosVideo.get('video').name === '') {
             mensajeVideos('Todos los campos son requeridos', 'error-mensaje');
         } else {
-            peticiones.peticion_subirVideo(datosVideo);
+            peticiones.peticionSubirVideo(datosVideo);
         }
     });
 }
 
-export function renderizarVideo() {
+export function vistaPreviaVideo() {
     inputVideos.addEventListener('change', (e) => {
         const video = e.target.files[0];
         const formatoVideo = video.type;
@@ -80,6 +80,17 @@ export function eliminarBarraProgreso() {
     porcentaje.style.width = '0';
 }
 
+export function mensajeSinVideos(mensaje) {
+    const listaVideos = document.querySelector('.lista-videos');
+    
+    const parrafo = document.createElement('p');
+    parrafo.classList.add('no-videos');
+
+    parrafo.innerHTML = mensaje;
+
+    listaVideos.appendChild(parrafo);
+}
+
 export function eliminarVideoRenderizado() {
     const renderVideoHTML = document.querySelector('.renderizar-video');
 
@@ -100,4 +111,28 @@ export function mensajeVideos(mensaje, error) {
     setTimeout(() => {
         elemento.remove();
     }, 1500);
+}
+
+
+export function renderizarListaVideos(videos) {
+
+    const contenedorVideos = document.querySelector('.contenedor-video');
+
+    let listaVideosHTMl = '';
+
+    videos.map((video) => {
+        listaVideosHTMl += `
+        <div class="contenedor-video__info">
+                <h3 class="contenedor-video__titulo">${video.titulo}</h3>
+                <p class="contenedor-video__descripcion">${video.descripcion.substring(100)}...</p>
+                <p class="contenedor-video__fecha"><i class="far fa-calendar-alt"></i> ${video.fecha}</p>
+                <video class="contenedor-video__video" controls>
+                    <source src="../../modelo/modeloVideos/${video.ruta.substring(2)}"type="video/mp4">
+                    <source src="../../modelo/modeloVideos/${video.ruta.substring(2)}"type="video/webm">
+                </video>
+        </div>
+        `;
+    });
+
+    contenedorVideos.innerHTML = listaVideosHTMl;
 }

@@ -1,6 +1,6 @@
 import * as funciones from './funciones.js';
 
-export function peticion_subirVideo(datosVideo) {
+export function peticionSubirVideo(datosVideo) {
     fetch('../../modelo/modeloVideos/subir-video.php', {
         method: 'POST',
         body: datosVideo,
@@ -45,9 +45,22 @@ export function peticion_subirVideo(datosVideo) {
                 .then(() => {
                     funciones.eliminarBarraProgreso();
                     funciones.eliminarVideoRenderizado();
+                    peticionListarVideos();
                 });
         })
         .catch((err) => {
             console.log(err);
         });
+}
+
+export function peticionListarVideos() {
+    fetch('../../modelo/modeloVideos/listar-videos.php')
+    .then(response => response.json())
+    .then((data) => {
+        if (data.mensaje === 'sin_videos') {
+            funciones.mensajeSinVideos('No hay vídeos por el momento');
+        } else {
+            funciones.renderizarListaVideos(data);
+        }
+    });
 }

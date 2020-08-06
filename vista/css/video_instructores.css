@@ -131,3 +131,50 @@
 .renderizar-video video {
     max-width: 80%;
 }
+
+.no-videos {
+    margin-top: 4rem;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.lista-videos {
+    margin-top: 2rem;
+}
+
+.contenedor-video {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.contenedor-video__info {
+    text-align: center;
+    padding: 1rem;
+}
+
+.contenedor-video__titulo,
+.contenedor-video__descripcion,
+.contenedor-video__fecha {
+    margin-bottom: .8rem;
+}
+
+.contenedor-video__titulo {
+    font-family: 'Roboto', sans-serif;
+}
+
+.contenedor-video__descripcion {
+    font-family: sans-serif;
+    margin-left: auto;
+}
+
+.contenedor-video__fecha i {
+    color: #3f3d3d;
+    font-size: 1.5rem;
+}
+
+.contenedor-video__video {
+    max-width: 100%;
+    max-height: 280px;
+    border: 1px solid black;
+}
