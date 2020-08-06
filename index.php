@@ -53,22 +53,22 @@ $sesion->verificarSesion();
       <a href="#" id="cerrarFormularioRegistro" class="cerrarFormularioRegistro">X</a>
       <h3>REGISTRARSE</h3>
       <form class="formularioRegistro" id="formularioRegistro" method="POST">
-        <input type="text" id="primerNombre" placeholder="Primer Nombre">
-        <input type="text" id="segundoNombre" placeholder="Segundo Nombre">
-        <input type="text" id="primerApellido" placeholder="Primer Apellido">
-        <input type="text" id="segundoApellido" placeholder="Segundo Apellido">
-        <input type="text" id="programa" placeholder="Programa">
-        <input type="number" id="ficha" placeholder="Número de Ficha">
-        <select id="tipoDocumento">
+        <input type="text" id="primerNombre" name="primerNombre" placeholder="Primer Nombre">
+        <input type="text" id="segundoNombre" name="segundoNombre" placeholder="Segundo Nombre">
+        <input type="text" id="primerApellido" name="primerApellido" placeholder="Primer Apellido">
+        <input type="text" id="segundoApellido" name="segundoApellido" placeholder="Segundo Apellido">
+        <input type="text" id="programa" name="programa" placeholder="Programa">
+        <input type="number" id="ficha" name="ficha" placeholder="Número de Ficha">
+        <select id="tipoDocumento" name="tipoDocumento">
           <option value="1">Cédula de Ciudadanía</option>
           <option value="2">Tarjeta de Identidad</option>
           <option value="3">Registro Civil</option>
           <option value="4">Cédula de Extranjería</option>
           <option value="5">Pasaporte</option>
         </select>
-        <input type="number" id="documento" placeholder="Identificación">
-        <input type="email" id="correo" placeholder="Correo">
-        <input type="password" id="clave" placeholder="Contraseña">
+        <input type="number" id="documento" name="documento" placeholder="Identificación">
+        <input type="email" id="correo" name="correo" placeholder="Correo">
+        <input type="password" id="clave" name="clave" placeholder="Contraseña">
         <input type="submit" class="botonEnviar" value="Enviar">
       </form>
     </div>
@@ -76,6 +76,7 @@ $sesion->verificarSesion();
   <script type="text/javascript" src="./vista/js/index.js"></script>
   <script src="vista/js/sweetalert2.js"></script>
   <script src="controlador/controladorSesion/controlador.js" type="module"></script>
+  <script src="./controlador/controladorRegistroEstudiantes/guardarEstudiante.js"></script>
 </body>
 
 </html>
