@@ -1,3 +1,5 @@
+let formularioRegistro = document.getElementById('formularioRegistro');
+
 function obtenerFecha() {
   let tiempo = new Date();
   let año = tiempo.getFullYear();
@@ -7,33 +9,111 @@ function obtenerFecha() {
   return fecha;
 }
 
-let formularioRegistro = document.getElementById('formularioRegistro');
+const expresiones = {
+	primerNombre: /^[a-zA-ZÀ-ÿ\s]{2,40}$/,
+  segundoNombre: /^[a-zA-ZÀ-ÿ\s]{0,40}$/,
+  primerApellido: /^[a-zA-ZÀ-ÿ\s]{2,40}$/,
+  segundoApellido: /^[a-zA-ZÀ-ÿ\s]{0,40}$/,
+  programa: /^[a-zA-ZÀ-ÿ\s]{1,80}$/,
+  ficha: /^\d{3,20}$/,
+  documento: /^\d{3,20}$/,
+  correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+	clave: /^.{4,40}$/
+}
+
+const campos = {
+  primerNombre: false,
+  segundoNombre: false,
+  primerApellido: false,
+  segundoApellido: false,
+  programa: false,
+  ficha: false,
+  documento: false,
+  correo: false,
+	clave: false
+}
+
+const validarFormulario = () => {
+  let primerNombre = document.getElementById('primerNombre').value;
+  let segundoNombre = document.getElementById('segundoNombre').value;
+  let primerApellido = document.getElementById('primerApellido').value;
+  let segundoApellido = document.getElementById('segundoApellido').value;
+  let programa = document.getElementById('programa').value;
+  let ficha = document.getElementById('ficha').value;
+  let documento = document.getElementById('documento').value;
+  let correo = document.getElementById('correo').value;
+  let clave = document.getElementById('clave').value;
+
+  if(expresiones.primerNombre.test(primerNombre)){
+    campos['primerNombre'] = true;
+  }
+
+  if(expresiones.segundoNombre.test(segundoNombre)){
+    campos['segundoNombre'] = true;
+  }
+
+  if(expresiones.primerApellido.test(primerApellido)){
+    campos['primerApellido'] = true;
+  }
+
+  if(expresiones.segundoApellido.test(segundoApellido)){
+    campos['segundoApellido'] = true;
+  }
+
+  if(expresiones.programa.test(programa)){
+    campos['programa'] = true;
+  }
+
+  if(expresiones.ficha.test(ficha)){
+    campos['ficha'] = true;
+  }
+
+  if(expresiones.documento.test(documento)){
+    campos['documento'] = true;
+  }
+
+  if(expresiones.correo.test(correo)){
+    campos['correo'] = true;
+  }
+
+  if(expresiones.clave.test(clave)){
+    campos['clave'] = true;
+  }
+}
 
 formularioRegistro.addEventListener('submit', (e) => {
   e.preventDefault();
-  let informacion = new FormData(formularioRegistro);
-  informacion.append('fechaRegistro', obtenerFecha());
+  validarFormulario();
+  if(campos.primerNombre && campos.segundoNombre && campos.primerApellido && campos.segundoApellido && campos.programa && campos.ficha && campos.documento && campos.correo && campos.clave){
+    let informacion = new FormData(formularioRegistro);
+    informacion.append('fechaRegistro', obtenerFecha());
 
-  fetch('./modelo/modeloRegistroEstudiantes/guardarEstudiante.php', {
-    method: 'POST',
-    body: informacion
-  })
-  .then(respuesta => respuesta.json())
-  .then(datos => {
-    if(datos == 'Solicitud enviada'){
-      Swal.fire({
-        icon: 'success',
-        title: 'Solicitud Enviada',
-        text: 'Sus datos serán revisados por un instructor, si es aceptado o rechazado, la respuesta llegará al correo proporcionado'
-      })
-    } else if(datos == 'Llene todos los campos'){
-      Swal.fire({
-        icon: 'error',
-        title: 'Campos sin completar',
-        text: 'Por favor complete todos los campos'
-      })
-    } else {
-      console.log(datos);
-    }
-  })
+    fetch('./modelo/modeloRegistroEstudiantes/guardarEstudiante.php', {
+      method: 'POST',
+      body: informacion
+    })
+    .then(respuesta => respuesta.json())
+    .then(datos => {
+      if(datos == 'Solicitud enviada'){
+        Swal.fire({
+          icon: 'success',
+          title: 'Solicitud Enviada',
+          text: 'Sus datos serán revisados por un instructor, si es aceptado o rechazado, la respuesta llegará al correo proporcionado'
+        })
+        formularioRegistro.reset();
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: '¡ERROR!',
+          text: 'Ocurrió un error al enviar'
+        })
+      }
+    })
+  } else {
+    Swal.fire({
+      icon: 'error',
+      title: 'Datos erroneos',
+      text: 'Tiene campos sin llenar o los datos que ingresó no son correctos'
+    })
+  }
 });
