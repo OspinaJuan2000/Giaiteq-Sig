@@ -86,9 +86,11 @@ export function mensajeSinVideos(mensaje) {
     const parrafo = document.createElement('p');
     parrafo.classList.add('no-videos');
 
-    parrafo.innerHTML = mensaje;
+    if (!document.querySelector('.no-videos')) {
+        parrafo.innerHTML = mensaje;
 
-    listaVideos.appendChild(parrafo);
+        listaVideos.appendChild(parrafo);
+    }
 }
 
 export function eliminarVideoRenderizado() {
@@ -117,6 +119,10 @@ export function mensajeVideos(mensaje, error) {
 export function renderizarListaVideos(videos) {
 
     const contenedorVideos = document.querySelector('.contenedor-video');
+
+    if (document.querySelector('.no-videos')) {
+        contenedorVideos.nextElementSibling.remove();
+    }
 
     let listaVideosHTMl = '';
 

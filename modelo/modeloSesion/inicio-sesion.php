@@ -15,7 +15,7 @@ if (isset($_POST) && !empty($_POST)) {
         $columnas = $statement->fetch(PDO::FETCH_ASSOC);
 
         if ($statement->rowCount() > 0) {
-            if ($columnas['clave'] == $contra) {
+            if (password_verify($contra, $columnas['clave']) && $usuario == $columnas['documento_usuario']) {
                 $respuesta = array(
                     'mensaje' => 'correcto',
                     'documento' => $columnas['documento_usuario'],
