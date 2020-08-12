@@ -1,0 +1,41 @@
+.tab{
+  width: 100%;
+}
+
+.estudiantesActivos,
+.solicitudesIngreso,
+.estudiantesInactivos{
+  width: 100%;
+}
+
+.estudiante{
+  width: 70%;
+  margin-left: 15%;
+  margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: 90% 10%;
+}
+
+.editar,
+.eliminar,
+.aceptar,
+.rechazar{
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.editar{
+  color: #2CB8DE;
+}
+
+.eliminar{
+  color: #DC1341;
+}
+
+.aceptar{
+  color: #235E3D;
+}
+
+.rechazar{
+  color: #CF1A35;
+}
