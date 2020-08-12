@@ -1,9 +1,10 @@
 <?php
+
 if (isset($_POST) && !empty($_POST)) {
 
     if (is_uploaded_file($_FILES['video']['tmp_name'])) {
         $ruta = './videos/';
-        $nombreArchivo = $_FILES['video']['name'];
+        $nombreArchivo = $_POST['videoName'];
         $formato = $_FILES['video']['type'];
         $upload = $ruta . $nombreArchivo;
         $megabytesMaximos = round($_FILES['video']['size'] / 1e+6);
@@ -12,7 +13,7 @@ if (isset($_POST) && !empty($_POST)) {
             if ($megabytesMaximos > 50) {
                 $response = array(
                     'mensaje' => 'peso_excedido',
-                );                
+                );
             } else {
                 if (file_exists($upload)) {
                     $response = array(

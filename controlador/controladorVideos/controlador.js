@@ -11,4 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Listar los vídeos.
     peticiones.peticionListarVideos();
+
+    //Eliminar algún vídeo.
+    funciones.eliminarVideo();
 });

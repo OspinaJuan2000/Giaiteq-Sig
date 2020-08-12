@@ -4,8 +4,7 @@ export function peticion_iniciarSesion(datosUsuario) {
     fetch('./modelo/modeloSesion/inicio-sesion.php', {
         method: 'POST',
         body: datosUsuario,
-    })
-        .then((response) => response.json())
+    }).then((response) => response.json())
         .then((data) => {
             const { mensaje } = data;
 
