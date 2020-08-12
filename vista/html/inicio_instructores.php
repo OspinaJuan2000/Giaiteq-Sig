@@ -37,7 +37,7 @@ $sesion->accesoGeneral();
         <li><a href="#"><i class="fas fa-project-diagram"></i> PROYECTOS</a></li>
         <li><a href="#"><i class="far fa-calendar-alt"></i> EVENTOS</a></li>
         <li><a href="#"><i class="fas fa-chalkboard-teacher"></i> INSTRUCTORES</a></li>
-        <li><a href="#"><i class="fas fa-user-graduate"></i> ESTUDIANTES</a></li>
+        <li><a href="gestion_estudiantes.php"><i class="fas fa-user-graduate"></i> ESTUDIANTES</a></li>
         <li class="salir"><a href="../../modelo/modeloSesion/cierre-sesion.php"><i class="fas fa-sign-out-alt"></i> SALIR</a></li>
       </ul>
     </div>
