@@ -54,7 +54,6 @@ if (isset($_POST) && !empty($_POST)) {
                             );
 
                             move_uploaded_file($_FILES['video']['tmp_name'], $upload);
-                            
                         } else {
                             $response = array(
                                 'mensaje' => 'error_subir',

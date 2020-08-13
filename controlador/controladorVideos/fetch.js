@@ -55,7 +55,7 @@ export function peticionListarVideos() {
         .then(data => {
             if (data.mensaje === 'sin_videos') {
                 funciones.eliminarListaVideos();
-                funciones.mensajeSinVideos('No hay vídeos por el momento');
+                funciones.mensajeSinVideos('No se ha publicado ningún vídeo', 'sinRegistrosBD');
             } else {
                 funciones.renderizarListaVideos(data);
             }
@@ -114,7 +114,7 @@ export function peticionEditarVideo(datosVideo) {
                 iconoAlerta = 'error';
             } else if (mensaje === 'error_actualizar') {
                 tituloAlerta = 'Error al actualizar el vídeo';
-                mensajeAlerta = `Error al actualizar el vídeo ${data.nombreAnterior}. No se vieron alterados ninguno de los campos, actualice nuevamente`;
+                mensajeAlerta = `Error al actualizar el vídeo ${data.nombreAnterior}. No se vieron alterados ninguno de los campos o el vídeo fue borrado previamente, actualice nuevamente`;
                 iconoAlerta = 'error';
             } else if (mensaje === 'solo_mp4_webm') {
                 tituloAlerta = 'Solo se permite fórmato MP4 y WEBM.';
@@ -140,5 +140,21 @@ export function peticionEditarVideo(datosVideo) {
                 funciones.activarBotonPublicar();
                 peticionListarVideos();
             });
-        })
+        }).catch(err => console.log(err));
+}
+
+export function peticionBuscarVideos(datosVideo) {
+
+    fetch('../../modelo/modeloVideos/buscar-videos.php', {
+        method: 'POST',
+        body: datosVideo
+    }).then(response => response.json())
+        .then(data => {
+            if (data.mensaje === 'video_noencontrado') {
+                funciones.eliminarListaVideos();
+                funciones.mensajeSinVideos('No se ha encontrado ningún vídeo con ese título', 'sinFiltrosBD');
+            } else {
+                funciones.renderizarListaVideos(data);
+            }
+        }).catch(err => console.log(err));
 }
