@@ -57,9 +57,10 @@ $sesion->accesoGeneral();
                         <div class="publicar">
                             <input type="file" id="video" name="video" accept="video/*">
                             <button>Publicar</button>
+                            <input type="hidden" id="idVideo">
                         </div>
                         <div class="renderizar-video">
-
+                           
                         </div>
                         <div class="avance">
                             <div id="barra-avance" class="barra-avance">

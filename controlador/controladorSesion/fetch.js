@@ -4,8 +4,8 @@ export function peticion_iniciarSesion(datosUsuario) {
     fetch('./modelo/modeloSesion/inicio-sesion.php', {
         method: 'POST',
         body: datosUsuario,
-    }).then((response) => response.json())
-        .then((data) => {
+    }).then(response => response.json())
+        .then(data => {
             const { mensaje } = data;
 
             if (mensaje === 'correcto') {
@@ -46,7 +46,5 @@ export function peticion_iniciarSesion(datosUsuario) {
                 );
             }
         })
-        .catch((err) => {
-            console.log(err);
-        });
+        .catch(err => console.log(err));
 }
