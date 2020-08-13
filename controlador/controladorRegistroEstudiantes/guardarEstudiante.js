@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', listaFichas);
+
 let formularioRegistro = document.getElementById('formularioRegistro');
 
 function obtenerFecha() {
@@ -14,8 +16,6 @@ const expresiones = {
   segundoNombre: /^[a-zA-ZÀ-ÿ\s]{0,40}$/,
   primerApellido: /^[a-zA-ZÀ-ÿ\s]{2,40}$/,
   segundoApellido: /^[a-zA-ZÀ-ÿ\s]{0,40}$/,
-  programa: /^[a-zA-ZÀ-ÿ\s]{1,80}$/,
-  ficha: /^\d{3,20}$/,
   documento: /^\d{3,20}$/,
   correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
 	clave: /^.{4,40}$/
@@ -26,8 +26,6 @@ const campos = {
   segundoNombre: false,
   primerApellido: false,
   segundoApellido: false,
-  programa: false,
-  ficha: false,
   documento: false,
   correo: false,
 	clave: false
@@ -38,8 +36,6 @@ const validarFormulario = () => {
   let segundoNombre = document.getElementById('segundoNombre').value;
   let primerApellido = document.getElementById('primerApellido').value;
   let segundoApellido = document.getElementById('segundoApellido').value;
-  let programa = document.getElementById('programa').value;
-  let ficha = document.getElementById('ficha').value;
   let documento = document.getElementById('documento').value;
   let correo = document.getElementById('correo').value;
   let clave = document.getElementById('clave').value;
@@ -60,14 +56,6 @@ const validarFormulario = () => {
     campos['segundoApellido'] = true;
   }
 
-  if(expresiones.programa.test(programa)){
-    campos['programa'] = true;
-  }
-
-  if(expresiones.ficha.test(ficha)){
-    campos['ficha'] = true;
-  }
-
   if(expresiones.documento.test(documento)){
     campos['documento'] = true;
   }
@@ -84,7 +72,7 @@ const validarFormulario = () => {
 formularioRegistro.addEventListener('submit', (e) => {
   e.preventDefault();
   validarFormulario();
-  if(campos.primerNombre && campos.segundoNombre && campos.primerApellido && campos.segundoApellido && campos.programa && campos.ficha && campos.documento && campos.correo && campos.clave){
+  if(campos.primerNombre && campos.segundoNombre && campos.primerApellido && campos.segundoApellido && campos.documento && campos.correo && campos.clave){
     let informacion = new FormData(formularioRegistro);
     informacion.append('fechaRegistro', obtenerFecha());
 
@@ -117,3 +105,17 @@ formularioRegistro.addEventListener('submit', (e) => {
     })
   }
 });
+
+function listaFichas(){
+  fetch('./modelo/modeloRegistroEstudiantes/listaFichas.php')
+    .then(respuesta => respuesta.json())
+    .then(informacion => {
+      let plantilla = '';
+      informacion.forEach((ficha) => {
+        plantilla += `
+        <option value="${ficha.numero_ficha}">${ficha.numero_ficha} - ${ficha.nombre_programa}</option>
+        `
+      });
+      document.getElementById('ficha').innerHTML = plantilla;
+    })
+}

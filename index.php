@@ -57,8 +57,6 @@ $sesion->verificarSesion();
         <input type="text" id="segundoNombre" name="segundoNombre" placeholder="Segundo Nombre">
         <input type="text" id="primerApellido" name="primerApellido" placeholder="Primer Apellido">
         <input type="text" id="segundoApellido" name="segundoApellido" placeholder="Segundo Apellido">
-        <input type="text" id="programa" name="programa" placeholder="Programa">
-        <input type="number" id="ficha" name="ficha" placeholder="Número de Ficha">
         <select id="tipoDocumento" name="tipoDocumento">
           <option value="1">Cédula de Ciudadanía</option>
           <option value="2">Tarjeta de Identidad</option>
@@ -67,6 +65,9 @@ $sesion->verificarSesion();
           <option value="5">Pasaporte</option>
         </select>
         <input type="number" id="documento" name="documento" placeholder="Identificación">
+        <select id="ficha" name="ficha">
+          
+        </select>
         <input type="email" id="correo" name="correo" placeholder="Correo">
         <input type="password" id="clave" name="clave" placeholder="Contraseña">
         <input type="submit" class="botonEnviar" value="Enviar">

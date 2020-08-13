@@ -46,7 +46,7 @@ function solicitudesIngreso(){
           </div>
           <div class="estudiante__opciones">
             <i class="fas fa-user-check aceptar" title="Aceptar"><input type="hidden" value="${dato.documento_usuario}"></i>
-            <i class="fas fa-times rechazar" title="Rechazar"></i>
+            <i class="fas fa-times rechazar" title="Rechazar"><input type="hidden" value="${dato.documento_usuario}"></i>
           </div>
         </div>
         `
@@ -84,10 +84,48 @@ setTimeout(function(){
                 'success'
               )
               solicitudesIngreso();
-              estudiantesActivos()
+              estudiantesActivos();
             })
         }
       })
     })
+  }
+}, 100);
+
+setTimeout(() => {
+  let rechazar = document.getElementsByClassName('rechazar');
+
+  for(let i = 0; i < rechazar.length; i++){
+    rechazar[i].addEventListener('click', function(){
+      let identificacion = this.firstChild.value;
+      Swal.fire({
+        title: '¿Desea rechazar este estudiante?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#D33',
+        cancelButtonColor: '#28A745',
+        confirmButtonText: 'Rechazar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.value) {
+          let dato = new FormData();
+          dato.append('identificacion', identificacion);
+          fetch('../../modelo/modeloRegistroEstudiantes/rechazarEstudiante.php', {
+            method: 'POST',
+            body: dato
+          })
+          .then(respuesta => respuesta.json())
+          .then(res => {
+            Swal.fire(
+              'Rechazado',
+              res,
+              'success'
+            )
+            solicitudesIngreso();
+            estudiantesActivos();
+          })
+        }
+      })
+    });
   }
 }, 100);

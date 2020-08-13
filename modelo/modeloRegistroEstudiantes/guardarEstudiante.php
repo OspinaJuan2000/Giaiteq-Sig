@@ -6,7 +6,6 @@
   $segundo_nombre = $_POST['segundoNombre'];
   $primer_apellido = $_POST['primerApellido'];
   $segundo_apellido = $_POST['segundoApellido'];
-  $programa = $_POST['programa'];
   $ficha = $_POST['ficha'];
   $tipo_documento = (int)$_POST['tipoDocumento'];
   $documento = $_POST['documento'];
