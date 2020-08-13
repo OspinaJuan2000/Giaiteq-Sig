@@ -89,6 +89,7 @@ formularioRegistro.addEventListener('submit', (e) => {
           text: 'Sus datos serán revisados por un instructor, si es aceptado o rechazado, la respuesta llegará al correo proporcionado'
         })
         formularioRegistro.reset();
+        campos.clave = false;
       } else {
         Swal.fire({
           icon: 'error',

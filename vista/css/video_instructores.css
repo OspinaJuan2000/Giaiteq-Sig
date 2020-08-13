@@ -180,9 +180,7 @@
 
 .contenedor-video__fecha {
     font-size: .8rem;
-    text-align: right;
-    display: inline-block;
-    width: 92%;
+    text-align: center;
     margin-bottom: 10px;
 }
 
