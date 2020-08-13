@@ -2,7 +2,7 @@ import * as peticiones from './fetch.js';
 
 const formVideos = document.querySelector('#form-videos');
 const inputVideos = document.querySelector('#video');
-
+let editarVideos = false;
 
 export function validarFormulario() {
     formVideos.addEventListener('submit', (e) => {
@@ -13,14 +13,14 @@ export function validarFormulario() {
         let nombreVideo = datosVideo.get('video').name;
 
         if (nombreVideo.includes('#')) {
-            datosVideo.set('videoName', `${nombreVideo.split('#').join('sharp')}`);
+            datosVideo.set('nombreVideo', `${nombreVideo.split('#').join('sharp')}`);
         } else {
-            datosVideo.set('videoName', nombreVideo);
+            datosVideo.set('nombreVideo', nombreVideo);
         }
 
         const megaBytesMaximo = pesoVideo / 1e+6;
 
-        if (megaBytesMaximo > 50) {
+        if (megaBytesMaximo > 80) {
             swal.fire({
                 title: 'Peso máximo excedido.',
                 text: 'El vídeo excede el peso límite.',
@@ -29,9 +29,17 @@ export function validarFormulario() {
 
         } else if (datosVideo.get('titulo').trim() === '' || datosVideo.get('descripcion').trim() === '' || datosVideo.get('video').name === '') {
             mensajeVideos('Todos los campos son requeridos', 'error-mensaje');
-        } else {
+        } else if (editarVideos === false) {
             desactivarBotonPublicar();
+            datosVideo.set('accion', 'publicar');
             peticiones.peticionSubirVideo(datosVideo);
+        } else if (editarVideos === true) {
+            desactivarBotonPublicar();
+            datosVideo.set('accion', 'editar');
+            datosVideo.set('idVideo', formVideos.querySelector('#idVideo').dataset.id);
+            datosVideo.set('nombreVideoAnterior', formVideos.querySelector('#idVideo').dataset.nombre);
+            peticiones.peticionEditarVideo(datosVideo);
+            editarVideos = true;
         }
     });
 }
@@ -65,10 +73,11 @@ export function barraProgreso(data) {
         data.mensaje === 'peso_excedido' ||
         data.mensaje === 'ya_existe' ||
         data.mensaje === 'error_subir' ||
-        data.mensaje === 'solo_mp4'
+        data.mensaje === 'solo_mp4_webm' ||
+        data.mensaje === 'error_actualizar'
     ) {
         backgroundColor = '#f00';
-    } else if (data.mensaje === 'subido') {
+    } else if (data.mensaje === 'subido' || data.mensaje === 'actualizado') {
         backgroundColor = '#59b548';
         formVideos.reset();
     }
@@ -141,12 +150,12 @@ export function renderizarListaVideos(videos) {
         listaVideosHTMl += `
         <div class="contenedor-video__info" data-id="${video.id}" data-nombre="${video.ruta}">
                 <h3 class="contenedor-video__titulo">${video.titulo}</h3>
-                <p class="contenedor-video__descripcion" title="${video.descripcion.substring(1)}">${video.descripcion.length > 70 ? video.descripcion.substring(1, 70) + '...' : video.descripcion}</p>
                 <p class="contenedor-video__fecha"><i class="far fa-calendar-alt"></i> ${video.fecha}</p>
                 <video class="contenedor-video__video" controls>
                     <source src="../../modelo/modeloVideos/${video.ruta.substring(2)}"type="video/mp4">
                     <source src="../../modelo/modeloVideos/${video.ruta.substring(2)}"type="video/webm">
                 </video>
+                <p class="contenedor-video__descripcion" title="${video.descripcion.substring(1)}">${video.descripcion}</p>
                 <div class="contenedor-video__opciones">
                     <i class="fas fa-trash-alt contenedor-video__eliminar"></i>
                     <i class="far fa-edit contenedor-video__editar"></i>
@@ -162,7 +171,6 @@ export function eliminarVideo() {
     const contenedorVideos = document.querySelector('.contenedor-video');
 
     contenedorVideos.addEventListener('click', (e) => {
-
 
         if (e.target.classList.contains('contenedor-video__eliminar')) {
 
@@ -200,6 +208,33 @@ export function eliminarVideo() {
         }
     });
 }
+
+export function editarVideo() {
+    const contenedorVideos = document.querySelector('.contenedor-video');
+
+    contenedorVideos.addEventListener('click', (e) => {
+        if (e.target.classList.contains('contenedor-video__editar')) {
+
+            editarVideos = true;
+
+            const idVideoAnterior = e.target.parentElement.parentElement.dataset.id;
+            const nombreVideoAnterior = e.target.parentElement.parentElement.dataset.nombre.split('./videos/').join('');
+            let tituloVideoHtml = formVideos.querySelector('#titulo');
+            let descripcionVideoHtml = formVideos.querySelector('#descripcion');
+            let botonPublicar = formVideos.querySelector('.publicar button');
+            
+            const tituloVideo = e.target.parentElement.parentElement.querySelector('.contenedor-video__titulo').textContent;
+            const descripcionVideo = e.target.parentElement.parentElement.querySelector('.contenedor-video__descripcion').textContent;
+
+            tituloVideoHtml.value = tituloVideo;
+            descripcionVideoHtml.value = descripcionVideo;
+            botonPublicar.innerHTML = 'Editar';
+            formVideos.querySelector('#idVideo').setAttribute('data-id', idVideoAnterior);
+            formVideos.querySelector('#idVideo').setAttribute('data-nombre', nombreVideoAnterior);
+        }
+    });
+}
+
 
 export function desactivarBotonPublicar() {
     formVideos.querySelector('.publicar button').disabled = true;

@@ -14,4 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Eliminar algún vídeo.
     funciones.eliminarVideo();
+
+    //Editar algún vídeo.
+    funciones.editarVideo();
 });
