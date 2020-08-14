@@ -4,7 +4,8 @@
 
 .estudiantesActivos,
 .solicitudesIngreso,
-.estudiantesInactivos{
+.estudiantesInactivos,
+.fichas{
   width: 100%;
 }
 
@@ -38,4 +39,63 @@
 
 .rechazar{
   color: #CF1A35;
+}
+
+.formularioFichas{
+  width: 50%;
+  margin: auto;
+}
+
+.formularioFichas__input{
+  width: 45%;
+  height: 30px;
+  font-size: 25px;
+  margin-left: 2.5%;
+  margin-bottom: 20px;
+  text-align: center;
+  border-radius: 4px;
+  border: none;
+  border-bottom: 1px solid #235E3D;
+}
+
+.formularioFichas__submit{
+  width: 40%;
+  height: 30px;
+  background-color: #235E3D;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: block;
+  margin: auto;
+}
+
+.formularioFichas__submit:hover{
+  opacity: 0.90;
+  transition: 0.40s;
+}
+
+.tablaFichas{
+  width: 95%;
+  margin-top: 30px;
+  text-align: center;
+  table-layout: fixed;
+}
+
+.tablaFichas th:first-child,
+.tablaFichas td:first-child,
+.tablaFichas th:nth-child(3),
+.tablaFichas td:nth-child(3),
+.tablaFichas th:nth-child(4),
+.tablaFichas td:nth-child(4){
+  width: 10%;
+  height: 30px;
+  word-wrap: break-word;
+}
+
+.tablaFichas th:nth-child(2),
+.tablaFichas td:nth-child(2){
+  width: 70%;
+  height: 30px;
+  word-wrap: break-word;
 }

@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', estudiantesActivos);
 document.addEventListener('DOMContentLoaded', solicitudesIngreso);
+document.addEventListener('DOMContentLoaded', listaFichas);
 
 function estudiantesActivos(){
   fetch('../../modelo/modeloRegistroEstudiantes/listaEstudiantesActivos.php')
@@ -129,3 +130,54 @@ setTimeout(() => {
     });
   }
 }, 100);
+
+function listaFichas(){
+  fetch('../../modelo/modeloRegistroEstudiantes/listaFichas.php')
+    .then(respuesta => respuesta.json())
+    .then(informacion => {
+      let plantilla = `
+      <tr>
+        <th>Ficha</th>
+        <th>Programa</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
+      </tr>
+      `;
+      informacion.forEach((ficha) => {
+        plantilla += `
+        <tr>
+          <td>${ficha.numero_ficha}</td>
+          <td>${ficha.nombre_programa}</td>
+          <td><i class="fas fa-edit editar" title="Editar"></i></td>
+          <td><i class="fas fa-trash-alt eliminar" title="Eliminar"></i></td>
+        </tr>
+        `
+      });
+      document.getElementById('tablaFichas').innerHTML = plantilla;
+    })
+}
+
+let formularioFichas = document.getElementById('formularioFichas');
+
+formularioFichas.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  let informacion = new FormData(formularioFichas);
+
+  fetch('../../modelo/modeloRegistroEstudiantes/guardarFicha.php', {
+    method: 'POST',
+    body: informacion
+  })
+    .then(respuesta => respuesta.json())
+    .then(res => {
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: res,
+        showConfirmButton: false,
+        timer: 1500
+      })
+      formularioFichas.reset();
+      listaFichas();
+    })
+});

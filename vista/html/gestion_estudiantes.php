@@ -62,8 +62,15 @@
             <p>estudiantesInactivos</p>
           </div>
 
-          <div id="fichas">
-            <p>fichas</p>
+          <div id="fichas" class="fichas">
+            <form class="formularioFichas" id="formularioFichas" method="POST">
+              <input type="number" class="formularioFichas__input" name="numeroFicha" placeholder="Ficha">
+              <input type="text" class="formularioFichas__input" name="nombrePrograma" placeholder="Programa">
+              <input type="submit" class="formularioFichas__submit" value="Guardar">
+            </form>
+            <table class="tablaFichas" id="tablaFichas">
+              
+            </table>
           </div>
         </div>
       </div>
