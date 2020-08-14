@@ -60,7 +60,7 @@ $sesion->accesoGeneral();
                             <input type="hidden" id="idVideo">
                         </div>
                         <div class="renderizar-video">
-                           
+
                         </div>
                         <div class="avance">
                             <div id="barra-avance" class="barra-avance">
@@ -72,9 +72,13 @@ $sesion->accesoGeneral();
                 </form>
             </div>
         </div>
+        <div class="buscador-videos">
+            <input class="buscador-videos__input" type="text" placeholder="Buscar un vídeo" id="buscar-video">
+            <label class="buscador-videos__label" for="buscar-video"><i class="fas fa-search buscador-videos__icon"></i></label>
+        </div>
         <div class="lista-videos">
             <div class="contenedor-video">
-                
+
             </div>
         </div>
     </div>

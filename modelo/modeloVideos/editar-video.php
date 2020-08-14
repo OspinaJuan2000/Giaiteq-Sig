@@ -50,7 +50,6 @@ if (isset($_POST) && !empty($_POST)) {
                         move_uploaded_file($_FILES['video']['tmp_name'], './videos/' . $nombreArchivoAnterior);
 
                         rename('./videos/' . $nombreArchivoAnterior, './videos/' . $nombreArchivo);
-
                     } else {
                         $response = array(
                             'mensaje' => 'error_actualizar',
