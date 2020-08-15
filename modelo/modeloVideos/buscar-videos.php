@@ -4,7 +4,6 @@ if (isset($_POST) && $_POST['filtro'] !== '') {
     $filtroBusqueda = $_POST['filtro'];
 
     try {
-
         require_once '../conexion.php';
         $instanciaConexion = new Conexion();
         $conexion = $instanciaConexion->establecer_conexion();

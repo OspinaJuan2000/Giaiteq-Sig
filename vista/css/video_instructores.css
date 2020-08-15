@@ -1,8 +1,8 @@
 .contenedor-publicacion {
     max-width: 58%;
-    -webkit-box-shadow: -2px 7px 21px -8px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: -2px 7px 21px -8px rgba(0, 0, 0, 0.75);
-    box-shadow: -2px 7px 21px -8px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 2px 2px 22px -13px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 2px 2px 22px -13px rgba(0, 0, 0, 0.75);
+    box-shadow: 2px 2px 22px -13px rgba(0, 0, 0, 0.75);
     margin: 15vh auto 0 auto;
     padding: 2rem;
     border-radius: 4px;
@@ -25,6 +25,7 @@
     font-family: 'Roboto', sans-serif;
 }
 
+
 .contenedor-publicacion .campos label {
     font-weight: 700;
     color: #3f3d3d;
@@ -40,6 +41,7 @@
     position: relative;
     top: 0;
     font-size: 0.9rem;
+    cursor: pointer;
 }
 
 .contenedor-publicacion .publicar {
@@ -56,11 +58,12 @@
     cursor: pointer;
     color: white;
     font-size: 1.1rem;
-    transition: background-color .4s linear;
+    transition: background-color 1s, color 1s;
 }
 
 .contenedor-publicacion .publicar button:hover {
-    background-color: #66d154;
+    background-color: #88D36E;
+    color: black;
 }
 
 .barra-avance {
@@ -83,18 +86,6 @@
     text-align: center;
     font-size: 1.3rem;
     color: white;
-}
-
-@media (max-width: 840px) {
-    .contenedor-publicacion {
-        max-width: 98%;
-    }
-    .contenedor-publicacion .publicar {
-        flex-direction: column;
-    }
-    .contenedor-publicacion .publicar button {
-        margin-top: 1rem;
-    }
 }
 
 .error-mensaje {
@@ -152,9 +143,10 @@
     border: 1px solid rgba(179, 179, 179);
     width: 40%;
     transition: border .2s;
+    font-family: 'Roboto', sans-serif;
 }
 
-.buscador-videos__input:focus {
+.buscador-videos__input:focus, .contenedor-publicacion .campos textarea:focus, .contenedor-publicacion .campos input:focus  {
     border: 1px solid #235E3D;
 }
 
@@ -246,11 +238,11 @@
 
 .contenedor-video__opciones > i:not(:last-child) {
     margin-right: 10px;
-    color: #a19595;
+    color: #DC1341;
 }
 
 .contenedor-video__opciones > i:not(:first-child) {
-    color: #517c43;
+    color: #2CB8DE;
 }
 
 .contenedor-video__opciones i:hover {
@@ -264,6 +256,18 @@
         width: 50vw;
         margin-left: auto;
         margin-right: auto;
+    }
+}
+
+@media (max-width: 1040px) {
+    .contenedor-publicacion {
+        max-width: 75%;
+    }
+    .contenedor-publicacion .publicar {
+        flex-direction: column;
+    }
+    .contenedor-publicacion .publicar button {
+        margin-top: 35px;
     }
 }
 
