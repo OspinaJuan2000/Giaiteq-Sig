@@ -41,7 +41,7 @@ export function peticionListarEventos() {
         .then(data => {
             if (data.mensaje == 'sin_eventos') {
                 funciones.eliminarListaEventos();
-                funciones.mensajeSinEventos('No se ha publicado ningún evento');
+                funciones.mensajeSinEventos('No se ha publicado ningún evento', 'sinRegistrosBD');
             } else {
                 funciones.listarEventos(data);
             }
@@ -115,4 +115,18 @@ export function peticionEditarEvento(datosEvento) {
                 peticionListarEventos();
             });
         })
+}
+
+export function peticionBuscarEventos(datosEvento) {
+    fetch('../../modelo/modeloEventos/buscar-eventos.php', {
+        method: 'POST',
+        body: datosEvento
+    }).then(response => response.json())
+        .then(data => {
+            if (data.mensaje === 'evento_noencontrado') {
+                funciones.mensajeSinEventos('No se ha encontrado ningún evento con tal nombre', 'sinFiltrosBD');
+            } else {
+                funciones.listarEventos(data);
+            }
+        }).catch(err => console.log(err));
 }

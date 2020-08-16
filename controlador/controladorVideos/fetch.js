@@ -149,14 +149,13 @@ export function peticionEditarVideo(datosVideo) {
 }
 
 export function peticionBuscarVideos(datosVideo) {
-
     fetch('../../modelo/modeloVideos/buscar-videos.php', {
         method: 'POST',
         body: datosVideo
     }).then(response => response.json())
         .then(data => {
             if (data.mensaje === 'video_noencontrado') {
-                funciones.mensajeSinVideos('No se ha encontrado ningún vídeo con ese título', 'sinFiltrosBD');
+                funciones.mensajeSinVideos('No se ha encontrado ningún vídeo con tal nombre', 'sinFiltrosBD');
             } else {
                 funciones.renderizarListaVideos(data);
             }

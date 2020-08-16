@@ -124,7 +124,24 @@ export function editarEvento() {
     });
 }
 
-export function mensajeSinEventos(mensaje) {
+export function buscarEvento() {
+    const buscador = document.querySelector('.buscador__input');
+
+    buscador.addEventListener('input', (e) => {
+
+        if (buscador.value !== '') {
+
+            const datosEvento = new FormData();
+            datosEvento.set('filtro', e.target.value.trim());
+
+            peticiones.peticionBuscarEventos(datosEvento);
+        } else {
+            peticiones.peticionListarEventos();
+        }
+    });
+}
+
+export function mensajeSinEventos(mensaje, opcion) {
     const listaEventos = document.querySelector('.lista-eventos');
     const buscadorEventos = document.querySelector('.buscador');
 
@@ -134,10 +151,15 @@ export function mensajeSinEventos(mensaje) {
     if (!document.querySelector('.no-resultados')) {
         parrafo.innerHTML = mensaje;
         listaEventos.appendChild(parrafo);
-        buscadorEventos.style.display = 'none';
+
+        if (opcion === 'sinRegistrosBD') {
+            buscadorEventos.style.display = 'none';
+            
+        } else if (opcion === 'sinFiltrosBD') {
+            eliminarListaEventos();
+        }
     }
 }
-
 
 export function manejoElementosListando() { // Mostrar la barra de busqueda y ocultar el mensaje de que no hay vídeos cuando realmente si haya.
 

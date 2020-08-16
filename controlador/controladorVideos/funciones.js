@@ -236,7 +236,6 @@ export function editarVideo() {
     });
 }
 
-
 export function buscarVideos() {
     const buscador = document.querySelector('.buscador__input');
 

@@ -14,4 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Editar algún evento.
     funciones.editarEvento();
+
+    //Buscar algún vídeo.
+    funciones.buscarEvento();
 });

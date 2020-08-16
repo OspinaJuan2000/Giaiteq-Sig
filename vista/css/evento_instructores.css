@@ -151,6 +151,8 @@
     padding: 10px;
     border: 1px solid rgb(192, 192, 192);
     border-radius: 3px;
+    display: flex;
+    flex-direction: column;
 }
 
 .contenedor-evento__info>* {
@@ -195,10 +197,9 @@
 }
 
 .contenedor-evento__opciones {
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-end;
     margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .contenedor-evento__opciones i {
@@ -236,6 +237,7 @@
     .contenedor-publicacion {
         max-width: 75%;
     }
+
     .publicar {
         flex-direction: column;
     }
