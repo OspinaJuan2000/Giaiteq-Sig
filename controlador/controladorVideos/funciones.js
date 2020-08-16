@@ -31,12 +31,10 @@ export function validarFormulario() {
         } else if (datosVideo.get('titulo').trim() === '' || datosVideo.get('descripcion').trim() === '' || datosVideo.get('video').name === '') {
             mensajeCamposVacios('Todos los campos son requeridos', 'campos-vaciosError', document.querySelector('.contenedor-publicacion'));
         } else if (editarVideos === false) {
-            desactivarBotonPublicar();  
-            datosVideo.set('accion', 'publicar');
+            desactivarBotonPublicar();
             peticiones.peticionSubirVideo(datosVideo);
         } else if (editarVideos === true) {
             desactivarBotonPublicar();
-            datosVideo.set('accion', 'editar');
             datosVideo.set('idVideo', formVideos.querySelector('#idVideo').dataset.id);
             datosVideo.set('nombreVideoAnterior', formVideos.querySelector('#idVideo').dataset.nombre);
             peticiones.peticionEditarVideo(datosVideo);

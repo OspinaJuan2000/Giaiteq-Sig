@@ -47,36 +47,36 @@ $sesion->accesoGeneral();
                 <form id="form-eventos" enctype="multipart/form-data">
                     <div class="contenedor-publicacion">
                         <div class="campos">
-                            <label for="titulo">Título del evento</label>
-                            <input type="text" placeholder="Título" id="titulo" name="titulo" autocomplete="off">
+                            <label for="titulo">Nombre del evento</label>
+                            <input type="text" placeholder="Nombre" id="nombre" name="nombre" autocomplete="off" value="asdasdasdasdsad">
                         </div>
                         <div class="campos">
                             <label for="descripcion">Descripción del evento</label>
-                            <textarea id="descripcion" name="descripcion" placeholder="Descripción"></textarea>
+                            <textarea id="descripcion" name="descripcion" placeholder="Descripción">sssssssssssssss</textarea>
                         </div>
                         <div class="campos">
                             <label for="lugar">Lugar de realización</label>
-                            <input type="text" placeholder="Lugar" id="lugar" name="lugar" autocomplete="off">
+                            <input type="text" placeholder="Lugar" id="lugar" name="lugar" autocomplete="off" value="asdasdasdasdsad">
                         </div>
                         <div class="campos campos-evento">
                             <div class="campos-evento__comienzo-evento">
                                 <span class="campos-evento__fecha-comienzo">
                                     <p class="campos-evento__texto">Fecha comienzo del evento</p>
-                                    <input type="date" name="fecha-comienzo">
+                                    <input type="date" name="fecha-comienzo" value="2000-09-27">
                                 </span>
                                 <span class="campos-evento__hora-comienzo">
                                     <p class="campos-evento__texto">Hora comienzo del evento</p>
-                                    <input type="time" name="hora-comienzo">
+                                    <input type="time" name="hora-comienzo" value="12:00">
                                 </span>
                             </div>
                             <div class="campos-evento__finalizacion-evento">
                                 <span class="campos-evento__fecha-finalizacion">
                                     <p class="campos-evento__texto">Fecha finalizacion del evento</p>
-                                    <input type="date" name="fecha-finalizacion">
+                                    <input type="date" name="fecha-finalizacion" value="2020-09-27">
                                 </span>
                                 <span class="campos-evento__hora-finalizacion">
                                     <p class="campos-evento__texto">Hora finalizacion del evento</p>
-                                    <input type="time" name="hora-finalizacion">
+                                    <input type="time" name="hora-finalizacion" value="13:00">
                                 </span>
                             </div>
                         </div>

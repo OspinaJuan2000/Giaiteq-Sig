@@ -15,7 +15,7 @@ if (isset($_POST) && !empty($_POST)) {
 
         if ($formato === 'video/mp4' || $formato === 'video/webm') {
             if ($megabytesMaximos > 80) {
-                $response = array(
+                $respuesta = array(
                     'mensaje' => 'peso_excedido',
                 );
             } else {
@@ -42,7 +42,7 @@ if (isset($_POST) && !empty($_POST)) {
                     $statement2->execute();
 
                     if ($statement->rowCount() > 0 || $statement2->rowCount() > 0) {
-                        $response = array(
+                        $respuesta = array(
                             'mensaje' => 'actualizado',
                             'nombreActual' => $nombreArchivo
                         );
@@ -51,7 +51,7 @@ if (isset($_POST) && !empty($_POST)) {
 
                         rename('./videos/' . $nombreArchivoAnterior, './videos/' . $nombreArchivo);
                     } else {
-                        $response = array(
+                        $respuesta = array(
                             'mensaje' => 'error_actualizar',
                             'nombreAnterior' => $nombreArchivoAnterior
                         );
@@ -62,9 +62,9 @@ if (isset($_POST) && !empty($_POST)) {
             }
         }
     } else {
-        $response = array(
+        $respuesta = array(
             'mensaje' => 'solo_mp4_webm',
         );
     }
-    echo json_encode($response);
+    echo json_encode($respuesta);
 }

@@ -11,17 +11,17 @@ if (isset($_POST) && !empty($_POST)) {
 
         if ($formato === 'video/mp4' || $formato === 'video/webm') {
             if ($megabytesMaximos > 80) {
-                $response = array(
+                $respuesta = array(
                     'mensaje' => 'peso_excedido',
                 );
             } else {
                 if (file_exists($upload)) {
-                    $response = array(
+                    $respuesta = array(
                         'mensaje' => 'ya_existe',
                     );
                 } else {
                     session_start();
-                    $documento = (int) $_SESSION['instructor']['documento'];
+                    $documento = $_SESSION['instructor']['documento'];
                     $titulo = $_POST['titulo'];
                     $descripcion = $_POST['descripcion'];
 
@@ -48,14 +48,14 @@ if (isset($_POST) && !empty($_POST)) {
                         $statement2->execute();
 
                         if ($statement2->rowCount() > 0 || $statement->rowCount() > 0) {
-                            $response = array(
+                            $respuesta = array(
                                 'mensaje' => 'subido',
                                 'nombre' => $nombreArchivo,
                             );
 
                             move_uploaded_file($_FILES['video']['tmp_name'], $upload);
                         } else {
-                            $response = array(
+                            $respuesta = array(
                                 'mensaje' => 'error_subir',
                             );
                         }
@@ -66,9 +66,9 @@ if (isset($_POST) && !empty($_POST)) {
             }
         }
     } else {
-        $response = array(
+        $respuesta = array(
             'mensaje' => 'solo_mp4_webm',
         );
     }
-    echo json_encode($response);
+    echo json_encode($respuesta);
 }
