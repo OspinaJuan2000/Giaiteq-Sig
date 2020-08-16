@@ -1,5 +1,7 @@
 import * as funciones from './funciones.js';
 
+const formVideos = document.querySelector('#form-videos');
+
 export function peticionSubirVideo(datosVideo) {
     fetch('../../modelo/modeloVideos/subir-video.php', {
         method: 'POST',
@@ -33,6 +35,7 @@ export function peticionSubirVideo(datosVideo) {
                 tituloAlerta = `Vídeo subido correctamente.`;
                 mensajeAlerta = `El archivo "-${data.nombre}-" se subió correctamente.`;
                 iconoAlerta = 'success';
+                formVideos.reset();
             }
 
             swal.fire({
@@ -121,9 +124,11 @@ export function peticionEditarVideo(datosVideo) {
                 mensajeAlerta = 'Intente nuevamente subiendo el vídeo en fórmato MP4 o formato WEBM.';
                 iconoAlerta = 'info';
             } else if (mensaje === 'actualizado') {
-                tituloAlerta = `Vídeo actualizado correctamente.`;
+                tituloAlerta = 'Vídeo actualizado correctamente.';
                 mensajeAlerta = `El archivo se actualizó correctamente a "-${data.nombreActual}"-.`;
                 iconoAlerta = 'success';
+                formVideos.reset();
+                funciones.videoEditado();
             } else if (mensaje === 'ya_existe') {
                 tituloAlerta = 'El archivo ya existe.';
                 mensajeAlerta = 'Este ya está en el sistema.';

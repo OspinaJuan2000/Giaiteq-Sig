@@ -21,7 +21,7 @@ if (isset($_POST) && !empty($_POST)) {
             } else {
 
                 try {
-                    require_once '../conexion.php';
+                    require_once ('../conexion.php');
                     $instanciaConexion = new Conexion();
                     $conexion = $instanciaConexion->establecer_conexion();
                     $titulo = $_POST['titulo'];

@@ -1,5 +1,7 @@
 import * as funciones from './funciones.js';
 
+const formEventos = document.querySelector('#form-eventos');
+
 export function peticionSubirEvento(datosEvento) {
     fetch('../../modelo/modeloEventos/subir-evento.php', {
         method: 'POST',
@@ -27,6 +29,7 @@ export function peticionSubirEvento(datosEvento) {
                 text: mensajeAlerta,
                 icon: iconoAlerta,
             }).then(() => {
+                formEventos.reset();
                 peticionListarEventos();
             })
         }).catch(err => console.log(err));
@@ -76,4 +79,40 @@ export function peticionEliminarEvento(datosEvento) {
             });
 
         }).catch(err => console.log(err));
+}
+
+export function peticionEditarEvento(datosEvento) {
+    fetch('../../modelo/modeloEventos/editar-evento.php', {
+        method: 'POST',
+        body: datosEvento
+    }).then(response => response.json())
+        .then(data => {
+            const { mensaje } = data;
+            console.log(data);
+            console.log(mensaje);
+
+            let tituloAlerta,
+                mensajeAlerta,
+                iconoAlerta = '';
+
+            if (mensaje === 'error_actualizar') {
+                tituloAlerta = 'Error al actualizar el evento';
+                mensajeAlerta = `Error al actualizar el evento ${data.nombreAnterior}. No se vieron alterados ninguno de los campos o el evento fue borrado previamente, actualice nuevamente`;
+                iconoAlerta = 'error';
+            } else if (mensaje === 'actualizado') {
+                tituloAlerta = 'Evento actualizado correctamente';
+                mensajeAlerta = `El evento se actualizó correctamente a ${data.nombreActual}`;
+                iconoAlerta = 'success';
+                formEventos.reset();
+                funciones.eventoEditado();
+            }
+
+            swal.fire({
+                title: tituloAlerta,
+                text: mensajeAlerta,
+                icon: iconoAlerta,
+            }).then(() => {
+                peticionListarEventos();
+            });
+        })
 }

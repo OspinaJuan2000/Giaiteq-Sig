@@ -1,9 +1,11 @@
 import * as peticiones from './fetch.js';
 import { mensajeCamposVacios } from '../controladorSesion/funciones.js';
 
+let editarVideos = false;
+
 const formVideos = document.querySelector('#form-videos');
 const inputVideos = document.querySelector('#video');
-let editarVideos = false;
+
 
 export function validarFormulario() {
     formVideos.addEventListener('submit', (e) => {
@@ -33,12 +35,12 @@ export function validarFormulario() {
         } else if (editarVideos === false) {
             desactivarBotonPublicar();
             peticiones.peticionSubirVideo(datosVideo);
+            console.log(editarVideos);
         } else if (editarVideos === true) {
             desactivarBotonPublicar();
             datosVideo.set('idVideo', formVideos.querySelector('#idVideo').dataset.id);
             datosVideo.set('nombreVideoAnterior', formVideos.querySelector('#idVideo').dataset.nombre);
-            peticiones.peticionEditarVideo(datosVideo);
-            editarVideos = true;
+            peticiones.peticionEditarVideo(datosVideo); 
         }
     });
 }
@@ -78,7 +80,6 @@ export function barraProgreso(data) {
         backgroundColor = '#f00';
     } else if (data.mensaje === 'subido' || data.mensaje === 'actualizado') {
         backgroundColor = '#59b548';
-        formVideos.reset();
     }
 
     if (document.querySelector('#porcentaje')) {
@@ -118,7 +119,6 @@ export function mensajeSinVideos(mensaje, opcion) {
     }
 }
 
-
 export function eliminarVideoRenderizado() {
     const renderVideoHTML = document.querySelector('.renderizar-video');
 
@@ -141,7 +141,6 @@ export function mensajeVideos(mensaje, error) {
     }, 1500);
 }
 
-
 export function renderizarListaVideos(videos) {
 
     manejoElementosListando();
@@ -160,8 +159,8 @@ export function renderizarListaVideos(videos) {
                 </video>
                 <p class="contenedor-video__descripcion" title="${video.descripcion}">${video.descripcion}</p>
                 <div class="contenedor-video__opciones">
-                    <i class="fas fa-trash-alt contenedor-video__eliminar">ELIM</i>
-                    <i class="far fa-edit contenedor-video__editar">EDIT</i>
+                    <i class="fas fa-trash-alt contenedor-video__eliminar"></i>
+                    <i class="far fa-edit contenedor-video__editar"></i>
                 </div>
         </div>
         `;
@@ -278,4 +277,11 @@ export function eliminarListaVideos() {
     const contenedorVideos = document.querySelector('.contenedor-video');
 
     while (contenedorVideos.firstChild) contenedorVideos.removeChild(contenedorVideos.firstChild);
+}
+
+export function videoEditado() {
+    let botonPublicar = formVideos.querySelector('.publicar button');
+    botonPublicar.innerHTML = 'Publicar';
+
+    editarVideos = false;
 }

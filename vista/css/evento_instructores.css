@@ -141,6 +141,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
+    word-break: break-all;
 }
 
 .contenedor-evento__info {
@@ -148,7 +149,6 @@
     font-family: sans-serif;
     line-height: 1.5;
     padding: 10px;
-    text-align: center;
     border: 1px solid rgb(192, 192, 192);
     border-radius: 3px;
 }
@@ -170,9 +170,6 @@
 }
 
 .contenedor-evento__mas-info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     font-size: 13px;
 }
 
@@ -180,8 +177,8 @@
     color: green;
 }
 
-.contenedor-evento__comienzo span, .contenedor-evento__fin span {
-    font-weight: 600;
+.contenedor-evento__lugar, .contenedor-evento__fecha, .contenedor-evento__hora, .contenedor-evento__fecha-comienzo, .contenedor-evento__hora-comienzo, .contenedor-evento__fecha-finalizacion, .contenedor-evento__hora-finalizacion {
+    font-weight: 700;
 }
 
 .contenedor-evento__comienzo i {

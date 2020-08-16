@@ -11,4 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Eliminar algún evento.
     funciones.eliminarEvento();
+
+    //Editar algún evento.
+    funciones.editarEvento();
 });

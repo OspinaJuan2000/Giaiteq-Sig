@@ -18,7 +18,7 @@ try {
                 'lugar_realizacion' => $evento['lugar_realizacion'],
                 'fecha_comienzo' => $evento['fecha_comienzo'],
                 'hora_comienzo' => $evento['hora_comienzo'],
-                'fecha_finalizacion' => $evento['hora_finalizacion'],
+                'fecha_finalizacion' => $evento['fecha_finalizacion'],
                 'hora_finalizacion' => $evento['hora_finalizacion']
             );
         }
