@@ -74,12 +74,12 @@ export function peticionEliminarVideo(datosVideo) {
                 iconoAlerta = '';
 
             if (data.mensaje === 'video_eliminado') {
-                tituloAlerta = `Vídeo eliminado correctamente.`;
+                tituloAlerta = 'Vídeo eliminado correctamente.';
                 mensajeAlerta = `El vídeo "-${data.titulo}-" ha sido eliminado.`;
                 iconoAlerta = 'success';
 
             } else if (data.mensaje === 'video_noeliminado') {
-                tituloAlerta = `Error al intentar eliminar`;
+                tituloAlerta = 'Error al intentar eliminar';
                 mensajeAlerta = `Ocurrió un error al intentar eliminar el vídeo "-${data.titulo}-"`;
                 iconoAlerta = 'error';
             }
@@ -151,7 +151,6 @@ export function peticionBuscarVideos(datosVideo) {
     }).then(response => response.json())
         .then(data => {
             if (data.mensaje === 'video_noencontrado') {
-                funciones.eliminarListaVideos();
                 funciones.mensajeSinVideos('No se ha encontrado ningún vídeo con ese título', 'sinFiltrosBD');
             } else {
                 funciones.renderizarListaVideos(data);

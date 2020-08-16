@@ -7,7 +7,6 @@ if (isset($_POST) && !empty($_POST)) {
 
     $videoPorEliminar = "./videos/" . "" . $nombreVideo;
 
-
     try {
         require_once '../conexion.php';
         $instanciaConexion = new Conexion();
@@ -17,7 +16,7 @@ if (isset($_POST) && !empty($_POST)) {
         $statement->execute();
 
         if ($statement->rowCount() > 0) {
-            $response = array(
+            $respuesta = array(
                 'mensaje' => 'video_eliminado',
                 'titulo' => $nombreVideo
             );
@@ -26,7 +25,7 @@ if (isset($_POST) && !empty($_POST)) {
                 unlink($videoPorEliminar);
             }
         } else {
-            $response = array(
+            $respuesta = array(
                 'mensaje' => 'video_noeliminado',
                 'titulo' => $nombreVideo
             );
@@ -35,5 +34,5 @@ if (isset($_POST) && !empty($_POST)) {
         echo "Error en la base de datos: " . $e->getMessage();
     }
 
-    echo json_encode($response);
+    echo json_encode($respuesta);
 }

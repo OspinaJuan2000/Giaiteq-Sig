@@ -29,7 +29,7 @@ export function validarFormulario() {
             });
 
         } else if (datosVideo.get('titulo').trim() === '' || datosVideo.get('descripcion').trim() === '' || datosVideo.get('video').name === '') {
-            mensajeCamposVacios('Todos los campos son requeridos', 'campos-vaciosError', document.querySelector('.contenedor-publicacion'));
+            mensajeCamposVacios('Todos los campos son obligatorios', 'campos-vaciosError', document.querySelector('.contenedor-publicacion'));
         } else if (editarVideos === false) {
             desactivarBotonPublicar();
             peticiones.peticionSubirVideo(datosVideo);
@@ -101,20 +101,19 @@ export function eliminarBarraProgreso() {
 
 export function mensajeSinVideos(mensaje, opcion) {
     const listaVideos = document.querySelector('.lista-videos');
-    const buscadorVideos = document.querySelector('.buscador-videos');
+    const buscadorVideos = document.querySelector('.buscador');
 
     const parrafo = document.createElement('p');
-    parrafo.classList.add('no-videos');
+    parrafo.classList.add('no-resultados');
 
-    if (!document.querySelector('.no-videos')) {
+    if (!document.querySelector('.no-resultados')) {
         parrafo.innerHTML = mensaje;
         listaVideos.appendChild(parrafo);
 
         if (opcion === 'sinRegistrosBD') {
             buscadorVideos.style.display = 'none';
-
         } else if (opcion === 'sinFiltrosBD') {
-            eliminarListaVideos
+            eliminarListaVideos();
         }
     }
 }
@@ -126,20 +125,31 @@ export function eliminarVideoRenderizado() {
     while (renderVideoHTML.firstChild) renderVideoHTML.removeChild(renderVideoHTML.firstChild);
 }
 
-export function renderizarListaVideos(videos) {
+export function mensajeVideos(mensaje, error) {
+    const divMensaje = document.querySelector('.contenedor-publicacion');
+    const elemento = document.createElement('p');
 
-    const contenedorVideos = document.querySelector('.contenedor-video');
-    const buscadorVideos = document.querySelector('.buscador-videos');
+    elemento.innerHTML = mensaje;
+    elemento.className = error;
 
-    if (document.querySelector('.no-videos')) {
-        contenedorVideos.nextElementSibling.remove();
+    if (!document.querySelector('.error-mensaje')) {
+        divMensaje.insertBefore(elemento, divMensaje.childNodes[0]);
     }
 
-    buscadorVideos.style.display = 'flex';
+    setTimeout(() => {
+        elemento.remove();
+    }, 1500);
+}
 
+
+export function renderizarListaVideos(videos) {
+
+    manejoElementosListando();
+
+    const contenedorVideos = document.querySelector('.contenedor-video');
     let listaVideosHTMl = '';
 
-    videos.map((video) => {
+    videos.map(video => {
         listaVideosHTMl += `
         <div class="contenedor-video__info" data-id="${video.id}" data-nombre="${video.ruta}">
                 <h3 class="contenedor-video__titulo">${video.titulo}</h3>
@@ -148,10 +158,10 @@ export function renderizarListaVideos(videos) {
                     <source src="../../modelo/modeloVideos/${video.ruta.substring(2)}"type="video/mp4">
                     <source src="../../modelo/modeloVideos/${video.ruta.substring(2)}"type="video/webm">
                 </video>
-                <p class="contenedor-video__descripcion" title="${video.descripcion.substring(1)}">${video.descripcion}</p>
+                <p class="contenedor-video__descripcion" title="${video.descripcion}">${video.descripcion}</p>
                 <div class="contenedor-video__opciones">
-                    <i class="fas fa-trash-alt contenedor-video__eliminar"></i>
-                    <i class="far fa-edit contenedor-video__editar"></i>
+                    <i class="fas fa-trash-alt contenedor-video__eliminar">ELIM</i>
+                    <i class="far fa-edit contenedor-video__editar">EDIT</i>
                 </div>
         </div>
         `;
@@ -164,7 +174,6 @@ export function eliminarVideo() {
     const contenedorVideos = document.querySelector('.contenedor-video');
 
     contenedorVideos.addEventListener('click', (e) => {
-
         if (e.target.classList.contains('contenedor-video__eliminar')) {
 
             Swal.fire({
@@ -177,7 +186,7 @@ export function eliminarVideo() {
                 confirmButtonText: 'Sí, eliminarlo',
                 cancelButtonText: 'No, cancelar'
 
-            }).then((pregunta) => {
+            }).then(pregunta => {
                 if (pregunta.value) {
                     const datosVideo = new FormData();
 
@@ -230,7 +239,7 @@ export function editarVideo() {
 
 
 export function buscarVideos() {
-    const buscador = document.querySelector('.buscador-videos__input');
+    const buscador = document.querySelector('.buscador__input');
 
     buscador.addEventListener('input', (e) => {
 
@@ -244,6 +253,17 @@ export function buscarVideos() {
             peticiones.peticionListarVideos();
         }
     });
+}
+
+export function manejoElementosListando() { // Mostrar la barra de busqueda y ocultar el mensaje de que no hay vídeos cuando realmente si haya.
+    const contenedorVideos = document.querySelector('.contenedor-video');
+    const buscadorVideos = document.querySelector('.buscador');
+
+    if (document.querySelector('.no-resultados')) {
+        contenedorVideos.nextElementSibling.remove();
+    }
+
+    buscadorVideos.style.display = 'flex';
 }
 
 export function desactivarBotonPublicar() {

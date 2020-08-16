@@ -86,10 +86,15 @@ $sesion->accesoGeneral();
                 </form>
             </div>
         </div>
-        <!-- <div class="buscador-videos">
-            <input class="buscador-videos__input" type="text" placeholder="Buscar un vídeo" id="buscar-video">
-            <label class="buscador-videos__label" for="buscar-video"><i class="fas fa-search buscador-videos__icon"></i></label>
-        </div> -->
+        <div class="buscador">
+            <input class="buscador__input" type="text" placeholder="Buscar un evento" id="buscar-evento">
+            <label class="buscador__label" for="buscar-evento"><i class="fas fa-search buscador__icon"></i></label>
+        </div>
+        <div class="lista-eventos">
+            <div class="contenedor-evento">
+                
+            </div>
+        </div>
     </div>
     <script src="../../vista/js/sweetalert2.js"></script>
     <script src="../../controlador/controladorEventos/controlador.js" type="module"></script>

@@ -84,3 +84,10 @@ body::-webkit-scrollbar-thumb {
   font-size: 15px !important;
   margin-bottom: 1rem;
 }
+
+.no-resultados {
+  font-size: 22px;
+  text-align: center;
+  font-family: sans-serif;
+  margin: 20px 0;
+}
