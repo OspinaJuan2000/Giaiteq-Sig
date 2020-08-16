@@ -76,3 +76,11 @@ body::-webkit-scrollbar-thumb {
   left: 15%;
   z-index: 1;
 }
+
+.campos-vaciosError {
+  color: red;
+  font-family: arial, sans-serif;
+  font-weight: 600;
+  font-size: 15px !important;
+  margin-bottom: 1rem;
+}

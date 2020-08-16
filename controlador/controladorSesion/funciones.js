@@ -12,20 +12,20 @@ export function validarFormulario() {
             datosUsuario.get('usuario').trim() === '' ||
             datosUsuario.get('contra').trim() === ''
         ) {
-            mensajeSesiones('Los campos del usuario son requeridos', 'error-ingreso');
+            mensajeCamposVacios('Los campos del usuario son requeridos', 'campos-vaciosError', formIngreso);
         } else {
             peticiones.peticion_iniciarSesion(datosUsuario);
         }
     });
 }
 
-export function mensajeSesiones(mensaje, error) {
+export function mensajeCamposVacios(mensaje, error, insertar) {
     const elemento = document.createElement('p');
     elemento.innerHTML = mensaje;
     elemento.className = error;
 
-    if (!document.querySelector('.error-ingreso')) {
-        formIngreso.insertBefore(elemento, formIngreso.childNodes[0]);
+    if (!document.querySelector(`.${error}`)) {
+        insertar.insertBefore(elemento, insertar.childNodes[0]);
     }
 
     setTimeout(() => {

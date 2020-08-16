@@ -44,7 +44,7 @@ $sesion->accesoGeneral();
         </div>
         <div class="contenedor_central__contenido">
             <div class="contenedorPublicaciones">
-                <form id="form-publicacion" enctype="multipart/form-data">
+                <form id="form-eventos" enctype="multipart/form-data">
                     <div class="contenedor-publicacion">
                         <div class="campos">
                             <label for="titulo">Título del evento</label>
@@ -54,9 +54,31 @@ $sesion->accesoGeneral();
                             <label for="descripcion">Descripción del evento</label>
                             <textarea id="descripcion" name="descripcion" placeholder="Descripción"></textarea>
                         </div>
+                        <div class="campos">
+                            <label for="lugar">Lugar de realización</label>
+                            <input type="text" placeholder="Lugar" id="lugar" name="lugar" autocomplete="off">
+                        </div>
                         <div class="campos campos-evento">
-                            <label for="descripcion">Fecha del evento</label>
-                            <input type="date">
+                            <div class="campos-evento__comienzo-evento">
+                                <span class="campos-evento__fecha-comienzo">
+                                    <p class="campos-evento__texto">Fecha comienzo del evento</p>
+                                    <input type="date" name="fecha-comienzo">
+                                </span>
+                                <span class="campos-evento__hora-comienzo">
+                                    <p class="campos-evento__texto">Hora comienzo del evento</p>
+                                    <input type="time" name="hora-comienzo">
+                                </span>
+                            </div>
+                            <div class="campos-evento__finalizacion-evento">
+                                <span class="campos-evento__fecha-finalizacion">
+                                    <p class="campos-evento__texto">Fecha finalizacion del evento</p>
+                                    <input type="date" name="fecha-finalizacion">
+                                </span>
+                                <span class="campos-evento__hora-finalizacion">
+                                    <p class="campos-evento__texto">Hora finalizacion del evento</p>
+                                    <input type="time" name="hora-finalizacion">
+                                </span>
+                            </div>
                         </div>
                         <div class="publicar">
                             <button>Publicar</button>
@@ -70,6 +92,7 @@ $sesion->accesoGeneral();
         </div> -->
     </div>
     <script src="../../vista/js/sweetalert2.js"></script>
+    <script src="../../controlador/controladorEventos/controlador.js" type="module"></script>
 </body>
 
 </html>

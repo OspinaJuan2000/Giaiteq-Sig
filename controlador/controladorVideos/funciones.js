@@ -1,4 +1,5 @@
 import * as peticiones from './fetch.js';
+import { mensajeCamposVacios } from '../controladorSesion/funciones.js';
 
 const formVideos = document.querySelector('#form-videos');
 const inputVideos = document.querySelector('#video');
@@ -28,9 +29,9 @@ export function validarFormulario() {
             });
 
         } else if (datosVideo.get('titulo').trim() === '' || datosVideo.get('descripcion').trim() === '' || datosVideo.get('video').name === '') {
-            mensajeVideos('Todos los campos son requeridos', 'error-mensaje');
+            mensajeCamposVacios('Todos los campos son requeridos', 'campos-vaciosError', document.querySelector('.contenedor-publicacion'));
         } else if (editarVideos === false) {
-            desactivarBotonPublicar();
+            desactivarBotonPublicar();  
             datosVideo.set('accion', 'publicar');
             peticiones.peticionSubirVideo(datosVideo);
         } else if (editarVideos === true) {
@@ -127,23 +128,6 @@ export function eliminarVideoRenderizado() {
     while (renderVideoHTML.firstChild) renderVideoHTML.removeChild(renderVideoHTML.firstChild);
 }
 
-export function mensajeVideos(mensaje, error) {
-    const divMensaje = document.querySelector('.contenedor-publicacion');
-    const elemento = document.createElement('p');
-
-    elemento.innerHTML = mensaje;
-    elemento.className = error;
-
-    if (!document.querySelector('.error-mensaje')) {
-        divMensaje.insertBefore(elemento, divMensaje.childNodes[0]);
-    }
-
-    setTimeout(() => {
-        elemento.remove();
-    }, 1500);
-}
-
-
 export function renderizarListaVideos(videos) {
 
     const contenedorVideos = document.querySelector('.contenedor-video');
@@ -156,7 +140,7 @@ export function renderizarListaVideos(videos) {
     buscadorVideos.style.display = 'flex';
 
     let listaVideosHTMl = '';
-    
+
     videos.map((video) => {
         listaVideosHTMl += `
         <div class="contenedor-video__info" data-id="${video.id}" data-nombre="${video.ruta}">

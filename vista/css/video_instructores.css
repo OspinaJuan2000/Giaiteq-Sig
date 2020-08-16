@@ -3,65 +3,67 @@
     -webkit-box-shadow: 2px 2px 22px -13px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 2px 2px 22px -13px rgba(0, 0, 0, 0.75);
     box-shadow: 2px 2px 22px -13px rgba(0, 0, 0, 0.75);
-    margin: 15vh auto 0 auto;
-    padding: 2rem;
+    margin: 8vh auto 0 auto;
+    padding: 32px;
     border-radius: 4px;
     font-family: sans-serif;
+    margin-bottom: 20px;
 }
 
 .contenedor_central__contenido {
     top: 0vh;
 }
 
-.contenedor-publicacion .campos textarea, .contenedor-publicacion .campos input {
+.campos textarea, .campos input {
     display: block;
-    margin: 0.3rem auto 1.4rem auto;
+    margin: 5px auto 25px auto;
     width: 100%;
     border: 1px solid #a8a8a8;
     outline: none;
-    padding: 0.4rem 0;
-    font-size: 0.9rem;
-    text-indent: 0.5rem;
+    padding: 6px 0;
+    font-size: 14px;
+    text-indent: 8px;
     font-family: 'Roboto', sans-serif;
 }
 
 
-.contenedor-publicacion .campos label {
+.campos label {
     font-weight: 700;
     color: #3f3d3d;
 }
 
-.contenedor-publicacion .campos textarea {
-    height: 5rem;
+.campos textarea {
+    height: 50px;
     resize: none;
 }
 
-.contenedor-publicacion input[type="file"] {
+.publicar .input-video {
     margin-left: 0;
     position: relative;
     top: 0;
-    font-size: 0.9rem;
+    font-size: 16px;
     cursor: pointer;
+    border: none;
 }
 
-.contenedor-publicacion .publicar {
+.publicar {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.contenedor-publicacion .publicar button {
-    padding: 0.6rem 3.5rem;
+.publicar button {
+    padding: 10px 40px;
     background-color: #235E3D;
     border: none;
     outline: none;
     cursor: pointer;
     color: white;
-    font-size: 1.1rem;
+    font-size: 17px;
     transition: background-color 1s, color 1s;
 }
 
-.contenedor-publicacion .publicar button:hover {
+.publicar button:hover {
     background-color: #88D36E;
     color: black;
 }
@@ -69,7 +71,7 @@
 .barra-avance {
     height: 30px;
     width: 100%;
-    margin: 2rem auto 0 auto;
+    margin: 32px auto 0 auto;
     max-width: 800px;
     background-color: #f2f2f2;
 }
@@ -81,30 +83,6 @@
     transition: width .5s linear;
 }
 
-.porcentaje p {
-    width: 100%;
-    text-align: center;
-    font-size: 1.3rem;
-    color: white;
-}
-
-.error-mensaje {
-    color: red;
-    font-family: arial, sans-serif;
-    font-weight: 600;
-    font-size: 15px !important;
-    margin-bottom: 1rem;
-}
-
-.input-video {
-    display: block;
-    width: 50%;
-    padding: 0.5rem;
-    outline-color: #a8a8a8;
-    border: 0.5px solid rgb(110, 109, 109);
-    border-radius: 4px;
-    font-size: 1rem;
-}
 
 .ocultar {
     display: none;
@@ -117,7 +95,7 @@
 .renderizar-video {
     display: block;
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 32px;
 }
 
 .renderizar-video video {
@@ -125,8 +103,8 @@
 }
 
 .no-videos {
-    margin-top: 4rem;
-    font-size: 1.5rem;
+    margin-top: 64px;
+    font-size: 22px;
     text-align: center;
     font-family: sans-serif;
 }
@@ -146,7 +124,7 @@
     font-family: 'Roboto', sans-serif;
 }
 
-.buscador-videos__input:focus, .contenedor-publicacion .campos textarea:focus, .contenedor-publicacion .campos input:focus  {
+.buscador-videos__input:focus, .campos textarea:focus, .campos input:focus  {
     border: 1px solid #235E3D;
 }
 
@@ -170,14 +148,13 @@
 }
 
 .lista-videos {
-    margin: 2rem 0;
+    margin: 32px 0;
 }
-
 
 .contenedor-video {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    gap: 16px;
 }
 
 .contenedor-video__info {
@@ -190,7 +167,7 @@
 }
 
 .contenedor-video__titulo, .contenedor-video__descripcion, .contenedor-video__fecha {
-    margin-bottom: .8rem;
+    margin-bottom: 8px;
 }
 
 .contenedor-video__titulo {
@@ -207,7 +184,7 @@
 
 .contenedor-video__fecha i {
     color: #3f3d3d;
-    font-size: 1rem;
+    font-size: 16px;
 }
 
 .contenedor-video__fecha {

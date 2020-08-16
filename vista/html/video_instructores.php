@@ -55,7 +55,7 @@ $sesion->accesoGeneral();
                             <textarea id="descripcion" name="descripcion" placeholder="Descripción"></textarea>
                         </div>
                         <div class="publicar">
-                            <input type="file" id="video" name="video" accept="video/*">
+                            <input type="file" id="video" class="input-video" name="video" accept="video/*">
                             <button>Publicar</button>
                             <input type="hidden" id="idVideo">
                         </div>

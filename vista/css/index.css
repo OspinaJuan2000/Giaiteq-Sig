@@ -179,11 +179,3 @@ input[type="number"]::-webkit-inner-spin-button {
 .recuperar:hover {
     text-decoration: underline;
 }
-
-.error-ingreso {
-    color: red;
-    font-family: arial, sans-serif;
-    font-weight: 600;
-    font-size: 15px !important;
-    margin-bottom: 1rem;
-}

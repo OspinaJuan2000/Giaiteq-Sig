@@ -35,14 +35,16 @@ export function peticion_iniciarSesion(datosUsuario) {
                     }
                 }
             } else if (mensaje === 'usuario_noexiste') {
-                funciones.mensajeSesiones(
+                funciones.mensajeCamposVacios(
                     'El usuario no existe, verifique los datos',
-                    'error-ingreso'
+                    'campos-vaciosError',
+                    document.querySelector('#form-inicio')
                 );
             } else if (mensaje === 'contra_incorrecta') {
-                funciones.mensajeSesiones(
+                funciones.mensajeCamposVacios(
                     'La contraseña es incorrecta',
-                    'error-ingreso'
+                    'campos-vaciosError',
+                    document.querySelector('#form-inicio')
                 );
             }
         })
