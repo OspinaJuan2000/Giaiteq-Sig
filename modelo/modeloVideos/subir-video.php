@@ -25,6 +25,10 @@ if (isset($_POST) && !empty($_POST)) {
                     $titulo = $_POST['titulo'];
                     $descripcion = $_POST['descripcion'];
 
+                    if (!file_exists('../modeloVideos/videos')) {
+                        mkdir('../modeloVideos/videos');
+                    }
+
                     try {
                         require_once '../conexion.php';
                         $instanciaConexion = new Conexion();

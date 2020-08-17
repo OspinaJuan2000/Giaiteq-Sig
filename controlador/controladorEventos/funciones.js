@@ -91,6 +91,7 @@ export function editarEvento() {
 
             editarEventos = true;
 
+            //Tomar los valores anteriores.
             const idEventoAnterior = e.target.parentElement.parentElement.dataset.id;
             const nombreEventoAnterior = e.target.parentElement.parentElement.dataset.nombre;
             const descripcionEventoAnterior = e.target.parentElement.parentElement.querySelector('.contenedor-evento__descripcion').textContent;
@@ -101,25 +102,9 @@ export function editarEvento() {
             const horaFinalizacionAnterior = e.target.parentElement.parentElement.querySelector('.contenedor-evento__hora-finalizacion').textContent;
             const botonPublicar = formEventos.querySelector('.publicar button');
 
-            const nombreEventoHtml = formEventos.querySelector('#nombre');
-            const descripcionEventoHtml = formEventos.querySelector('#descripcion');
-            const lugarEventoHtml = formEventos.querySelector('#lugar');
-            const fechaComienzoHtml = formEventos.querySelector('#fecha-comienzo');
-            const horaComienzoHtml = formEventos.querySelector('#hora-comienzo');
-            const fechaFinalizacionHtml = formEventos.querySelector('#fecha-finalizacion');
-            const horaFinalizacionHtml = formEventos.querySelector('#hora-finalizacion');
+            //Llamar a la función que pone los datos anteriores en el formulario.
+            insertarDatosEditar(nombreEventoAnterior, descripcionEventoAnterior, lugarEventoAnterior, fechaComienzoAnterior, horaComienzoAnterior, fechaFinalizacionAnterior, horaFinalizacionAnterior, botonPublicar, idEventoAnterior);
 
-            nombreEventoHtml.value = nombreEventoAnterior;
-            descripcionEventoHtml.value = descripcionEventoAnterior;
-            lugarEventoHtml.value = lugarEventoAnterior;
-            fechaComienzoHtml.value = fechaComienzoAnterior;
-            horaComienzoHtml.value = horaComienzoAnterior;
-            fechaFinalizacionHtml.value = fechaFinalizacionAnterior;
-            horaFinalizacionHtml.value = horaFinalizacionAnterior;
-            botonPublicar.innerHTML = 'Editar';
-
-            formEventos.querySelector('#idEvento').setAttribute('data-id', idEventoAnterior);
-            formEventos.querySelector('#idEvento').setAttribute('data-nombre', nombreEventoAnterior);
         }
     });
 }
@@ -154,7 +139,7 @@ export function mensajeSinEventos(mensaje, opcion) {
 
         if (opcion === 'sinRegistrosBD') {
             buscadorEventos.style.display = 'none';
-            
+
         } else if (opcion === 'sinFiltrosBD') {
             eliminarListaEventos();
         }
@@ -184,4 +169,27 @@ export function eventoEditado() {
     botonPublicar.innerHTML = 'Publicar';
 
     editarEventos = false;
+}
+
+export function insertarDatosEditar(nombreEventoAnterior, descripcionEventoAnterior, lugarEventoAnterior, fechaComienzoAnterior, horaComienzoAnterior, fechaFinalizacionAnterior, horaFinalizacionAnterior, botonPublicar, idEventoAnterior) {
+
+    const nombreEventoHtml = formEventos.querySelector('#nombre');
+    const descripcionEventoHtml = formEventos.querySelector('#descripcion');
+    const lugarEventoHtml = formEventos.querySelector('#lugar');
+    const fechaComienzoHtml = formEventos.querySelector('#fecha-comienzo');
+    const horaComienzoHtml = formEventos.querySelector('#hora-comienzo');
+    const fechaFinalizacionHtml = formEventos.querySelector('#fecha-finalizacion');
+    const horaFinalizacionHtml = formEventos.querySelector('#hora-finalizacion');
+
+    nombreEventoHtml.value = nombreEventoAnterior;
+    descripcionEventoHtml.value = descripcionEventoAnterior;
+    lugarEventoHtml.value = lugarEventoAnterior;
+    fechaComienzoHtml.value = fechaComienzoAnterior;
+    horaComienzoHtml.value = horaComienzoAnterior;
+    fechaFinalizacionHtml.value = fechaFinalizacionAnterior;
+    horaFinalizacionHtml.value = horaFinalizacionAnterior;
+    botonPublicar.innerHTML = 'Editar';
+
+    formEventos.querySelector('#idEvento').setAttribute('data-id', idEventoAnterior);
+    formEventos.querySelector('#idEvento').setAttribute('data-nombre', nombreEventoAnterior);
 }

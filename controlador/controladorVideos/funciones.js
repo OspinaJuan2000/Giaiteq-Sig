@@ -35,12 +35,11 @@ export function validarFormulario() {
         } else if (editarVideos === false) {
             desactivarBotonPublicar();
             peticiones.peticionSubirVideo(datosVideo);
-            console.log(editarVideos);
         } else if (editarVideos === true) {
             desactivarBotonPublicar();
             datosVideo.set('idVideo', formVideos.querySelector('#idVideo').dataset.id);
             datosVideo.set('nombreVideoAnterior', formVideos.querySelector('#idVideo').dataset.nombre);
-            peticiones.peticionEditarVideo(datosVideo); 
+            peticiones.peticionEditarVideo(datosVideo);
         }
     });
 }
@@ -220,20 +219,26 @@ export function editarVideo() {
 
             const idVideoAnterior = e.target.parentElement.parentElement.dataset.id;
             const nombreVideoAnterior = e.target.parentElement.parentElement.dataset.nombre.split('./videos/').join('');
-            let tituloVideoHtml = formVideos.querySelector('#titulo');
-            let descripcionVideoHtml = formVideos.querySelector('#descripcion');
-            let botonPublicar = formVideos.querySelector('.publicar button');
-
             const tituloVideo = e.target.parentElement.parentElement.querySelector('.contenedor-video__titulo').textContent;
             const descripcionVideo = e.target.parentElement.parentElement.querySelector('.contenedor-video__descripcion').textContent;
 
-            tituloVideoHtml.value = tituloVideo;
-            descripcionVideoHtml.value = descripcionVideo;
-            botonPublicar.innerHTML = 'Editar';
-            formVideos.querySelector('#idVideo').setAttribute('data-id', idVideoAnterior);
-            formVideos.querySelector('#idVideo').setAttribute('data-nombre', nombreVideoAnterior);
+            insertarDatosEditar(idVideoAnterior, nombreVideoAnterior, tituloVideo, descripcionVideo);
         }
     });
+}
+
+export function insertarDatosEditar(idVideoAnterior, nombreVideoAnterior, tituloVideo, descripcionVideo) {
+
+    let tituloVideoHtml = formVideos.querySelector('#titulo');
+    let descripcionVideoHtml = formVideos.querySelector('#descripcion');
+    let botonPublicar = formVideos.querySelector('.publicar button');
+
+    tituloVideoHtml.value = tituloVideo;
+    descripcionVideoHtml.value = descripcionVideo;
+
+    botonPublicar.innerHTML = 'Editar';
+    formVideos.querySelector('#idVideo').setAttribute('data-id', idVideoAnterior);
+    formVideos.querySelector('#idVideo').setAttribute('data-nombre', nombreVideoAnterior);
 }
 
 export function buscarVideos() {

@@ -42,8 +42,7 @@ $sesion->verificarSesion();
         <input type="number" placeholder="Usuario" id="usuario" name="usuario">
         <input type="password" placeholder="Contraseña" id="contra" name="contra">
         <input type="submit" class="botonEnviar" value="Ingresar">
-        <p>O</p>
-        <a href="#" class="recuperar">Recuperar Contraseña</a>
+        <a href="#" class="recuperar">¿Has olvidado tu contraseña?</a>
       </form>
     </div>
   </div>
