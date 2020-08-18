@@ -1,5 +1,5 @@
 import * as peticiones from './fetch.js';
-import { mensajeCamposVacios } from '../controladorSesion/funciones.js';
+import { mensajeCamposVacios } from '../controladorEventos/funciones.js';
 
 let editarVideos = false;
 
@@ -31,7 +31,7 @@ export function validarFormulario() {
             });
 
         } else if (datosVideo.get('titulo').trim() === '' || datosVideo.get('descripcion').trim() === '' || datosVideo.get('video').name === '') {
-            mensajeCamposVacios('Todos los campos son obligatorios', 'campos-vaciosError', document.querySelector('.contenedor-publicacion'));
+            mensajeCamposVacios();
         } else if (editarVideos === false) {
             desactivarBotonPublicar();
             peticiones.peticionSubirVideo(datosVideo);

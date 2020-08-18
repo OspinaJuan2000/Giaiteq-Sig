@@ -1,6 +1,5 @@
 
 import * as peticiones from './fetch.js';
-import { mensajeCamposVacios } from '../controladorSesion/funciones.js';
 
 const formEventos = document.querySelector('#form-eventos');
 let editarEventos = false;
@@ -12,7 +11,7 @@ export function validarFormulario() {
         const datosEvento = new FormData(formEventos);
 
         if (datosEvento.get('nombre').trim() === '' || datosEvento.get('descripcion').trim() === '' || datosEvento.get('lugar').trim() === '' || datosEvento.get('fecha-comienzo').trim() === '' || datosEvento.get('hora-comienzo').trim() === '' || datosEvento.get('fecha-finalizacion').trim() === '' || datosEvento.get('hora-finalizacion').trim() === '') {
-            mensajeCamposVacios('Todos los campos son obligatorios', 'campos-vaciosError', document.querySelector('.contenedor-publicacion'));
+            mensajeCamposVacios();
         } else if (editarEventos === false) {
             peticiones.peticionSubirEvento(datosEvento);
         } else if (editarEventos === true) {
@@ -21,6 +20,14 @@ export function validarFormulario() {
             peticiones.peticionEditarEvento(datosEvento);
         }
     });
+}
+
+export function mensajeCamposVacios() {
+    Swal.fire({
+        icon: 'error',
+        title: 'Datos incompletos',
+        text: 'Tiene campos sin llenar, complete el formulario'
+    })
 }
 
 export function listarEventos(datosEvento) {

@@ -54,6 +54,11 @@
     opacity: 0;
 }
 
+.ventanaEmergente {
+    width: 32%;
+    height: auto;
+}
+
 .ventanaFormularioRegistro {
     width: 40%;
 }
@@ -220,7 +225,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .recuperar--bg {
-    background-color: rgb(66, 65, 65);
+    background-color: rgb(87, 86, 86);
 }
 
 .recuperar__input {
@@ -257,24 +262,21 @@ input[type="number"]::-webkit-inner-spin-button {
     color: rgb(66, 65, 65);
 }
 
-.width-ventana {
-    width: 30%;
-}
-
-@media (max-width: 1400px) {
-    .width-ventana {
-        width: 45%;
+@media (max-width: 1200px) {
+    .ventanaEmergente {
+        width: 50%;
     }
 }
 
 @media (max-width: 768px) {
-    .width-ventana {
-        width: 75%;
-    }
     .recuperar {
         width: 90%;
     }
     .recuperar__texto, .recuperar__input, .recuperar__boton {
         width: 88%;
+    }
+
+    .ventanaEmergente {
+        width: 70%;
     }
 }

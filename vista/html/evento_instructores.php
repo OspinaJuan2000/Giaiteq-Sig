@@ -31,14 +31,14 @@ $sesion->accesoGeneral();
     <div class="contenedor_central">
         <div class="contenedor_central__opciones">
             <ul class="opciones__menu">
-                <li><a href="#"><i class="far fa-lightbulb"></i> INICIO</a></li>
+                <li><a href="inicio_instructores.php"><i class="far fa-lightbulb"></i> INICIO</a></li>
                 <li><a href="#"><i class="far fa-file-archive"></i> DOCUMENTOS</a></li>
                 <li><a href="video_instructores.php"><i class="far fa-file-video"></i> VIDEOS</a></li>
                 <li><a href="#"><i class="fas fa-link"></i> LINKS</a></li>
                 <li><a href="#"><i class="fas fa-project-diagram"></i> PROYECTOS</a></li>
                 <li><a href="evento_instructores.php"><i class="far fa-calendar-alt"></i> EVENTOS</a></li>
                 <li><a href="#"><i class="fas fa-chalkboard-teacher"></i> INSTRUCTORES</a></li>
-                <li><a href="#"><i class="fas fa-user-graduate"></i> ESTUDIANTES</a></li>
+                <li><a href="gestion_estudiantes.php"><i class="fas fa-user-graduate"></i> ESTUDIANTES</a></li>
                 <li class="salir"><a href="../../modelo/modeloSesion/cierre-sesion.php"><i class="fas fa-sign-out-alt"></i> SALIR</a></li>
             </ul>
         </div>
@@ -93,7 +93,7 @@ $sesion->accesoGeneral();
         </div>
         <div class="lista-eventos">
             <div class="contenedor-evento">
-                
+
             </div>
         </div>
     </div>

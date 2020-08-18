@@ -16,6 +16,8 @@ abrirFormularioIngreso.addEventListener('click', function () {
 cerrarVentana.addEventListener('click', function () {
     contenedorVentana.classList.remove('visible');
     ventanaEmergente.classList.remove('visible');
+    document.querySelector('.recuperar').style.display = 'none';
+    document.querySelector('.contenedorInputs').style.display = 'block';
 });
 
 abrirFormularioRegistro.addEventListener('click', function () {
