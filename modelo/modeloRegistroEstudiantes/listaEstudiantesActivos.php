@@ -15,7 +15,7 @@
   tbl_usuarios.fecha_ingreso
   FROM tbl_usuarios
   INNER JOIN tbl_tipo_documentos ON (tbl_usuarios.id_tipo_documento = tbl_tipo_documentos.id_tipo_documento)
-  WHERE id_estado = 3";
+  WHERE id_estado = 3 AND id_perfil = 2";
   $sentencia = $conexion->prepare($consulta);
   $sentencia->execute();
   $datos = array();
