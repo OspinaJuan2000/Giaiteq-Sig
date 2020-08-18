@@ -20,16 +20,20 @@
 .editar,
 .eliminar,
 .aceptar,
-.rechazar{
+.rechazar,
+.editar_aprendiz,
+.eliminar_aprendiz{
   font-size: 30px;
   cursor: pointer;
 }
 
-.editar{
+.editar,
+.editar_aprendiz{
   color: #2CB8DE;
 }
 
-.eliminar{
+.eliminar,
+.eliminar_aprendiz{
   color: #DC1341;
 }
 
@@ -98,4 +102,123 @@
   width: 70%;
   height: 30px;
   word-wrap: break-word;
+}
+
+.contenedorFormularioActualizacion {
+    background-color: rgba(0, 0, 0, .3);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+}
+
+.contenedorFormularioActualizacion.formularioVisible {
+    visibility: visible;
+    z-index: 2;
+}
+
+.ventanaFormularioActualizacion {
+    background-color: white;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .3);
+    border-radius: 5px;
+    padding: 10px 20px 20px 20px;
+    text-align: center;
+    transition: .3s ease all;
+    transform: scale(0.7);
+    opacity: 0;
+}
+
+.ventanaFormularioActualizacion {
+    width: 40%;
+}
+
+.ventanaFormularioActualizacion form {
+    opacity: 0;
+}
+
+.ventanaFormularioActualizacion.formularioVisible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.ventanaFormularioActualizacion.formularioVisible h3 {
+    animation: entradaTitulo .5s ease .4s forwards;
+}
+
+@keyframes entradaTitulo {
+    from {
+        transform: translateY(-25px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.ventanaFormularioActualizacion.formularioVisible .formularioActualizacion {
+    animation: entradaFormulario .5s ease .5s forwards;
+}
+
+@keyframes entradaFormulario {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.cerrarFormularioActualizacion {
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 16px;
+    display: block;
+    text-align: right;
+    color: gray;
+    transition: .3s ease all;
+}
+
+.cerrarFormularioActualizacion:hover {
+    color: black;
+}
+
+.ventanaFormularioActualizacion h3 {
+    font-size: 25px;
+    margin-bottom: 40px;
+    opacity: 0;
+}
+
+.formularioActualizacion input, .formularioActualizacion select {
+    width: 49%;
+    margin-bottom: 20px;
+    height: 45px;
+    line-height: 45px;
+    font-size: 18px;
+    text-align: center;
+    border: 1px solid #bbbbbb;
+    border-radius: 3px;
+}
+
+.formularioActualizacion input[type="submit"] {
+    color: white;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.botonEnviar {
+    width: 50%;
+    height: 40px;
+    border: none;
+    background-color: #235E3D;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 1s ease all;
 }

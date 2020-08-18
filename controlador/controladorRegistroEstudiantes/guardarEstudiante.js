@@ -100,7 +100,7 @@ formularioRegistro.addEventListener('submit', (e) => {
         Swal.fire({
           icon: 'error',
           title: '¡ERROR!',
-          text: 'Ocurrió un error al enviar'
+          text: datos
         })
       }
     })

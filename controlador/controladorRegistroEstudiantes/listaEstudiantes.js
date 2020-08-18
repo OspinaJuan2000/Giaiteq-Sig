@@ -1,7 +1,9 @@
+//CÓDIGO QUE CARGA LAS LISTAS
 document.addEventListener('DOMContentLoaded', estudiantesActivos);
 document.addEventListener('DOMContentLoaded', solicitudesIngreso);
 document.addEventListener('DOMContentLoaded', listaFichas);
 
+//LISTA DE ESTUDIANTES ACTIVOS
 function estudiantesActivos(){
   fetch('../../modelo/modeloRegistroEstudiantes/listaEstudiantesActivos.php')
     .then(respuesta => respuesta.json())
@@ -19,16 +21,19 @@ function estudiantesActivos(){
             <p><b>Fecha de registro: </b>${dato.fecha_ingreso}</p>
           </div>
           <div class="estudiante__opciones">
-            <i class="fas fa-edit editar" title="Editar"></i>
-            <i class="fas fa-trash-alt eliminar" title="Eliminar"></i>
+            <i class="fas fa-edit editar_aprendiz" title="Editar"><input type="hidden" value="${dato.documento_usuario}"></i>
+            <i class="fas fa-trash-alt eliminar_aprendiz" title="Eliminar"><input type="hidden" value="${dato.documento_usuario}"></i>
           </div>
         </div>
         `
       });
       document.getElementById('estudiantesActivos').innerHTML = plantilla;
+      cargarDatosAprendiz();
+      inactivarEstudiante();
     })
 }
 
+//LISTA DE SOLICITUDES DE INGRESO
 function solicitudesIngreso(){
   fetch('../../modelo/modeloRegistroEstudiantes/listaSolicitudesIngreso.php')
     .then(respuesta => respuesta.json())
@@ -53,10 +58,13 @@ function solicitudesIngreso(){
         `
       });
       document.getElementById('solicitudesIngreso').innerHTML = plantilla;
+      aceptarEstudiante();
+      rechazarEstudiante();
     })
 }
 
-setTimeout(function(){
+//FUNCIÓN QUE PERMITE ACEPTAR QUE UN ESTUDIANTE SE UNA AL SEMILLERO
+function aceptarEstudiante(){
   let aceptar = document.getElementsByClassName('aceptar');
   for(let i = 0; i < aceptar.length; i++) {
     aceptar[i].addEventListener("click", function() {
@@ -77,23 +85,26 @@ setTimeout(function(){
             method: 'POST',
             body: datos
           })
-            .then(respuesta => respuesta.json())
-            .then(res => {
-              Swal.fire(
-                'Aceptado',
-                res,
-                'success'
-              )
-              solicitudesIngreso();
-              estudiantesActivos();
+          .then(respuesta => respuesta.json())
+          .then(res => {
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: res,
+              showConfirmButton: false,
+              timer: 1500
             })
+            solicitudesIngreso();
+            estudiantesActivos();
+          })
         }
       })
     })
   }
-}, 100);
+}
 
-setTimeout(() => {
+//FUNCIÓN QUE PERMITE RECHAZAR LA SOLICITUD DE INGRESO DE UN ESTUDIANTE
+function rechazarEstudiante(){
   let rechazar = document.getElementsByClassName('rechazar');
 
   for(let i = 0; i < rechazar.length; i++){
@@ -117,11 +128,13 @@ setTimeout(() => {
           })
           .then(respuesta => respuesta.json())
           .then(res => {
-            Swal.fire(
-              'Rechazado',
-              res,
-              'success'
-            )
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: res,
+              showConfirmButton: false,
+              timer: 1500
+            })
             solicitudesIngreso();
             estudiantesActivos();
           })
@@ -129,8 +142,9 @@ setTimeout(() => {
       })
     });
   }
-}, 100);
+}
 
+//CARGA LA LISTA DE FICHAS QUE HAY ACTUALMENTE EN EL SEMILLERO
 function listaFichas(){
   fetch('../../modelo/modeloRegistroEstudiantes/listaFichas.php')
     .then(respuesta => respuesta.json())
@@ -143,6 +157,7 @@ function listaFichas(){
         <th>Eliminar</th>
       </tr>
       `;
+      let plantillaFichas = '';
       informacion.forEach((ficha) => {
         plantilla += `
         <tr>
@@ -152,11 +167,16 @@ function listaFichas(){
           <td><i class="fas fa-trash-alt eliminar" title="Eliminar"></i></td>
         </tr>
         `
+        plantillaFichas += `
+        <option value="${ficha.numero_ficha}">${ficha.numero_ficha} - ${ficha.nombre_programa}</option>
+        `
       });
       document.getElementById('tablaFichas').innerHTML = plantilla;
+      document.getElementById('actualizacion__ficha').innerHTML = plantillaFichas;
     })
 }
 
+//ESTE CÓDIGO PERMITE GUARDAR UNA NUEVA FICHA
 let formularioFichas = document.getElementById('formularioFichas');
 
 formularioFichas.addEventListener('submit', (e) => {
@@ -181,3 +201,180 @@ formularioFichas.addEventListener('submit', (e) => {
       listaFichas();
     })
 });
+
+//ESTE CÓDIGO CARGA LOS DATOS DEL APRENDIZ SELECCIONADO PARA SU POSTERIOR ACTUALIZACIÓN
+function cargarDatosAprendiz() {
+  let abrirFormularioActualizacion = document.getElementsByClassName('editar_aprendiz');
+  let contenedorFormularioActualizacion = document.getElementById('contenedorFormularioActualizacion');
+  let ventanaFormularioActualizacion = document.getElementById('ventanaFormularioActualizacion');
+  let cerrarFormularioActualizacion = document.getElementById('cerrarFormularioActualizacion');
+
+  for(let i = 0; i < abrirFormularioActualizacion.length; i++) {
+    abrirFormularioActualizacion[i].addEventListener("click", function() {
+      contenedorFormularioActualizacion.classList.add('formularioVisible');
+      ventanaFormularioActualizacion.classList.add('formularioVisible');
+      let numero_documento = this.firstChild.value;
+
+      let dato = new FormData();
+      dato.append('documento', numero_documento);
+
+      fetch('../../modelo/modeloRegistroEstudiantes/informacionEstudiante.php', {
+        method: 'POST',
+        body: dato
+      })
+      .then(respuesta => respuesta.json())
+      .then(res => {
+        res.forEach((datos) => {
+          document.getElementById('actualizacion__primerNombre').value = datos.primer_nombre;
+          document.getElementById('actualizacion__segundoNombre').value = datos.segundo_nombre;
+          document.getElementById('actualizacion__primerApellido').value = datos.primer_apellido;
+          document.getElementById('actualizacion__segundoApellido').value = datos.segundo_apellido;
+          document.getElementById('actualizacion__tipoDocumento').value = datos.id_tipo_documento;
+          document.getElementById('actualizacion__documento').value = numero_documento;
+          document.getElementById('actualizacion__ficha').value = datos.numero_ficha;
+          document.getElementById('actualizacion__correo').value = datos.correo;
+        });
+      })
+    })
+  }
+
+  cerrarFormularioActualizacion.addEventListener('click', function () {
+    contenedorFormularioActualizacion.classList.remove('formularioVisible');
+    ventanaFormularioActualizacion.classList.remove('formularioVisible');
+  });
+}
+
+//ESTE CÓDIGO ES PARA ACTUALIZAR LOS DATOS DEL ESTUDIANTE
+const expresiones = {
+  primerNombre: /^[a-zA-ZÀ-ÿ\s]{2,40}$/,
+  segundoNombre: /^[a-zA-ZÀ-ÿ\s]{0,40}$/,
+  primerApellido: /^[a-zA-ZÀ-ÿ\s]{2,40}$/,
+  segundoApellido: /^[a-zA-ZÀ-ÿ\s]{0,40}$/,
+  correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
+}
+
+const campos = {
+  primerNombre: false,
+  segundoNombre: false,
+  primerApellido: false,
+  segundoApellido: false,
+  correo: false
+}
+
+function validarFormularioActualizacion(){
+  let primerNombre = document.getElementById('actualizacion__primerNombre').value;
+  let segundoNombre = document.getElementById('actualizacion__segundoNombre').value;
+  let primerApellido = document.getElementById('actualizacion__primerApellido').value;
+  let segundoApellido = document.getElementById('actualizacion__segundoApellido').value;
+  let correo = document.getElementById('actualizacion__correo').value;
+
+  if(expresiones.primerNombre.test(primerNombre)){
+    campos['primerNombre'] = true;
+  }
+
+  if(expresiones.segundoNombre.test(segundoNombre)){
+    campos['segundoNombre'] = true;
+  }
+
+  if(expresiones.primerApellido.test(primerApellido)){
+    campos['primerApellido'] = true;
+  }
+
+  if(expresiones.segundoApellido.test(segundoApellido)){
+    campos['segundoApellido'] = true;
+  }
+
+  if(expresiones.correo.test(correo)){
+    campos['correo'] = true;
+  }
+}
+
+let formularioActualizacion = document.getElementById('formularioActualizacion');
+
+formularioActualizacion.addEventListener('submit', (e) => {
+  e.preventDefault();
+  validarFormularioActualizacion();
+
+  if(campos.primerNombre && campos.segundoNombre && campos.primerApellido && campos.segundoApellido && campos.correo){
+    let datos_estudiante = new FormData(formularioActualizacion);
+
+    fetch('../../modelo/modeloRegistroEstudiantes/actualizarDatosEstudiante.php', {
+      method: 'POST',
+      body: datos_estudiante
+    })
+    .then(respuesta => respuesta.json())
+    .then(res => {
+      if(res == "1"){
+        Swal.fire({
+          icon: 'success',
+          title: 'Datos Actualizados',
+          text: 'Los datos fueron actualizados'
+        })
+
+        campos.primerNombre = false;
+        campos.segundoNombre = false;
+        campos.primerApellido = false;
+        campos.segundoApellido = false;
+        campos.correo = false;
+
+        contenedorFormularioActualizacion.classList.remove('formularioVisible');
+        ventanaFormularioActualizacion.classList.remove('formularioVisible');
+
+        estudiantesActivos();
+
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: '¡ERROR!',
+          text: 'Ocurrió un error al actualizar, intente más tarde'
+        })
+      }
+    })
+  } else {
+    Swal.fire({
+      icon: 'error',
+      title: 'Datos erroneos',
+      text: 'Tiene campos sin llenar o los datos que ingresó no son correctos'
+    })
+  }
+});
+
+function inactivarEstudiante(){
+  let eliminar_aprendiz = document.getElementsByClassName('eliminar_aprendiz');
+
+  for(let i = 0; i < eliminar_aprendiz.length; i++) {
+    eliminar_aprendiz[i].addEventListener("click", function() {
+      let identificacion = this.firstChild.value;
+
+      Swal.fire({
+        title: '¿Desea eliminar este estudiante?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#D33',
+        cancelButtonColor: '#28A745',
+        confirmButtonText: 'Eliminar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.value) {
+          let dato = new FormData();
+          dato.append('numero_documento', identificacion);
+          fetch('../../modelo/modeloRegistroEstudiantes/inactivarEstudiante.php', {
+            method: 'POST',
+            body: dato
+          })
+          .then(respuesta => respuesta.json())
+          .then(res => {
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: res,
+              showConfirmButton: false,
+              timer: 1500
+            })
+            estudiantesActivos();
+          })
+        }
+      })
+    })
+  }
+}
