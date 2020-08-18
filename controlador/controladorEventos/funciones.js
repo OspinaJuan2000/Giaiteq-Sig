@@ -36,7 +36,7 @@ export function listarEventos(datosEvento) {
                     <h3 class="contenedor-evento__titulo">${evento.nombre}</h3>
                     <p class="contenedor-evento__descripcion">${evento.descripcion}</p>
                     <div class="contenedor-evento__mas-info">
-                        <p class="contenedor-evento__comienzo"><i class="fas fa-clock"></i> <span>Lugar del evento:</span> <span class="contenedor-evento__lugar">${evento.lugar_realizacion}</span> </p>
+                        <p class="contenedor-evento__lugar"><i class="fas fa-map-marker-alt"></i> Lugar de realización: <span>${evento.lugar_realizacion}</span> </p>
                         <p class="contenedor-evento__comienzo"><i class="fas fa-clock"></i> <span class="contenedor-evento__fecha">Fecha</span> y <span class="contenedor-evento__hora">hora</span> de comienzo <span class="contenedor-evento__fecha-comienzo">${evento.fecha_comienzo}</span> - <span class="contenedor-evento__hora-comienzo">${evento.hora_comienzo}</span> </p>
                         <p class="contenedor-evento__fin"><i class="fas fa-clock"></i> <span class="contenedor-evento__fecha">Fecha</span> y <span class="contenedor-evento__hora">hora</span> de finalización <span class="contenedor-evento__fecha-finalizacion">${evento.fecha_finalizacion}</span> - <span class="contenedor-evento__hora-finalizacion">${evento.hora_finalizacion}</span></p>
                     </div>
@@ -95,7 +95,7 @@ export function editarEvento() {
             const idEventoAnterior = e.target.parentElement.parentElement.dataset.id;
             const nombreEventoAnterior = e.target.parentElement.parentElement.dataset.nombre;
             const descripcionEventoAnterior = e.target.parentElement.parentElement.querySelector('.contenedor-evento__descripcion').textContent;
-            const lugarEventoAnterior = e.target.parentElement.parentElement.querySelector('.contenedor-evento__lugar').textContent;
+            const lugarEventoAnterior = e.target.parentElement.parentElement.querySelector('.contenedor-evento__lugar span').textContent;
             const fechaComienzoAnterior = e.target.parentElement.parentElement.querySelector('.contenedor-evento__fecha-comienzo').textContent;
             const horaComienzoAnterior = e.target.parentElement.parentElement.querySelector('.contenedor-evento__hora-comienzo').textContent;
             const fechaFinalizacionAnterior = e.target.parentElement.parentElement.querySelector('.contenedor-evento__fecha-finalizacion').textContent;

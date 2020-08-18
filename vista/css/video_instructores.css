@@ -8,11 +8,6 @@
     border-radius: 4px;
     font-family: sans-serif;
     margin-bottom: 20px;
-    transform: skewX(-.8deg);
-}
-
-.contenedor-publicacion>* {
-    transform: skewX(.8deg);
 }
 
 .contenedor_central__contenido {

@@ -8,11 +8,6 @@
     border-radius: 4px;
     font-family: sans-serif;
     margin-bottom: 20px;
-    transform: skewX(-.8deg);
-}
-
-.contenedor-publicacion>* {
-    transform: skewX(.8deg);
 }
 
 .contenedor_central__contenido {
@@ -175,12 +170,16 @@
     font-size: 13px;
 }
 
-.contenedor-evento__lugar i {
-    color: green;
+.contenedor-evento__fecha, .contenedor-evento__hora, .contenedor-evento__fecha-comienzo, .contenedor-evento__hora-comienzo, .contenedor-evento__fecha-finalizacion, .contenedor-evento__hora-finalizacion, .contenedor-evento__lugar span {
+    font-weight: 700;
 }
 
-.contenedor-evento__lugar, .contenedor-evento__fecha, .contenedor-evento__hora, .contenedor-evento__fecha-comienzo, .contenedor-evento__hora-comienzo, .contenedor-evento__fecha-finalizacion, .contenedor-evento__hora-finalizacion {
-    font-weight: 700;
+.contenedor-evento__comienzo i, .contenedor-evento__fin i, .contenedor-evento__lugar i {
+    width: 18px;
+}
+
+.contenedor-evento__lugar i {
+    color: green;
 }
 
 .contenedor-evento__comienzo i {
@@ -237,7 +236,6 @@
     .contenedor-publicacion {
         max-width: 75%;
     }
-
     .publicar {
         flex-direction: column;
     }

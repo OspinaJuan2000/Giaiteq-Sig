@@ -37,13 +37,33 @@ $sesion->verificarSesion();
   <div class="contenedorVentana" id="contenedorVentana">
     <div class="ventanaEmergente" id="ventanaEmergente">
       <a href="#" id="cerrarVentana" class="cerrarVentana">X</a>
-      <h3>INICIAR SESIÓN</h3>
       <form class="contenedorInputs" id="form-inicio" method="POST">
-        <input type="number" placeholder="Usuario" id="usuario" name="usuario">
-        <input type="password" placeholder="Contraseña" id="contra" name="contra">
-        <input type="submit" class="botonEnviar" value="Ingresar">
-        <a href="#" class="recuperar">¿Has olvidado tu contraseña?</a>
+        <legend>
+          <h3>INICIAR SESIÓN</h3>
+        </legend>
+        <input type="number" class="input-sesion" placeholder="Usuario" id="usuario" name="usuario">
+        <input type="password" class="input-sesion" placeholder="Contraseña" id="contra" name="contra">
+        <input type="submit" class="botonEnviar input-sesion" value="Ingresar">
+        <a href="#" class="recuperar-contra">¿Has olvidado tu contraseña?</a>
       </form>
+      <div class="recuperar">
+        <h4 class="recuperar__encabezado">¿Has olvidado tu contraseña?</h4>
+        <p class="recuperar__texto">
+          Escribe el correo electrónico que usaste para registrarte. Te enviaremos un correo electrónico con
+          instrucciones sobre cómo restablecer tu contraseña.
+        </p>
+        <form action="#" class="recuperar__form">
+          <div class="recuperar__campo">
+            <input class="recuperar__input recuperar--bg" type="email" placeholder="Dirección de correo electrónico" id="email-recuperar" name="email-recuperar">
+          </div>
+          <div class="recuperar__enviar">
+            <button class="recuperar__boton" disabled>Enviar correo electrónico</button>
+          </div>
+        </form>
+        <div class="recuperar__iniciar-sesion">
+          <p class="recuperar__texto-recuperar">¿Recuerda su contraseña? <a class="recuperar__enlace" href="#">Inicie sesión</a></p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -65,7 +85,7 @@ $sesion->verificarSesion();
         </select>
         <input type="number" id="documento" name="documento" placeholder="Identificación">
         <select id="ficha" name="ficha">
-          
+
         </select>
         <input type="email" id="correo" name="correo" placeholder="Correo">
         <input type="password" id="clave" name="clave" placeholder="Contraseña">
@@ -76,6 +96,7 @@ $sesion->verificarSesion();
   <script type="text/javascript" src="./vista/js/index.js"></script>
   <script src="vista/js/sweetalert2.js"></script>
   <script src="controlador/controladorSesion/controlador.js" type="module"></script>
+  <script src="controlador/controladorRecuperarContraseña/controlador.js" type="module"></script>
   <script src="./controlador/controladorRegistroEstudiantes/guardarEstudiante.js"></script>
 </body>
 
