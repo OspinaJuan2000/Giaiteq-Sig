@@ -12,13 +12,13 @@ function obtenerFecha() {
 }
 
 const expresiones = {
-	primerNombre: /^[a-zA-ZÀ-ÿ\s]{2,40}$/,
+  primerNombre: /^[a-zA-ZÀ-ÿ\s]{2,40}$/,
   segundoNombre: /^[a-zA-ZÀ-ÿ\s]{0,40}$/,
   primerApellido: /^[a-zA-ZÀ-ÿ\s]{2,40}$/,
   segundoApellido: /^[a-zA-ZÀ-ÿ\s]{0,40}$/,
   documento: /^\d{3,20}$/,
   correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-	clave: /^.{4,40}$/
+  clave: /^.{4,40}$/
 }
 
 const campos = {
@@ -28,7 +28,7 @@ const campos = {
   segundoApellido: false,
   documento: false,
   correo: false,
-	clave: false
+  clave: false
 }
 
 const validarFormulario = () => {
@@ -40,31 +40,31 @@ const validarFormulario = () => {
   let correo = document.getElementById('correo').value;
   let clave = document.getElementById('clave').value;
 
-  if(expresiones.primerNombre.test(primerNombre)){
+  if (expresiones.primerNombre.test(primerNombre)) {
     campos['primerNombre'] = true;
   }
 
-  if(expresiones.segundoNombre.test(segundoNombre)){
+  if (expresiones.segundoNombre.test(segundoNombre)) {
     campos['segundoNombre'] = true;
   }
 
-  if(expresiones.primerApellido.test(primerApellido)){
+  if (expresiones.primerApellido.test(primerApellido)) {
     campos['primerApellido'] = true;
   }
 
-  if(expresiones.segundoApellido.test(segundoApellido)){
+  if (expresiones.segundoApellido.test(segundoApellido)) {
     campos['segundoApellido'] = true;
   }
 
-  if(expresiones.documento.test(documento)){
+  if (expresiones.documento.test(documento)) {
     campos['documento'] = true;
   }
 
-  if(expresiones.correo.test(correo)){
+  if (expresiones.correo.test(correo)) {
     campos['correo'] = true;
   }
 
-  if(expresiones.clave.test(clave)){
+  if (expresiones.clave.test(clave)) {
     campos['clave'] = true;
   }
 }
@@ -72,7 +72,7 @@ const validarFormulario = () => {
 formularioRegistro.addEventListener('submit', (e) => {
   e.preventDefault();
   validarFormulario();
-  if(campos.primerNombre && campos.segundoNombre && campos.primerApellido && campos.segundoApellido && campos.documento && campos.correo && campos.clave){
+  if (campos.primerNombre && campos.segundoNombre && campos.primerApellido && campos.segundoApellido && campos.documento && campos.correo && campos.clave) {
     let informacion = new FormData(formularioRegistro);
     informacion.append('fechaRegistro', obtenerFecha());
 
@@ -80,30 +80,30 @@ formularioRegistro.addEventListener('submit', (e) => {
       method: 'POST',
       body: informacion
     })
-    .then(respuesta => respuesta.json())
-    .then(datos => {
-      if(datos == 'Solicitud enviada'){
-        Swal.fire({
-          icon: 'success',
-          title: 'Solicitud Enviada',
-          text: 'Sus datos serán revisados por un instructor, si es aceptado o rechazado, la respuesta llegará al correo proporcionado'
-        })
-        formularioRegistro.reset();
-        campos.primerNombre = false;
-        campos.segundoNombre = false;
-        campos.primerApellido = false;
-        campos.segundoApellido = false;
-        campos.documento = false;
-        campos.correo = false;
-        campos.clave = false;
-      } else {
-        Swal.fire({
-          icon: 'error',
-          title: '¡ERROR!',
-          text: datos
-        })
-      }
-    })
+      .then(respuesta => respuesta.json())
+      .then(datos => {
+        if (datos == 'Solicitud enviada') {
+          Swal.fire({
+            icon: 'success',
+            title: 'Solicitud Enviada',
+            text: 'Sus datos serán revisados por un instructor, si es aceptado o rechazado, la respuesta llegará al correo proporcionado'
+          })
+          formularioRegistro.reset();
+          campos.primerNombre = false;
+          campos.segundoNombre = false;
+          campos.primerApellido = false;
+          campos.segundoApellido = false;
+          campos.documento = false;
+          campos.correo = false;
+          campos.clave = false;
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: '¡ERROR!',
+            text: datos
+          })
+        }
+      })
   } else {
     Swal.fire({
       icon: 'error',
@@ -113,7 +113,7 @@ formularioRegistro.addEventListener('submit', (e) => {
   }
 });
 
-function listaFichas(){
+function listaFichas() {
   fetch('./modelo/modeloRegistroEstudiantes/listaFichas.php')
     .then(respuesta => respuesta.json())
     .then(informacion => {

@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', solicitudesIngreso);
 document.addEventListener('DOMContentLoaded', listaFichas);
 
 //LISTA DE ESTUDIANTES ACTIVOS
-function estudiantesActivos(){
+function estudiantesActivos() {
   fetch('../../modelo/modeloRegistroEstudiantes/listaEstudiantesActivos.php')
     .then(respuesta => respuesta.json())
     .then(datos => {
@@ -34,7 +34,7 @@ function estudiantesActivos(){
 }
 
 //LISTA DE SOLICITUDES DE INGRESO
-function solicitudesIngreso(){
+function solicitudesIngreso() {
   fetch('../../modelo/modeloRegistroEstudiantes/listaSolicitudesIngreso.php')
     .then(respuesta => respuesta.json())
     .then(datos => {
@@ -64,10 +64,10 @@ function solicitudesIngreso(){
 }
 
 //FUNCIÓN QUE PERMITE ACEPTAR QUE UN ESTUDIANTE SE UNA AL SEMILLERO
-function aceptarEstudiante(){
+function aceptarEstudiante() {
   let aceptar = document.getElementsByClassName('aceptar');
-  for(let i = 0; i < aceptar.length; i++) {
-    aceptar[i].addEventListener("click", function() {
+  for (let i = 0; i < aceptar.length; i++) {
+    aceptar[i].addEventListener("click", function () {
       let identificacion = this.firstChild.value;
       Swal.fire({
         title: '¿Desea aceptar este aprendiz?',
@@ -85,18 +85,18 @@ function aceptarEstudiante(){
             method: 'POST',
             body: datos
           })
-          .then(respuesta => respuesta.json())
-          .then(res => {
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: res,
-              showConfirmButton: false,
-              timer: 1500
+            .then(respuesta => respuesta.json())
+            .then(res => {
+              Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: res,
+                showConfirmButton: false,
+                timer: 1500
+              })
+              solicitudesIngreso();
+              estudiantesActivos();
             })
-            solicitudesIngreso();
-            estudiantesActivos();
-          })
         }
       })
     })
@@ -104,11 +104,11 @@ function aceptarEstudiante(){
 }
 
 //FUNCIÓN QUE PERMITE RECHAZAR LA SOLICITUD DE INGRESO DE UN ESTUDIANTE
-function rechazarEstudiante(){
+function rechazarEstudiante() {
   let rechazar = document.getElementsByClassName('rechazar');
 
-  for(let i = 0; i < rechazar.length; i++){
-    rechazar[i].addEventListener('click', function(){
+  for (let i = 0; i < rechazar.length; i++) {
+    rechazar[i].addEventListener('click', function () {
       let identificacion = this.firstChild.value;
       Swal.fire({
         title: '¿Desea rechazar este estudiante?',
@@ -126,18 +126,18 @@ function rechazarEstudiante(){
             method: 'POST',
             body: dato
           })
-          .then(respuesta => respuesta.json())
-          .then(res => {
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: res,
-              showConfirmButton: false,
-              timer: 1500
+            .then(respuesta => respuesta.json())
+            .then(res => {
+              Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: res,
+                showConfirmButton: false,
+                timer: 1500
+              })
+              solicitudesIngreso();
+              estudiantesActivos();
             })
-            solicitudesIngreso();
-            estudiantesActivos();
-          })
         }
       })
     });
@@ -145,7 +145,7 @@ function rechazarEstudiante(){
 }
 
 //CARGA LA LISTA DE FICHAS QUE HAY ACTUALMENTE EN EL SEMILLERO
-function listaFichas(){
+function listaFichas() {
   fetch('../../modelo/modeloRegistroEstudiantes/listaFichas.php')
     .then(respuesta => respuesta.json())
     .then(informacion => {
@@ -209,8 +209,8 @@ function cargarDatosAprendiz() {
   let ventanaFormularioActualizacion = document.getElementById('ventanaFormularioActualizacion');
   let cerrarFormularioActualizacion = document.getElementById('cerrarFormularioActualizacion');
 
-  for(let i = 0; i < abrirFormularioActualizacion.length; i++) {
-    abrirFormularioActualizacion[i].addEventListener("click", function() {
+  for (let i = 0; i < abrirFormularioActualizacion.length; i++) {
+    abrirFormularioActualizacion[i].addEventListener("click", function () {
       contenedorFormularioActualizacion.classList.add('formularioVisible');
       ventanaFormularioActualizacion.classList.add('formularioVisible');
       let numero_documento = this.firstChild.value;
@@ -222,19 +222,19 @@ function cargarDatosAprendiz() {
         method: 'POST',
         body: dato
       })
-      .then(respuesta => respuesta.json())
-      .then(res => {
-        res.forEach((datos) => {
-          document.getElementById('actualizacion__primerNombre').value = datos.primer_nombre;
-          document.getElementById('actualizacion__segundoNombre').value = datos.segundo_nombre;
-          document.getElementById('actualizacion__primerApellido').value = datos.primer_apellido;
-          document.getElementById('actualizacion__segundoApellido').value = datos.segundo_apellido;
-          document.getElementById('actualizacion__tipoDocumento').value = datos.id_tipo_documento;
-          document.getElementById('actualizacion__documento').value = numero_documento;
-          document.getElementById('actualizacion__ficha').value = datos.numero_ficha;
-          document.getElementById('actualizacion__correo').value = datos.correo;
-        });
-      })
+        .then(respuesta => respuesta.json())
+        .then(res => {
+          res.forEach((datos) => {
+            document.getElementById('actualizacion__primerNombre').value = datos.primer_nombre;
+            document.getElementById('actualizacion__segundoNombre').value = datos.segundo_nombre;
+            document.getElementById('actualizacion__primerApellido').value = datos.primer_apellido;
+            document.getElementById('actualizacion__segundoApellido').value = datos.segundo_apellido;
+            document.getElementById('actualizacion__tipoDocumento').value = datos.id_tipo_documento;
+            document.getElementById('actualizacion__documento').value = numero_documento;
+            document.getElementById('actualizacion__ficha').value = datos.numero_ficha;
+            document.getElementById('actualizacion__correo').value = datos.correo;
+          });
+        })
     })
   }
 
@@ -261,30 +261,30 @@ const campos = {
   correo: false
 }
 
-function validarFormularioActualizacion(){
+function validarFormularioActualizacion() {
   let primerNombre = document.getElementById('actualizacion__primerNombre').value;
   let segundoNombre = document.getElementById('actualizacion__segundoNombre').value;
   let primerApellido = document.getElementById('actualizacion__primerApellido').value;
   let segundoApellido = document.getElementById('actualizacion__segundoApellido').value;
   let correo = document.getElementById('actualizacion__correo').value;
 
-  if(expresiones.primerNombre.test(primerNombre)){
+  if (expresiones.primerNombre.test(primerNombre)) {
     campos['primerNombre'] = true;
   }
 
-  if(expresiones.segundoNombre.test(segundoNombre)){
+  if (expresiones.segundoNombre.test(segundoNombre)) {
     campos['segundoNombre'] = true;
   }
 
-  if(expresiones.primerApellido.test(primerApellido)){
+  if (expresiones.primerApellido.test(primerApellido)) {
     campos['primerApellido'] = true;
   }
 
-  if(expresiones.segundoApellido.test(segundoApellido)){
+  if (expresiones.segundoApellido.test(segundoApellido)) {
     campos['segundoApellido'] = true;
   }
 
-  if(expresiones.correo.test(correo)){
+  if (expresiones.correo.test(correo)) {
     campos['correo'] = true;
   }
 }
@@ -295,41 +295,41 @@ formularioActualizacion.addEventListener('submit', (e) => {
   e.preventDefault();
   validarFormularioActualizacion();
 
-  if(campos.primerNombre && campos.segundoNombre && campos.primerApellido && campos.segundoApellido && campos.correo){
+  if (campos.primerNombre && campos.segundoNombre && campos.primerApellido && campos.segundoApellido && campos.correo) {
     let datos_estudiante = new FormData(formularioActualizacion);
 
     fetch('../../modelo/modeloRegistroEstudiantes/actualizarDatosEstudiante.php', {
       method: 'POST',
       body: datos_estudiante
     })
-    .then(respuesta => respuesta.json())
-    .then(res => {
-      if(res == "1"){
-        Swal.fire({
-          icon: 'success',
-          title: 'Datos Actualizados',
-          text: 'Los datos fueron actualizados'
-        })
+      .then(respuesta => respuesta.json())
+      .then(res => {
+        if (res == "1") {
+          Swal.fire({
+            icon: 'success',
+            title: 'Datos Actualizados',
+            text: 'Los datos fueron actualizados'
+          })
 
-        campos.primerNombre = false;
-        campos.segundoNombre = false;
-        campos.primerApellido = false;
-        campos.segundoApellido = false;
-        campos.correo = false;
+          campos.primerNombre = false;
+          campos.segundoNombre = false;
+          campos.primerApellido = false;
+          campos.segundoApellido = false;
+          campos.correo = false;
 
-        contenedorFormularioActualizacion.classList.remove('formularioVisible');
-        ventanaFormularioActualizacion.classList.remove('formularioVisible');
+          contenedorFormularioActualizacion.classList.remove('formularioVisible');
+          ventanaFormularioActualizacion.classList.remove('formularioVisible');
 
-        estudiantesActivos();
+          estudiantesActivos();
 
-      } else {
-        Swal.fire({
-          icon: 'error',
-          title: '¡ERROR!',
-          text: 'Ocurrió un error al actualizar, intente más tarde'
-        })
-      }
-    })
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: '¡ERROR!',
+            text: 'Ocurrió un error al actualizar, intente más tarde'
+          })
+        }
+      })
   } else {
     Swal.fire({
       icon: 'error',
@@ -339,11 +339,11 @@ formularioActualizacion.addEventListener('submit', (e) => {
   }
 });
 
-function inactivarEstudiante(){
+function inactivarEstudiante() {
   let eliminar_aprendiz = document.getElementsByClassName('eliminar_aprendiz');
 
-  for(let i = 0; i < eliminar_aprendiz.length; i++) {
-    eliminar_aprendiz[i].addEventListener("click", function() {
+  for (let i = 0; i < eliminar_aprendiz.length; i++) {
+    eliminar_aprendiz[i].addEventListener("click", function () {
       let identificacion = this.firstChild.value;
 
       Swal.fire({
@@ -362,17 +362,17 @@ function inactivarEstudiante(){
             method: 'POST',
             body: dato
           })
-          .then(respuesta => respuesta.json())
-          .then(res => {
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: res,
-              showConfirmButton: false,
-              timer: 1500
+            .then(respuesta => respuesta.json())
+            .then(res => {
+              Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: res,
+                showConfirmButton: false,
+                timer: 1500
+              })
+              estudiantesActivos();
             })
-            estudiantesActivos();
-          })
         }
       })
     })

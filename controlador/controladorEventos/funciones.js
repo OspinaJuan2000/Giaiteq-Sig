@@ -84,6 +84,12 @@ export function eliminarEvento() {
                     datosEvento.set('nombre', nombreEvento);
 
                     peticiones.peticionEliminarEvento(datosEvento);
+                } else {
+                    swal.fire({
+                        title: 'Acción cancelada',
+                        text: 'No se eliminó el evento',
+                        icon: 'info',
+                    });
                 }
             })
         }

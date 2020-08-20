@@ -1,4 +1,6 @@
 <?php
+
+$nombreCapitalizado = ucfirst($primerNombreUsuario);
 $mensaje = "
     <!DOCTYPE html>
     <html lang='es'>
@@ -86,7 +88,8 @@ $mensaje = "
                 </div>
                 <div class='mensaje'>
                     <div class='texto'>
-                        <p>Hola {$primerNombreUsuario},</p>
+                        <p>Hola 
+                        {$nombreCapitalizado},</p>
                         <p>Presiona el botón para restablecer tu contraseña de GIAITEQ-SIG</p>
                         <a class='boton' href='http://giaiteq-semillero.test/vista/html/recuperar_contra.php?code=${tokenClave}'>Restablecer
                             contraseña</a>

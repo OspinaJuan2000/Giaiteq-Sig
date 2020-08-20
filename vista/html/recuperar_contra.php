@@ -1,31 +1,30 @@
 <?php
-    if (isset($_GET) && isset($_GET['code'])) {
+if (isset($_GET) && isset($_GET['code'])) {
 
-        $tokenClave = $_GET['code'];
+    $tokenClave = $_GET['code'];
 
-        try {
-            require_once('../../modelo/conexion.php');
-            $instanciaConexion = new Conexion();
-            $conexion = $instanciaConexion->establecer_conexion();
+    try {
+        require_once('../../modelo/conexion.php');
+        $instanciaConexion = new Conexion();
+        $conexion = $instanciaConexion->establecer_conexion();
 
-            $statement = $conexion->prepare("SELECT correo, token_clave FROM tbl_usuarios WHERE token_clave = :token");
-            $statement->bindParam(':token', $tokenClave);
-            $statement->execute();
-            
-            if ($statement->rowCount() > 0) {
-                $datosUsuario = $statement->fetch(PDO::FETCH_ASSOC);
-                $tokenBD = $datosUsuario['token_clave'];
-                $correoUsuario = $datosUsuario['correo'];
+        $statement = $conexion->prepare("SELECT correo, token_clave FROM tbl_usuarios WHERE token_clave = :token");
+        $statement->bindParam(':token', $tokenClave);
+        $statement->execute();
 
-                //Proceder a actualizar.
-            } else {
-                //No coincide el token.
-            }
+        if ($statement->rowCount() > 0) {
+            $datosUsuario = $statement->fetch(PDO::FETCH_ASSOC);
+            $tokenBD = $datosUsuario['token_clave'];
+            $correoUsuario = $datosUsuario['correo'];
 
-        } catch (Exception $e) {
-            echo "Error en la base de datos: " . $e->getMessage();
+            //Proceder a actualizar.
+        } else {
+            //No coincide el token.
         }
+    } catch (Exception $e) {
+        echo "Error en la base de datos: " . $e->getMessage();
     }
+}
 ?>
 
 

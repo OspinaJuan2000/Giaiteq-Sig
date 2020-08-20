@@ -1,5 +1,5 @@
 export function peticionEnviarEmail(datosRecuperacion) {
-    fetch('../../modelo/modeloRecuperarContra/recibir-email.php', {
+    fetch('./modelo/modeloRecuperarContra/recibir-email.php', {
         method: 'POST',
         body: datosRecuperacion
     }).then(response => response.json())
@@ -16,8 +16,8 @@ export function peticionEnviarEmail(datosRecuperacion) {
                 document.querySelector('.recuperar__form').reset();
                 iconoAlerta = 'success';
             } else if (mensaje === 'error_enviar') {
-                tituloAlerta = 'Ocurrió un error al enviar el correo';
-                mensajeAlerta = 'Vuelva a intentar más tarde';
+                tituloAlerta = 'Ocurrió un error';
+                mensajeAlerta = 'Ocurrió un error al enviar el correo electrónico para restablecer la contraseña, intente más tarde por favor';
                 iconoAlerta = 'error';
             } else if (mensaje === 'correo_noregistrado') {
                 tituloAlerta = 'El correo que ingresó no existe en nuestro sistema';

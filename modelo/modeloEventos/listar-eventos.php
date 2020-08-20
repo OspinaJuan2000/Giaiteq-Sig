@@ -29,7 +29,6 @@ try {
     }
 
     echo json_encode($respuesta);
-
 } catch (Exception $e) {
     echo "Error en la base de datos: " . $e->getMessage();
 }
