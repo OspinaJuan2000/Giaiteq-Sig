@@ -21,7 +21,7 @@ function enviarEmailPHP($nombreOrigen, $nombreDestino, $correoDestino, $correoAs
         $mail->Username   = 'ospinajuan2000@gmail.com';                     // SMTP username
         $mail->Password   = '3166723693juan';                               // SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-        $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+        $mail->Port       = 587;                           // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 
         //Correo desde el cual va a ser enviado el correo.
         $mail->setFrom('ospinajuan2000@gmail.com', $nombreOrigen);

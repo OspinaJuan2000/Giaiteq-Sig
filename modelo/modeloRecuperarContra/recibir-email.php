@@ -5,7 +5,7 @@ if (isset($_POST) && !empty($_POST)) {
 
     try {
         require_once('../conexion.php');
-        require_once('./enviar-email.php');
+        require('./enviar-email.php');
         $instanciaConexion = new Conexion();
         $conexion = $instanciaConexion->establecer_conexion();
 
@@ -31,7 +31,7 @@ if (isset($_POST) && !empty($_POST)) {
             $actualizarToken->bindParam(':email', $correoUsuario);
             $actualizarToken->execute();
 
-            require_once('./plantilla-email.php');
+            require('./plantilla-email.php');
 
             //Función para enviar el correo electrónico.
             $enviado = enviarEmailPHP('GIAITEQ-SIG', $primerNombreUsuario, $correoUsuario, 'Instrucciones para restablecer la contraseña de la cuenta GIAITEQ-SIG', $mensaje);
