@@ -16,27 +16,21 @@ if (isset($_POST) && !empty($_POST)) {
         $contraAnterior = $resultados['clave'];
         $correo = $resultados['correo'];
 
-        if (password_verify($nuevaContra, $contraAnterior)) {
+        $nuevaContraCrypt = password_hash($nuevaContra, PASSWORD_DEFAULT, ['cost' => 12]);
+        $actualizar = $conexion->prepare("UPDATE tbl_usuarios SET clave = :nueva, token_clave = '' WHERE correo = :email");
+        $actualizar->bindParam(':nueva', $nuevaContraCrypt);
+        $actualizar->bindParam(':email', $correo);
+        $actualizar->execute();
+
+        if ($actualizar->rowCount() > 0) {
             $respuesta = array(
-                'mensaje' => 'contra_anterior'
+                'mensaje' => 'contra_actualizada',
+                'primerNombre' => $primerNombre
             );
         } else {
-            $nuevaContraCrypt = password_hash($nuevaContra, PASSWORD_DEFAULT, ['cost' => 12]);
-            $actualizar = $conexion->prepare("UPDATE tbl_usuarios SET clave = :nueva, token_clave = '' WHERE correo = :email");
-            $actualizar->bindParam(':nueva', $nuevaContraCrypt);
-            $actualizar->bindParam(':email', $correo);
-            $actualizar->execute();
-
-            if ($actualizar->rowCount() > 0) {
-                $respuesta = array(
-                    'mensaje' => 'contra_actualizada',
-                    'primerNombre' => $primerNombre
-                );
-            } else {
-                $respuesta = array(
-                    'mensaje' => 'error_actualizar'
-                );
-            }
+            $respuesta = array(
+                'mensaje' => 'error_actualizar'
+            );
         }
     } catch (Exception $e) {
         echo "Error en la base de datos: " . $e->getMessage();

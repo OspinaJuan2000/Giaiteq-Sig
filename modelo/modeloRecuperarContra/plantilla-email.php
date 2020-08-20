@@ -91,12 +91,12 @@ $mensaje = "
                 </div>
                 <div class='mensaje'>
                     <div class='texto'>
-                        <p>Hola 
+                        <p>Hola
                         {$nombreCapitalizado},</p>
                         <p>Presiona el botón para restablecer tu contraseña de GIAITEQ-SIG</p>
-                        <a class='boton' href='{$hostFinal}?code=${tokenClave}'>Restablecer contraseña</a>
+                        <a class='boton' href='http://localhost/GIAITEQ-SIG/vista/html/recuperar_contra.php?code={$tokenClave}'>Restablecer contraseña</a>
                         <p>Si el botón no funciona copie el siguiente enlace en su navegador</p>
-                        <a href='{$hostFinal}?code=${tokenClave}'>{$hostFinal}?code=${tokenClave}</a>
+                        <a href='http://localhost/GIAITEQ-SIG/vista/html/recuperar_contra.php?code={$tokenClave}'>http://localhost/GIAITEQ-SIG/vista/html/recuperar_contra.php?code={$tokenClave}</a>
                     </div>
                 </div>
             </div>
