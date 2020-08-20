@@ -20,7 +20,7 @@ $sesion->verificarSesion();
       <img src="./vista/imagenes/logo_sena.png" alt="Logo del SENA" class="logo_sena">
     </div>
     <div class="barra_superior__nombre">
-      <p>GRUPO DE INVESTIGACIÓN APLICADA A LA PRODUCCIÓN INDUSTRIAL, TEXTIL Y QUÍMICA</p>
+      <p class="barra_superior__nombre-largo">GRUPO DE INVESTIGACIÓN APLICADA A LA PRODUCCIÓN INDUSTRIAL, TEXTIL Y QUÍMICA</p>
     </div>
   </div>
 
@@ -52,9 +52,9 @@ $sesion->verificarSesion();
           Escribe el correo electrónico que usaste para registrarte. Te enviaremos un correo electrónico con
           instrucciones sobre cómo restablecer tu contraseña.
         </p>
-        <form action="#" class="recuperar__form">
+        <form action="#" method="POST" class="recuperar__form">
           <div class="recuperar__campo">
-            <input class="recuperar__input recuperar--bg" type="email" placeholder="Dirección de correo electrónico" id="email-recuperar" name="email-recuperar">
+            <input class="recuperar__input" type="email" placeholder="Dirección de correo electrónico" id="email-recuperar" name="email-recuperar">
           </div>
           <div class="recuperar__enviar">
             <button class="recuperar__boton" disabled>Enviar correo electrónico</button>
@@ -96,7 +96,7 @@ $sesion->verificarSesion();
   <script type="text/javascript" src="./vista/js/index.js"></script>
   <script src="vista/js/sweetalert2.js"></script>
   <script src="controlador/controladorSesion/controlador.js" type="module"></script>
-  <script src="controlador/controladorRecuperarContraseña/controlador.js" type="module"></script>
+  <script src="controlador/controladorRecuperarContra/controlador.js" type="module"></script>
   <script src="./controlador/controladorRegistroEstudiantes/guardarEstudiante.js"></script>
 </body>
 

@@ -214,7 +214,6 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .recuperar__input, .recuperar__boton {
     padding: 15px 10px;
-    border-radius: 3px;
     border: none;
     font-family: inherit;
     color: inherit;
@@ -224,33 +223,42 @@ input[type="number"]::-webkit-inner-spin-button {
     display: block;
 }
 
-.recuperar--bg {
-    background-color: rgb(87, 86, 86);
-}
-
 .recuperar__input {
     margin-bottom: 30px;
     border-bottom: 4px solid transparent;
+    background-color: #806767;
 }
 
 .recuperar__input::placeholder {
     color: inherit;
+    font-weight: 700;
 }
 
 .recuperar__input:focus {
     outline: none;
-    border-bottom: 4px solid rgb(245, 57, 0);
+    border-bottom: 4px solid rgb(46, 141, 22);
 }
 
 .recuperar__input:invalid {
-    border-bottom: 4px solid rgb(46, 141, 22);
+    border-bottom: 4px solid rgb(245, 57, 0);
+}
+
+.recuperar__input:-webkit-autofill, .recuperar__input:-webkit-autofill:hover, .recuperar__input:-webkit-autofill:focus {
+    box-shadow: 0 0 0px 1000px #806767 inset;
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: #ececec;
 }
 
 .recuperar__boton {
     background-color: rgb(150, 149, 149);
     color: #ececec;
-    cursor: pointer;
     text-transform: uppercase;
+    font-weight: 700;
+    border-radius: 3px;
+}
+
+.recuperar__boton--bg {
+    background-color: #235E3D;
 }
 
 .recuperar__texto-recuperar {
@@ -275,7 +283,6 @@ input[type="number"]::-webkit-inner-spin-button {
     .recuperar__texto, .recuperar__input, .recuperar__boton {
         width: 88%;
     }
-
     .ventanaEmergente {
         width: 70%;
     }

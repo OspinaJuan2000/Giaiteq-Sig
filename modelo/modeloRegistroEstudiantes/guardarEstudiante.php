@@ -20,7 +20,7 @@
     $conexion = $instancia_conexion->establecer_conexion();
     $consulta = "INSERT INTO tbl_usuarios(primer_nombre, segundo_nombre, primer_apellido,
       segundo_apellido, numero_ficha, id_tipo_documento, documento_usuario, correo,
-      clave, fecha_ingreso, id_estado, id_perfil) VALUES(:primer_nombre, :segundo_nombre,
+      clave, fecha_ingreso, id_estado, id_perfil) VALUES (:primer_nombre, :segundo_nombre,
         :primer_apellido, :segundo_apellido, :numero_ficha, :id_tipo_documento, :documento_usuario,
         :correo, :clave, :fecha_ingreso, :id_estado, :id_perfil)";
     $sentencia = $conexion->prepare($consulta);

@@ -8,7 +8,6 @@ export function peticionSubirVideo(datosVideo) {
         body: datosVideo,
     }).then(response => response.json())
         .then(data => {
-            console.log(data);
             funciones.barraProgreso(data);
             const { mensaje } = data;
 

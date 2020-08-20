@@ -20,15 +20,12 @@ export function validarFormulario() {
 }
 
 export function mensajeCamposVacios(mensaje, error, insertar) {
+
+    document.querySelector(`.${error}`) ? document.querySelector(`.${error}`).remove() : '';
+
     const elemento = document.createElement('p');
     elemento.innerHTML = mensaje;
     elemento.className = error;
 
-    if (!document.querySelector(`.${error}`)) {
-        insertar.insertBefore(elemento, insertar.childNodes[0]);
-    }
-
-    setTimeout(() => {
-        elemento.remove();
-    }, 1500);
+    !document.querySelector(`.${error}`) ? insertar.insertBefore(elemento, insertar.childNodes[0]) : '';
 }

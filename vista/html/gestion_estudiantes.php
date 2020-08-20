@@ -24,12 +24,13 @@ $sesion->accesoGeneral();
 <body>
   <div class="barra_superior">
     <div class="barra_superior__logo">
-      <img src="../imagenes/logo_sena.png" alt="Logo del SENA" class="logo_sena">
+      <img src="../../vista/imagenes/logo_sena.png" alt="Logo del SENA" class="logo_sena">
     </div>
     <div class="barra_superior__nombre">
-      <p>GRUPO DE INVESTIGACIÓN APLICADA A LA PRODUCCIÓN INDUSTRIAL, TEXTIL Y QUÍMICA</p>
+      <p class="barra_superior__nombre-largo">GRUPO DE INVESTIGACIÓN APLICADA A LA PRODUCCIÓN INDUSTRIAL, TEXTIL Y QUÍMICA</p>
     </div>
   </div>
+
   <div class="contenedor_central">
     <div class="contenedor_central__opciones">
       <ul class="opciones__menu">

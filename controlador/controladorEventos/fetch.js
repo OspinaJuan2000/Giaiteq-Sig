@@ -88,8 +88,6 @@ export function peticionEditarEvento(datosEvento) {
     }).then(response => response.json())
         .then(data => {
             const { mensaje } = data;
-            console.log(data);
-            console.log(mensaje);
 
             let tituloAlerta,
                 mensajeAlerta,
