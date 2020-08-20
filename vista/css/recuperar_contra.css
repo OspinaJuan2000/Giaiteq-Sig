@@ -13,7 +13,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 4000;
+    z-index: 10;
     background-color: rgba(0, 0, 0, .4);
 }
 
@@ -28,6 +28,7 @@ body {
     border-radius: 3px;
     padding: 30px;
 }
+
 
 .recuperar-contra__encabezado, .recuperar-contra__boton {
     text-transform: uppercase;
@@ -61,17 +62,16 @@ body {
 
 .recuperar-contra__input:focus {
     outline: none;
-    border-bottom: 4px solid rgb(46, 141, 22);
-}
-
-.recuperar-contra__input:invalid {
-    border-bottom: 4px solid rgb(245, 57, 0);
 }
 
 .recuperar-contra__boton {
     background-color: rgb(150, 149, 149);
     font-weight: 700;
     border-radius: 3px;
+}
+
+.recuperar-contra__boton--bg {
+    background-color: #235E3D;
 }
 
 @media (max-width: 1100px) {

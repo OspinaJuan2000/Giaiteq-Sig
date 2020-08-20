@@ -8,25 +8,21 @@ if (isset($_GET) && isset($_GET['code'])) {
         $instanciaConexion = new Conexion();
         $conexion = $instanciaConexion->establecer_conexion();
 
-        $statement = $conexion->prepare("SELECT correo, token_clave FROM tbl_usuarios WHERE token_clave = :token");
+        $statement = $conexion->prepare("SELECT token_clave FROM tbl_usuarios WHERE token_clave = :token");
         $statement->bindParam(':token', $tokenClave);
         $statement->execute();
 
-        if ($statement->rowCount() > 0) {
-            $datosUsuario = $statement->fetch(PDO::FETCH_ASSOC);
-            $tokenBD = $datosUsuario['token_clave'];
-            $correoUsuario = $datosUsuario['correo'];
-
-            //Proceder a actualizar.
-        } else {
-            //No coincide el token.
+        if ($statement->rowCount() == 0) {
+            header('location: ../../index.php');
         }
+        
     } catch (Exception $e) {
         echo "Error en la base de datos: " . $e->getMessage();
     }
+} else {
+    header('location: ../../index.php');
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="es">
@@ -58,14 +54,16 @@ if (isset($_GET) && isset($_GET['code'])) {
                     <input class="recuperar-contra__input" type="password" placeholder="Nueva contraseña">
                 </div>
                 <div class="recuperar-contra__campo">
-                    <input class="recuperar-contra__input" type="password" placeholder="Confirmar contraseña">
+                    <input class="recuperar-contra__input recuperar-contra__input--confirmar" type="password" placeholder="Confirmar contraseña">
                 </div>
                 <div class="recuperar-contra__enviar">
-                    <button class="recuperar-contra__boton">Restablecer contraseña</button>
+                    <button class="recuperar-contra__boton" disabled>Restablecer contraseña</button>
                 </div>
             </form>
         </div>
     </div>
+    <script src="../../vista/js/sweetalert2.js"></script>
+    <script src="../../controlador/controladorNuevaContra/controlador.js" type="module"></script>
 </body>
 
 </html>

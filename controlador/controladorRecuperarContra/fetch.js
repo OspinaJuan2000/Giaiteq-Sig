@@ -1,3 +1,6 @@
+
+const formRecuperar = document.querySelector('.recuperar__form');
+
 export function peticionEnviarEmail(datosRecuperacion) {
     fetch('./modelo/modeloRecuperarContra/recibir-email.php', {
         method: 'POST',
@@ -13,7 +16,7 @@ export function peticionEnviarEmail(datosRecuperacion) {
             if (mensaje === 'correo_enviado') {
                 tituloAlerta = 'Correo enviado exitosamente';
                 mensajeAlerta = 'Por favor revise su correo electrónico para restablecer la contraseña';
-                document.querySelector('.recuperar__form').reset();
+                formRecuperar.reset();
                 iconoAlerta = 'success';
             } else if (mensaje === 'error_enviar') {
                 tituloAlerta = 'Ocurrió un error';
@@ -29,5 +32,5 @@ export function peticionEnviarEmail(datosRecuperacion) {
                 text: mensajeAlerta,
                 icon: iconoAlerta
             });
-        })
+        }).catch(err => console.log(err));
 }

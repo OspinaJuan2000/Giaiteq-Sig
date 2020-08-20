@@ -95,8 +95,8 @@ $sesion->verificarSesion();
   </div>
   <script type="text/javascript" src="./vista/js/index.js"></script>
   <script src="vista/js/sweetalert2.js"></script>
-  <script src="controlador/controladorSesion/controlador.js" type="module"></script>
-  <script src="controlador/controladorRecuperarContra/controlador.js" type="module"></script>
+  <script src="./controlador/controladorSesion/controlador.js" type="module"></script>
+  <script src="./controlador/controladorRecuperarContra/controlador.js" type="module"></script>
   <script src="./controlador/controladorRegistroEstudiantes/guardarEstudiante.js"></script>
 </body>
 

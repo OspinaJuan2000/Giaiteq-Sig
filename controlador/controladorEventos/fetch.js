@@ -1,6 +1,7 @@
 import * as funciones from './funciones.js';
 
 const formEventos = document.querySelector('#form-eventos');
+const buscador = document.querySelector('.buscador__input');
 
 export function peticionSubirEvento(datosEvento) {
     fetch('../../modelo/modeloEventos/subir-evento.php', {
@@ -8,6 +9,7 @@ export function peticionSubirEvento(datosEvento) {
         body: datosEvento
     }).then(response => response.json())
         .then(data => {
+            buscador.value = '';
             const { mensaje } = data;
 
             let tituloAlerta,
@@ -15,9 +17,11 @@ export function peticionSubirEvento(datosEvento) {
                 iconoAlerta = '';
 
             if (mensaje === 'subido') {
+                buscador.value = '';
                 tituloAlerta = 'Evento publicado correctamente';
                 mensajeAlerta = `El evento ${data.evento} ha sido publicado`;
                 iconoAlerta = 'success';
+                formEventos.reset();
             } else if (mensaje === 'error_subir') {
                 tituloAlerta = 'Error al intentar publicar el evento';
                 mensajeAlerta = 'Error al publicar el evento, intente más tarde';
@@ -29,7 +33,6 @@ export function peticionSubirEvento(datosEvento) {
                 text: mensajeAlerta,
                 icon: iconoAlerta,
             }).then(() => {
-                formEventos.reset();
                 peticionListarEventos();
             })
         }).catch(err => console.log(err));
@@ -39,7 +42,9 @@ export function peticionListarEventos() {
     fetch('../../modelo/modeloEventos/listar-eventos.php')
         .then(response => response.json())
         .then(data => {
-            if (data.mensaje == 'sin_eventos') {
+            const { mensaje } = data;
+
+            if (mensaje == 'sin_eventos') {
                 funciones.eliminarListaEventos();
                 funciones.mensajeSinEventos('No se ha publicado ningún evento', 'sinRegistrosBD');
             } else {
@@ -55,16 +60,19 @@ export function peticionEliminarEvento(datosEvento) {
         body: datosEvento
     }).then(response => response.json())
         .then(data => {
+            buscador.value = '';
+            const { mensaje } = data;
+
             let tituloAlerta,
                 mensajeAlerta,
                 iconoAlerta = '';
 
-            if (data.mensaje === 'evento_eliminado') {
+            if (mensaje === 'evento_eliminado') {
                 tituloAlerta = 'Evento eliminado correctamente.';
                 mensajeAlerta = `El evento ${data.nombre} ha sido eliminado.`;
                 iconoAlerta = 'success';
 
-            } else if (data.mensaje === 'error_eliminar') {
+            } else if (mensaje === 'error_eliminar') {
                 tituloAlerta = 'Error al intentar eliminar';
                 mensajeAlerta = `Ocurrió un error al intentar eliminar el evento ${data.nombre}`;
                 iconoAlerta = 'error';
@@ -87,6 +95,7 @@ export function peticionEditarEvento(datosEvento) {
         body: datosEvento
     }).then(response => response.json())
         .then(data => {
+            buscador.value = '';
             const { mensaje } = data;
 
             let tituloAlerta,
@@ -121,7 +130,9 @@ export function peticionBuscarEventos(datosEvento) {
         body: datosEvento
     }).then(response => response.json())
         .then(data => {
-            if (data.mensaje === 'evento_noencontrado') {
+            const { mensaje } = data;
+            
+            if (mensaje === 'evento_noencontrado') {
                 funciones.mensajeSinEventos('No se ha encontrado ningún evento con tal nombre', 'sinFiltrosBD');
             } else {
                 funciones.listarEventos(data);

@@ -23,22 +23,26 @@ export function eliminarFormRecuperar() {
     });
 }
 
+//Leer los datos que ingrese en el input de tipo email para validarlos posteriormente.
 export function validarFormRecuperar() {
     const inputEmail = document.querySelector('.recuperar__input');
+    const btnEnviarEmail = document.querySelector('.recuperar__boton');
+
 
     inputEmail.addEventListener('keyup', (e) => {
         const expresion = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]+$/;
-        const btnEnviarEmail = document.querySelector('.recuperar__boton');
 
         if (expresion.test(e.target.value)) {
             btnEnviarEmail.classList.add('recuperar__boton--bg');
             btnEnviarEmail.disabled = false;
             btnEnviarEmail.style.cursor = 'pointer';
+            inputEmail.style.borderBottom = '4px solid rgb(46, 141, 22)';
             btnEnviarEmail.onclick = enviarEmail;
         } else {
             btnEnviarEmail.classList.remove('recuperar__boton--bg');
             btnEnviarEmail.disabled = true;
             btnEnviarEmail.style.cursor = 'default';
+            inputEmail.style.borderBottom = '4px solid rgb(245, 57, 0)';
         }
     });
 }
@@ -46,10 +50,14 @@ export function validarFormRecuperar() {
 
 function enviarEmail(e) {
     e.preventDefault();
-
+    const expresion = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]+$/;
     const emailAEnviar = document.querySelector('.recuperar__input').value;
-    const datosRecuperacion = new FormData();
-    datosRecuperacion.set('email', emailAEnviar);
 
-    peticiones.peticionEnviarEmail(datosRecuperacion);
+    if (expresion.test(emailAEnviar)) {
+        const datosRecuperacion = new FormData();
+
+        datosRecuperacion.set('email', emailAEnviar);
+
+        peticiones.peticionEnviarEmail(datosRecuperacion);
+    }
 }

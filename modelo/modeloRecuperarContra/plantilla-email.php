@@ -1,5 +1,8 @@
 <?php
 
+$httpHost = $_SERVER['HTTP_HOST'];
+$hostFinal = $httpHost . '/GIAITEQ-SIG/vista/html/recuperar_contra.php';
+
 $nombreCapitalizado = ucfirst($primerNombreUsuario);
 $mensaje = "
     <!DOCTYPE html>
@@ -91,10 +94,9 @@ $mensaje = "
                         <p>Hola 
                         {$nombreCapitalizado},</p>
                         <p>Presiona el botón para restablecer tu contraseña de GIAITEQ-SIG</p>
-                        <a class='boton' href='http://giaiteq-semillero.test/vista/html/recuperar_contra.php?code=${tokenClave}'>Restablecer
-                            contraseña</a>
+                        <a class='boton' href='{$hostFinal}?code=${tokenClave}'>Restablecer contraseña</a>
                         <p>Si el botón no funciona copie el siguiente enlace en su navegador</p>
-                        <a href='http://giaiteq-semillero.test/vista/html/recuperar_contra.php?code=${tokenClave}'>http://giaiteq-semillero.test/vista/html/recuperar_contra.php?code=${tokenClave}</a>
+                        <a href='{$hostFinal}?code=${tokenClave}'>{$hostFinal}?code=${tokenClave}</a>
                     </div>
                 </div>
             </div>

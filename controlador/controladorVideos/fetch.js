@@ -1,6 +1,7 @@
 import * as funciones from './funciones.js';
 
 const formVideos = document.querySelector('#form-videos');
+const buscador = document.querySelector('.buscador__input');
 
 export function peticionSubirVideo(datosVideo) {
     fetch('../../modelo/modeloVideos/subir-video.php', {
@@ -9,6 +10,7 @@ export function peticionSubirVideo(datosVideo) {
     }).then(response => response.json())
         .then(data => {
             funciones.barraProgreso(data);
+            buscador.value = '';
             const { mensaje } = data;
 
             let tituloAlerta,
@@ -56,7 +58,9 @@ export function peticionListarVideos() {
     fetch('../../modelo/modeloVideos/listar-videos.php')
         .then(response => response.json())
         .then(data => {
-            if (data.mensaje === 'sin_videos') {
+            const { mensaje } = data;
+
+            if (mensaje === 'sin_videos') {
                 funciones.eliminarListaVideos();
                 funciones.mensajeSinVideos('No se ha publicado ningún vídeo', 'sinRegistrosBD');
             } else {
@@ -72,16 +76,19 @@ export function peticionEliminarVideo(datosVideo) {
         body: datosVideo
     }).then(response => response.json())
         .then(data => {
+            buscador.value = '';
+            const { mensaje } = data;
+
             let tituloAlerta,
                 mensajeAlerta,
                 iconoAlerta = '';
 
-            if (data.mensaje === 'video_eliminado') {
+            if (mensaje === 'video_eliminado') {
                 tituloAlerta = 'Vídeo eliminado correctamente.';
                 mensajeAlerta = `El vídeo "-${data.titulo}-" ha sido eliminado.`;
                 iconoAlerta = 'success';
 
-            } else if (data.mensaje === 'video_noeliminado') {
+            } else if (mensaje === 'video_noeliminado') {
                 tituloAlerta = 'Error al intentar eliminar';
                 mensajeAlerta = `Ocurrió un error al intentar eliminar el vídeo "-${data.titulo}-"`;
                 iconoAlerta = 'error';
@@ -105,6 +112,7 @@ export function peticionEditarVideo(datosVideo) {
     }).then(response => response.json())
         .then(data => {
             funciones.barraProgreso(data);
+            buscador.value = '';
             const { mensaje } = data;
 
             let tituloAlerta,
@@ -154,7 +162,9 @@ export function peticionBuscarVideos(datosVideo) {
         body: datosVideo
     }).then(response => response.json())
         .then(data => {
-            if (data.mensaje === 'video_noencontrado') {
+            const { mensaje } = data;
+            
+            if (mensaje === 'video_noencontrado') {
                 funciones.mensajeSinVideos('No se ha encontrado ningún vídeo con tal nombre', 'sinFiltrosBD');
             } else {
                 funciones.renderizarListaVideos(data);
