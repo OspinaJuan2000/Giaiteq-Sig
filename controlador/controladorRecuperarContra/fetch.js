@@ -7,6 +7,8 @@ export function peticionEnviarEmail(datosRecuperacion) {
         body: datosRecuperacion
     }).then(response => response.json())
         .then(data => {
+            const contenedorVentana = document.querySelector('.contenedorVentana');
+            const ventanaEmergente = document.querySelector('.ventanaEmergente');
             const { mensaje } = data;
 
             let tituloAlerta,
@@ -17,6 +19,8 @@ export function peticionEnviarEmail(datosRecuperacion) {
                 tituloAlerta = 'Correo enviado exitosamente';
                 mensajeAlerta = 'Por favor revise su correo electrónico para restablecer la contraseña';
                 formRecuperar.reset();
+                contenedorVentana.classList.remove('visible');
+                ventanaEmergente.classList.remove('visible');
                 iconoAlerta = 'success';
             } else if (mensaje === 'error_enviar') {
                 tituloAlerta = 'Ocurrió un error';
