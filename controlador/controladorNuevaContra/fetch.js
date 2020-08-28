@@ -10,7 +10,6 @@ export function peticionEnviarNuevaContra(datosNuevaContra) {
                 mensajeAlerta,
                 iconoAlerta = '';
 
-
             if (mensaje === 'contra_actualizada') {
                 tituloAlerta = 'Contraseña actualizada';
                 mensajeAlerta = `${data.primerNombre[0].toUpperCase() + data.primerNombre.slice(1)}, tu contraseña ha sido actualizada correctamente, inicia sesión`;
