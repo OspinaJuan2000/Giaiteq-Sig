@@ -68,11 +68,12 @@ if (isset($_POST) && !empty($_POST)) {
                     }
                 }
             }
+        } else {
+            $respuesta = array(
+                'mensaje' => 'solo_mp4_webm',
+            );
         }
-    } else {
-        $respuesta = array(
-            'mensaje' => 'solo_mp4_webm',
-        );
     }
+
     echo json_encode($respuesta);
 }

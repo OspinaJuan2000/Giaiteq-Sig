@@ -48,7 +48,7 @@ if (isset($_GET) && isset($_GET['code'])) {
     </div>
     <div class="contenedor-recuperar">
         <div class="recuperar-contra">
-            <form action="#" class="recuperar-contra__formulario" method="POST">
+            <form action="#" class="recuperar-contra__formulario" method="POST" enctype="multipart/form-data">
                 <h4 class="recuperar-contra__encabezado">Restablecer tu contraseña</h4>
                 <div class="recuperar-contra__campo">
                     <input class="recuperar-contra__input" type="password" placeholder="Nueva contraseña">

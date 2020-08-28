@@ -44,7 +44,7 @@ $sesion->accesoGeneral();
         </div>
         <div class="contenedor_central__contenido">
             <div class="contenedorPublicaciones">
-                <form id="form-eventos" enctype="multipart/form-data">
+                <form id="form-eventos" method="POST" enctype="multipart/form-data" >
                     <div class="contenedor-publicacion">
                         <div class="campos">
                             <label for="titulo">Nombre del evento</label>

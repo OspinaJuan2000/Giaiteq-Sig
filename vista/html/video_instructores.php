@@ -44,7 +44,7 @@ $sesion->accesoGeneral();
         </div>
         <div class="contenedor_central__contenido">
             <div class="contenedorPublicaciones">
-                <form id="form-videos" enctype="multipart/form-data">
+                <form id="form-videos" method="POST" enctype="multipart/form-data">
                     <div class="contenedor-publicacion">
                         <div class="campos">
                             <label for="titulo">Título del vídeo</label>

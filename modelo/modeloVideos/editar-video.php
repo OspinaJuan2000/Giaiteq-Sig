@@ -60,11 +60,12 @@ if (isset($_POST) && !empty($_POST)) {
                     echo "Error en la base de datos: " . $e->getMessage();
                 }
             }
+        } else {
+            $respuesta = array(
+                'mensaje' => 'solo_mp4_webm',
+            );
         }
-    } else {
-        $respuesta = array(
-            'mensaje' => 'solo_mp4_webm',
-        );
     }
+
     echo json_encode($respuesta);
 }
