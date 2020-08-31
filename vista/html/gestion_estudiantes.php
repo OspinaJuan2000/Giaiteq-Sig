@@ -62,13 +62,14 @@ $sesion->accesoGeneral();
         </div>
 
         <div id="estudiantesInactivos" class="estudiantesInactivos">
-          <p>estudiantesInactivos</p>
+
         </div>
 
         <div id="fichas" class="fichas">
           <form class="formularioFichas" id="formularioFichas" method="POST">
-            <input type="number" class="formularioFichas__input" name="numeroFicha" placeholder="Ficha">
-            <input type="text" class="formularioFichas__input" name="nombrePrograma" placeholder="Programa">
+            <input type="number" class="formularioFichas__input" id="formularioFichas__ficha" name="numeroFicha" placeholder="Ficha">
+            <input type="text" class="formularioFichas__input" id="formularioFichas__programa" name="nombrePrograma" placeholder="Programa">
+            <input type="hidden" id="accion" value="0">
             <input type="submit" class="formularioFichas__submit" value="Guardar">
           </form>
           <table class="tablaFichas" id="tablaFichas">

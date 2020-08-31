@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', estudiantesActivos);
 document.addEventListener('DOMContentLoaded', solicitudesIngreso);
 document.addEventListener('DOMContentLoaded', listaFichas);
+document.addEventListener('DOMContentLoaded', listaEstudiantesInactivos);
 
 //LISTA DE ESTUDIANTES ACTIVOS
 function estudiantesActivos() {
@@ -163,8 +164,8 @@ function listaFichas() {
         <tr>
           <td>${ficha.numero_ficha}</td>
           <td>${ficha.nombre_programa}</td>
-          <td><i class="fas fa-edit editar" title="Editar"></i></td>
-          <td><i class="fas fa-trash-alt eliminar" title="Eliminar"></i></td>
+          <td><i class="fas fa-edit editar_ficha" title="Editar"><input type="hidden" value="${ficha.numero_ficha}"></i></td>
+          <td><i class="fas fa-trash-alt eliminar_ficha" title="Eliminar"></i></td>
         </tr>
         `
         plantillaFichas += `
@@ -173,7 +174,31 @@ function listaFichas() {
       });
       document.getElementById('tablaFichas').innerHTML = plantilla;
       document.getElementById('actualizacion__ficha').innerHTML = plantillaFichas;
+      cargarFicha();
     })
+}
+
+const expresionesFichas = {
+  ficha: /^.{3,20}$/,
+  nombrePrograma: /^[a-zA-ZÀ-ÿ\s]{2,40}$/
+}
+
+const camposFichas = {
+  ficha: false,
+  nombrePrograma: false
+}
+
+const validarFicha = () => {
+  let ficha = document.getElementById('formularioFichas__ficha').value;
+  let programa = document.getElementById('formularioFichas__programa').value;
+
+  if(expresionesFichas.ficha.test(ficha)){
+    camposFichas['ficha'] = true;
+  }
+
+  if(expresionesFichas.nombrePrograma.test(programa)){
+    camposFichas['nombrePrograma'] = true;
+  }
 }
 
 //ESTE CÓDIGO PERMITE GUARDAR UNA NUEVA FICHA
@@ -181,26 +206,93 @@ let formularioFichas = document.getElementById('formularioFichas');
 
 formularioFichas.addEventListener('submit', (e) => {
   e.preventDefault();
+  validarFicha();
 
-  let informacion = new FormData(formularioFichas);
+  if(camposFichas.ficha && camposFichas.nombrePrograma){
+    let accion = document.getElementById('accion').value;
 
-  fetch('../../modelo/modeloRegistroEstudiantes/guardarFicha.php', {
-    method: 'POST',
-    body: informacion
-  })
-    .then(respuesta => respuesta.json())
-    .then(res => {
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: res,
-        showConfirmButton: false,
-        timer: 1500
+    if(accion == 0){
+      let informacion = new FormData(formularioFichas);
+      fetch('../../modelo/modeloRegistroEstudiantes/guardarFicha.php', {
+        method: 'POST',
+        body: informacion
       })
-      formularioFichas.reset();
-      listaFichas();
+      .then(respuesta => respuesta.json())
+      .then(res => {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: res,
+          showConfirmButton: false,
+          timer: 1500
+        })
+        formularioFichas.reset();
+        listaFichas();
+        camposFichas.ficha = false;
+        camposFichas.nombrePrograma = false;
+      })
+    }
+
+    if(accion == 1) {
+      let informacion = new FormData(formularioFichas);
+      fetch('../../modelo/modeloRegistroEstudiantes/actualizarFicha.php', {
+        method: 'POST',
+        body: informacion
+      })
+      .then(respuesta => respuesta.json())
+      .then(res => {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: res,
+          showConfirmButton: false,
+          timer: 1500
+        })
+        formularioFichas.reset();
+        listaFichas();
+        camposFichas.ficha = false;
+        camposFichas.nombrePrograma = false;
+        document.getElementById('accion').value = 0;
+      })
+    }
+
+
+  } else {
+    Swal.fire({
+      icon: 'error',
+      title: 'Datos erroneos',
+      text: 'Tiene campos sin llenar o los datos que ingresó no son correctos'
     })
+  }
 });
+
+/*FUNCIÓN UTILIZADA CUANDO SE HACE CLICK EN EDITAR FICHA, CARGA LOS DATOS DE ESA
+FICHA A LOS INPUTS DEL FORMULARIO*/
+function cargarFicha(){
+  let numero_ficha = document.getElementsByClassName('editar_ficha');
+
+    for (let i = 0; i < numero_ficha.length; i++) {
+      numero_ficha[i].addEventListener("click", function(){
+        let numero = this.firstChild.value;
+
+        let dato = new FormData();
+        dato.append('numeroFicha', numero);
+
+        fetch('../../modelo/modeloRegistroEstudiantes/informacionFicha.php', {
+          method: 'POST',
+          body: dato
+        })
+        .then(respuesta => respuesta.json())
+        .then(res => {
+          res.forEach((datos) => {
+            document.getElementById('formularioFichas__ficha').value = datos.numero_ficha;
+            document.getElementById('formularioFichas__programa').value = datos.nombre_programa;
+            document.getElementById('accion').value = 1;
+          });
+        })
+      });
+    }
+}
 
 //ESTE CÓDIGO CARGA LOS DATOS DEL APRENDIZ SELECCIONADO PARA SU POSTERIOR ACTUALIZACIÓN
 function cargarDatosAprendiz() {
@@ -339,6 +431,8 @@ formularioActualizacion.addEventListener('submit', (e) => {
   }
 });
 
+/*ESTA FUNCIÓN ES PARA INACTIVAR ESTUDIANTES, SU ESTADO PASARÁ A SER INACTIVO
+POR LO TANTO NO PODRÁN INGRESAR AL SITIO*/
 function inactivarEstudiante() {
   let eliminar_aprendiz = document.getElementsByClassName('eliminar_aprendiz');
 
@@ -372,9 +466,34 @@ function inactivarEstudiante() {
                 timer: 1500
               })
               estudiantesActivos();
+              listaEstudiantesInactivos();
             })
         }
       })
     })
   }
+}
+
+//ESTA ES LA LISTA DE TODOS LOS ESTUDIANTES QUE HAN PERTENECIDO AL SEMILLERO
+function listaEstudiantesInactivos() {
+  fetch('../../modelo/modeloRegistroEstudiantes/listaEstudiantesInactivos.php')
+    .then(respuesta => respuesta.json())
+    .then(datos => {
+      let plantilla = '';
+      datos.forEach((dato) => {
+        plantilla += `
+        <div class="estudiante">
+          <div>
+            <p><b>Nombre: </b>${dato.primer_nombre} ${dato.segundo_nombre} ${dato.primer_apellido} ${dato.segundo_apellido}</p>
+            <p><b>Ficha: </b>${dato.numero_ficha}</p>
+            <p><b>Tipo de documento: </b>${dato.nombre_tipo_documento}</p>
+            <p><b>Documento: </b>${dato.documento_usuario}</p>
+            <p><b>Correo: </b>${dato.correo}</p>
+            <p><b>Fecha de registro: </b>${dato.fecha_ingreso}</p>
+          </div>
+        </div>
+        `
+      });
+      document.getElementById('estudiantesInactivos').innerHTML = plantilla;
+    })
 }

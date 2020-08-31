@@ -22,18 +22,22 @@
 .aceptar,
 .rechazar,
 .editar_aprendiz,
-.eliminar_aprendiz{
+.eliminar_aprendiz,
+.editar_ficha,
+.eliminar_ficha{
   font-size: 30px;
   cursor: pointer;
 }
 
 .editar,
-.editar_aprendiz{
+.editar_aprendiz,
+.editar_ficha{
   color: #2CB8DE;
 }
 
 .eliminar,
-.eliminar_aprendiz{
+.eliminar_aprendiz,
+.eliminar_ficha{
   color: #DC1341;
 }
 
