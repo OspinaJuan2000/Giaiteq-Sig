@@ -30,7 +30,7 @@ if (isset($_POST) && !empty($_POST)) {
             $actualizarToken->bindParam(':email', $correoUsuario);
             $actualizarToken->execute();
 
-            require('./enviar-email.php');
+            require('../../externo/sendEmail-PHP/enviar-email.php');
             require('./plantilla-email.php');
 
             //Función para enviar el correo electrónico.
