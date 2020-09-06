@@ -11,7 +11,6 @@ if (isset($_POST) && !empty($_POST)) {
         $megabytesMaximos = round($_FILES['video']['size'] / 1e+6);
         $idVideo = (int) $_POST['idVideo'];
         $nombreArchivoAnterior = $_POST['nombreVideoAnterior'];
-        $archivoActual = $_FILES['video']['tmp_name'];
 
         if ($formato === 'video/mp4' || $formato === 'video/webm') {
             if ($megabytesMaximos > 80) {
@@ -24,8 +23,8 @@ if (isset($_POST) && !empty($_POST)) {
                     require_once('../conexion.php');
                     $instanciaConexion = new Conexion();
                     $conexion = $instanciaConexion->establecer_conexion();
-                    $titulo = $_POST['titulo'];
-                    $descripcion = $_POST['descripcion'];
+                    $titulo = trim($_POST['titulo']);
+                    $descripcion = trim($_POST['descripcion']);
 
                     //QUERY PARA ACTUALIZAR EN LA TABLA TBL_RUTAS_CONTENIDO.
                     $statement = $conexion->prepare("UPDATE tbl_rutas_contenido SET ruta = :ruta WHERE id_contenido = :id_contenido");

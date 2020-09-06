@@ -22,8 +22,8 @@ if (isset($_POST) && !empty($_POST)) {
                 } else {
                     session_start();
                     $documento = $_SESSION['instructor']['documento'];
-                    $titulo = $_POST['titulo'];
-                    $descripcion = $_POST['descripcion'];
+                    $titulo = trim($_POST['titulo']);
+                    $descripcion = trim($_POST['descripcion']);
 
                     if (!file_exists('../modeloVideos/videos')) {
                         mkdir('../modeloVideos/videos');

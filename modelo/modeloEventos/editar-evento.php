@@ -1,9 +1,9 @@
 <?php
 if (isset($_POST) && !empty($_POST)) {
 
-    $nombre = $_POST['nombre'];
-    $descripcion = $_POST['descripcion'];
-    $lugar = $_POST['lugar'];
+    $nombre = trim($_POST['nombre']);
+    $descripcion = trim($_POST['descripcion']);
+    $lugar = trim($_POST['lugar']);
     $fechaComienzo = $_POST['fecha-comienzo'];
     $horaComienzo = $_POST['hora-comienzo'];
     $fechaFinalizacion = $_POST['fecha-finalizacion'];
