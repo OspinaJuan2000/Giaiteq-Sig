@@ -17,7 +17,7 @@ export function peticionEnviarEmail(datosRecuperacion) {
 
             if (mensaje === 'correo_enviado') {
                 tituloAlerta = 'Correo enviado exitosamente';
-                mensajeAlerta = 'Por favor revise su correo electrónico para restablecer la contraseña';
+                mensajeAlerta = 'Se ha enviado un correo electrónico con las instrucciones para la modificación de la contraseña';
                 formRecuperar.reset();
                 contenedorVentana.classList.remove('visible');
                 ventanaEmergente.classList.remove('visible');
@@ -27,8 +27,8 @@ export function peticionEnviarEmail(datosRecuperacion) {
                 mensajeAlerta = 'Ocurrió un error al enviar el correo electrónico para restablecer la contraseña, intente más tarde por favor';
                 iconoAlerta = 'error';
             } else if (mensaje === 'correo_noregistrado') {
-                tituloAlerta = 'El correo que ingresó no existe en nuestro sistema';
-                mensajeAlerta = 'Verifique que el correo ingresado es el correcto para poder restablecer su contraseña';
+                tituloAlerta = 'No existe un usuario asociado al email ingresado';
+                mensajeAlerta = 'Verifique que el email ingresado es correcto para restablecer su contraseña';
                 iconoAlerta = 'error';
             }
             swal.fire({

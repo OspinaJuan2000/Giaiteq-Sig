@@ -28,7 +28,6 @@ export function validarFormRecuperar() {
     const inputEmail = document.querySelector('.recuperar__input');
     const btnEnviarEmail = document.querySelector('.recuperar__boton');
 
-
     inputEmail.addEventListener('keyup', (e) => {
         const expresion = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]+$/;
 

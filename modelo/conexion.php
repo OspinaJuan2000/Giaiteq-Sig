@@ -10,6 +10,7 @@ class Conexion
         $bd = "giaiteq";
         $conexion = new PDO("mysql:host=$host;dbname=$bd;charset=utf8", $usuario, $clave);
         $conexion->exec("set names utf8");
+        
         return $conexion;
     }
 }
