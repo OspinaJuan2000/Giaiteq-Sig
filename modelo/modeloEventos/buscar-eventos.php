@@ -7,8 +7,10 @@ if (isset($_POST) && $_POST['filtro'] !== '') {
         require_once '../conexion.php';
         $instanciaConexion = new Conexion();
         $conexion = $instanciaConexion->establecer_conexion();
+        $filtro = "%$filtroBusqueda%";
 
-        $statement = $conexion->prepare("SELECT * FROM tbl_eventos WHERE nombre_evento LIKE '%{$filtroBusqueda}%'");
+        $statement = $conexion->prepare("SELECT * FROM tbl_eventos WHERE nombre_evento LIKE :filtro");
+        $statement->bindParam(':filtro', $filtro);
         $statement->execute();
 
         if ($statement->rowCount() > 0) {

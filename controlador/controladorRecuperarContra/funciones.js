@@ -27,6 +27,7 @@ export function eliminarFormRecuperar() {
 export function validarFormRecuperar() {
     const inputEmail = document.querySelector('.recuperar__input');
     const btnEnviarEmail = document.querySelector('.recuperar__boton');
+    btnEnviarEmail.style.cursor = 'not-allowed';
 
     inputEmail.addEventListener('keyup', (e) => {
         const expresion = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]+$/;
@@ -37,10 +38,11 @@ export function validarFormRecuperar() {
             btnEnviarEmail.style.cursor = 'pointer';
             inputEmail.style.borderBottom = '4px solid rgb(46, 141, 22)';
             btnEnviarEmail.onclick = enviarEmail;
+
         } else {
             btnEnviarEmail.classList.remove('recuperar__boton--bg');
             btnEnviarEmail.disabled = true;
-            btnEnviarEmail.style.cursor = 'default';
+            btnEnviarEmail.style.cursor = 'not-allowed';
             inputEmail.style.borderBottom = '4px solid rgb(245, 57, 0)';
         }
     });

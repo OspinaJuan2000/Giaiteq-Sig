@@ -4,16 +4,17 @@ import * as peticiones from './fetch.js';
 export function validarFormRecuperar() {
     const inputNuevaContra = document.querySelector('.recuperar-contra__input');
     const inputConfirmaNuevaContra = document.querySelector('.recuperar-contra__input--confirmar');
+    const botonEnviarNuevaContra = document.querySelector('.recuperar-contra__boton');
+    botonEnviarNuevaContra.style.cursor = 'not-allowed';
 
-    inputNuevaContra.addEventListener('keyup', () => validarInputContra(inputNuevaContra, inputConfirmaNuevaContra));
+    inputNuevaContra.addEventListener('keyup', () => validarInputContra(inputNuevaContra, inputConfirmaNuevaContra, botonEnviarNuevaContra));
 
-    inputConfirmaNuevaContra.addEventListener('keyup', () => validarInputContra(inputNuevaContra, inputConfirmaNuevaContra));
+    inputConfirmaNuevaContra.addEventListener('keyup', () => validarInputContra(inputNuevaContra, inputConfirmaNuevaContra, botonEnviarNuevaContra));
 
 }
 
-function validarInputContra(inputNuevaContra, inputConfirmaNuevaContra) {
+function validarInputContra(inputNuevaContra, inputConfirmaNuevaContra, botonEnviarNuevaContra) {
     const expresion = /^.{4,40}$/;
-    const botonEnviarNuevaContra = document.querySelector('.recuperar-contra__boton');
 
     if (expresion.test(inputNuevaContra.value) && expresion.test(inputConfirmaNuevaContra.value) && inputNuevaContra.value === inputConfirmaNuevaContra.value) {
         botonEnviarNuevaContra.classList.add('recuperar-contra__boton--bg');
@@ -22,10 +23,11 @@ function validarInputContra(inputNuevaContra, inputConfirmaNuevaContra) {
         inputNuevaContra.style.borderBottom = '4px solid rgb(46, 141, 22)';
         inputConfirmaNuevaContra.style.borderBottom = '4px solid rgb(46, 141, 22)';
         botonEnviarNuevaContra.onclick = enviarNuevaContra;
+
     } else {
         botonEnviarNuevaContra.classList.remove('recuperar-contra__boton--bg');
         botonEnviarNuevaContra.disabled = true;
-        botonEnviarNuevaContra.style.cursor = 'default';
+        botonEnviarNuevaContra.style.cursor = 'not-allowed';
         inputNuevaContra.style.borderBottom = '4px solid rgb(245, 57, 0)';
         inputConfirmaNuevaContra.style.borderBottom = '4px solid rgb(245, 57, 0)';
     }
