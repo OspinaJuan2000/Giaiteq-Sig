@@ -30,7 +30,7 @@ export function validarFormulario() {
                 icon: 'error',
             });
 
-        } else if (datosVideo.get('titulo').trim() === '' || datosVideo.get('descripcion').trim() === '' || datosVideo.get('video').name === '') {
+        } else if (datosVideo.get('titulo').trim() === '' || datosVideo.get('descripcion').trim() === '') {
             mensajeCamposVacios();
         } else if (editarVideos === false) {
             desactivarBotonPublicar();
@@ -195,14 +195,6 @@ export function eliminarVideo() {
                     datosVideo.set('nombre', nombreVideo);
 
                     peticiones.peticionEliminarVideo(datosVideo);
-
-
-                } else {
-                    swal.fire({
-                        title: 'Acción cancelada',
-                        text: 'No se eliminó el vídeo',
-                        icon: 'info',
-                    });
                 }
             })
         }
@@ -223,8 +215,35 @@ export function editarVideo() {
             const descripcionVideo = e.target.parentElement.parentElement.querySelector('.contenedor-video__descripcion').textContent;
 
             insertarDatosEditar(idVideoAnterior, nombreVideoAnterior, tituloVideo, descripcionVideo);
+
+            renderVideoAnterior(nombreVideoAnterior);
         }
     });
+}
+
+export function renderVideoAnterior (nombreVideoAnterior) {
+
+    eliminarVideoAnterior();
+
+    const divVideo = document.createElement('div');
+    divVideo.classList.add('video-anterior');
+    const contenedorPublicacion = document.querySelector('.contenedor-publicacion');
+
+    divVideo.innerHTML = `
+        <p>Vídeo anterior</p>
+        <video class="contenedor-video__video" controls>
+            <source src="../../modelo/modeloVideos/videos/${nombreVideoAnterior}" type="video/mp4">
+            <source src="../../modelo/modeloVideos/videos/${nombreVideoAnterior}" type="video/webm">
+        </video>
+        `;
+
+    contenedorPublicacion.insertBefore(divVideo, contenedorPublicacion.childNodes[contenedorPublicacion.childNodes.length -2]);
+}
+
+export function eliminarVideoAnterior () {
+    if (document.querySelector('.video-anterior')) {
+        document.querySelector('.video-anterior').remove();
+    }
 }
 
 export function insertarDatosEditar(idVideoAnterior, nombreVideoAnterior, tituloVideo, descripcionVideo) {

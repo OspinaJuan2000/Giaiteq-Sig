@@ -224,6 +224,15 @@
     transform: rotate(20deg);
 }
 
+.video-anterior {
+    margin: 40px 0 0 0;
+}
+
+.video-anterior p {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
 @media (max-width: 1400px) {
     .contenedor-video {
         grid-template-columns: 100%;

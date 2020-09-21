@@ -88,7 +88,7 @@ $sesion->accesoGeneral();
             </div>
         </div>
         <div class="buscador">
-            <input class="buscador__input" type="text" placeholder="Buscar un evento" id="buscar-evento">
+            <input class="buscador__input" type="text" placeholder="Buscar un evento por el nombre" id="buscar-evento">
             <label class="buscador__label" for="buscar-evento"><i class="fas fa-search buscador__icon"></i></label>
         </div>
         <div class="lista-eventos">

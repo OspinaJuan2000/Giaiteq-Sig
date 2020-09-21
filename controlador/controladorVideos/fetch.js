@@ -17,25 +17,29 @@ export function peticionSubirVideo(datosVideo) {
                 mensajeAlerta,
                 iconoAlerta = '';
 
-            if (mensaje === 'peso_excedido') {
-                tituloAlerta = 'Peso máximo excedido.';
-                mensajeAlerta = 'El vídeo excede el peso límite.';
+            if (mensaje === 'sinvideo') {
+                tituloAlerta = 'Debe subir un vídeo';
+                mensajeAlerta = 'Seleccione en elegir archivo y escoja un vídeo';
+                iconoAlerta = 'error';
+            } else if (mensaje === 'peso_excedido') {
+                tituloAlerta = 'Peso máximo excedido';
+                mensajeAlerta = 'El vídeo excede el peso máximo permitido';
                 iconoAlerta = 'error';
             } else if (mensaje === 'ya_existe') {
                 tituloAlerta = 'El archivo ya existe.';
-                mensajeAlerta = 'Este vídeo fue subido anteriormente.';
+                mensajeAlerta = 'Este vídeo fue subido anteriormente';
                 iconoAlerta = 'error';
             } else if (mensaje === 'error_subir') {
-                tituloAlerta = 'Error en la subida.';
-                mensajeAlerta = 'Error al subir el vídeo, intente más tarde.';
+                tituloAlerta = 'Error en la subida';
+                mensajeAlerta = 'Error al subir el vídeo, intente más tarde';
                 iconoAlerta = 'error';
             } else if (mensaje === 'solo_mp4_webm') {
-                tituloAlerta = 'Solo se permite fórmato MP4 y WEBM.';
-                mensajeAlerta = 'Intente nuevamente subiendo el vídeo en fórmato MP4 o formato WEBM.';
+                tituloAlerta = 'Solo se permite fórmato MP4 y WEBM';
+                mensajeAlerta = 'Intente nuevamente subiendo el vídeo en fórmato MP4 o formato WEBM';
                 iconoAlerta = 'info';
             } else if (mensaje === 'subido') {
-                tituloAlerta = `Vídeo subido correctamente.`;
-                mensajeAlerta = `El archivo "-${data.nombre}-" se subió correctamente.`;
+                tituloAlerta = `Vídeo subido correctamente`;
+                mensajeAlerta = `El archivo ${data.nombre} se subió correctamente`;
                 iconoAlerta = 'success';
                 formVideos.reset();
             }
@@ -85,12 +89,12 @@ export function peticionEliminarVideo(datosVideo) {
 
             if (mensaje === 'video_eliminado') {
                 tituloAlerta = 'Vídeo eliminado correctamente.';
-                mensajeAlerta = `El vídeo "-${data.titulo}-" ha sido eliminado.`;
+                mensajeAlerta = `Se ha eliminado el vídeo ${data.titulo}`;
                 iconoAlerta = 'success';
 
             } else if (mensaje === 'video_noeliminado') {
                 tituloAlerta = 'Error al intentar eliminar';
-                mensajeAlerta = `Ocurrió un error al intentar eliminar el vídeo "-${data.titulo}-"`;
+                mensajeAlerta = `Ocurrió un error al intentar eliminar el vídeo ${data.titulo}`;
                 iconoAlerta = 'error';
             }
 
@@ -120,23 +124,24 @@ export function peticionEditarVideo(datosVideo) {
                 iconoAlerta = '';
 
             if (mensaje === 'peso_excedido') {
-                tituloAlerta = 'Peso máximo excedido.';
-                mensajeAlerta = 'El vídeo excede el peso límite.';
+                tituloAlerta = 'Peso máximo excedido';
+                mensajeAlerta = 'El vídeo excede el peso límite';
                 iconoAlerta = 'error';
             } else if (mensaje === 'error_actualizar') {
                 tituloAlerta = 'Error al actualizar el vídeo';
                 mensajeAlerta = `Error al actualizar el vídeo ${data.nombreAnterior}. No se vieron alterados ninguno de los campos o el vídeo fue borrado previamente, actualice nuevamente`;
                 iconoAlerta = 'error';
             } else if (mensaje === 'solo_mp4_webm') {
-                tituloAlerta = 'Solo se permite fórmato MP4 y WEBM.';
-                mensajeAlerta = 'Intente nuevamente subiendo el vídeo en fórmato MP4 o formato WEBM.';
+                tituloAlerta = 'Solo se permite fórmato MP4 y WEBM';
+                mensajeAlerta = 'Intente nuevamente subiendo el vídeo en fórmato MP4 o formato WEBM';
                 iconoAlerta = 'info';
             } else if (mensaje === 'actualizado') {
-                tituloAlerta = 'Vídeo actualizado correctamente.';
-                mensajeAlerta = `El archivo se actualizó correctamente a "-${data.nombreActual}"-.`;
+                tituloAlerta = 'Vídeo actualizado correctamente';
+                mensajeAlerta = `El archivo ${data.nombreActual} actualizó correctamente`;
                 iconoAlerta = 'success';
                 formVideos.reset();
                 funciones.videoEditado();
+                funciones.eliminarVideoAnterior();
             } else if (mensaje === 'ya_existe') {
                 tituloAlerta = 'El archivo ya existe.';
                 mensajeAlerta = 'Este ya está en el sistema.';
@@ -163,9 +168,9 @@ export function peticionBuscarVideos(datosVideo) {
     }).then(response => response.json())
         .then(data => {
             const { mensaje } = data;
-            
+
             if (mensaje === 'video_noencontrado') {
-                funciones.mensajeSinVideos('No se ha encontrado ningún vídeo con tal nombre', 'sinFiltrosBD');
+                funciones.mensajeSinVideos('No se ha encontrado ningún vídeo con el título ingresado', 'sinFiltrosBD');
             } else {
                 funciones.renderizarListaVideos(data);
             }

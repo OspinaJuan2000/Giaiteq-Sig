@@ -133,7 +133,7 @@ export function peticionBuscarEventos(datosEvento) {
             const { mensaje } = data;
             
             if (mensaje === 'evento_noencontrado') {
-                funciones.mensajeSinEventos('No se ha encontrado ningún evento con tal nombre', 'sinFiltrosBD');
+                funciones.mensajeSinEventos('No se ha encontrado ningún evento con el título ingresado', 'sinFiltrosBD');
             } else {
                 funciones.listarEventos(data);
             }

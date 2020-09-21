@@ -73,7 +73,7 @@ $sesion->accesoGeneral();
             </div>
         </div>
         <div class="buscador">
-            <input class="buscador__input" type="text" placeholder="Buscar un vídeo" id="buscar-video">
+            <input class="buscador__input" type="text" placeholder="Buscar un vídeo por el título" id="buscar-video">
             <label class="buscador__label" for="buscar-video"><i class="fas fa-search buscador__icon"></i></label>
         </div>
         <div class="lista-videos">

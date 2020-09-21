@@ -73,6 +73,10 @@ if (isset($_POST) && !empty($_POST)) {
                 'mensaje' => 'solo_mp4_webm',
             );
         }
+    } else {
+        $respuesta = array(
+            'mensaje' => 'sinvideo',
+        );
     }
 
     echo json_encode($respuesta);
