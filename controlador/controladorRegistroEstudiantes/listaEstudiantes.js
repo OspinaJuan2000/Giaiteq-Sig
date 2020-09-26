@@ -165,7 +165,7 @@ function listaFichas() {
           <td>${ficha.numero_ficha}</td>
           <td>${ficha.nombre_programa}</td>
           <td><i class="fas fa-edit editar_ficha" title="Editar"><input type="hidden" value="${ficha.numero_ficha}"></i></td>
-          <td><i class="fas fa-trash-alt eliminar_ficha" title="Eliminar"></i></td>
+          <td><i class="fas fa-trash-alt eliminar_ficha" title="Eliminar"><input type="hidden" value="${ficha.numero_ficha}"></i></td>
         </tr>
         `
         plantillaFichas += `
@@ -175,6 +175,7 @@ function listaFichas() {
       document.getElementById('tablaFichas').innerHTML = plantilla;
       document.getElementById('actualizacion__ficha').innerHTML = plantillaFichas;
       cargarFicha();
+      eliminarFicha();
     })
 }
 
@@ -292,6 +293,48 @@ function cargarFicha(){
         })
       });
     }
+}
+
+function eliminarFicha(){
+  let numero_ficha = document.getElementsByClassName('eliminar_ficha');
+
+  for(let i = 0; i < numero_ficha.length; i++){
+    numero_ficha[i].addEventListener("click", function(){
+      let numero = this.firstChild.value;
+
+      Swal.fire({
+        title: '¿Desea eliminar esta ficha?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#D33',
+        cancelButtonColor: '#28A745',
+        confirmButtonText: 'Eliminar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.value) {
+          let dato = new FormData();
+          dato.append('numeroFicha', numero);
+          fetch('../../modelo/modeloRegistroEstudiantes/eliminarFicha.php', {
+            method: 'POST',
+            body: dato
+          })
+          .then(respuesta => respuesta.json())
+          .then(res => {
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: res,
+              showConfirmButton: false,
+              timer: 1500
+            })
+            listaFichas();
+            solicitudesIngreso();
+            estudiantesActivos();
+          })
+        }
+      })
+    });
+  }
 }
 
 //ESTE CÓDIGO CARGA LOS DATOS DEL APRENDIZ SELECCIONADO PARA SU POSTERIOR ACTUALIZACIÓN
