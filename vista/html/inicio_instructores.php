@@ -42,9 +42,17 @@ $sesion->accesoGeneral();
       </ul>
     </div>
     <div class="contenedor_central__contenido">
-
+      <form class="publicar__formulario" id="publicar__formulario" method="POST">
+        <textarea name="texto_publicacion" placeholder="Escribe algo..." id="texto_publicacion"></textarea>
+        <div class="formulario__inputs">
+          <input type="file" id="imagenes" accept="image/*" multiple>
+          <input type="submit" value="Publicar">
+        </div>
+      </form>
     </div>
   </div>
+  <script src="../js/sweetalert2.js"></script>
+  <script src="../../controlador/controladorInicioInstructores/inicioInstructores.js"></script>
 </body>
 
 </html>
