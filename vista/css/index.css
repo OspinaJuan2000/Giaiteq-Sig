@@ -282,3 +282,21 @@ input[type="number"]::-webkit-inner-spin-button {
         width: 70%;
     }
 }
+
+.publicacion{
+  width: 100%;
+  text-align: center;
+  margin-top: 5vh;
+  border-bottom: 1px solid #C6C6C6;
+}
+
+.contenedor_imagenes{
+  width: 100%;
+}
+
+.contenedor_imagenes img{
+  width: 60%;
+  display: block;
+  margin: auto;
+  margin-bottom: 1vh;
+}

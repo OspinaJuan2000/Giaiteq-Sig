@@ -29,7 +29,7 @@ $sesion->verificarSesion();
       <button class="opciones__iniciar" id="boton1">Iniciar Sesión</button>
       <button class="opciones__registrarse" id="boton2">Registrarse</button>
     </div>
-    <div class="contenedor_central__contenido">
+    <div class="contenedor_central__contenido" id="contenedor_central__contenido">
 
     </div>
   </div>
