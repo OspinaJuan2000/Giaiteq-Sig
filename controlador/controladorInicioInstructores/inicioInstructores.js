@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', listaPublicaciones);
+
 let formulario_publicacion = document.getElementById('publicar__formulario');
 let imagenes = document.querySelector("#imagenes");
 
@@ -60,7 +62,7 @@ formulario_publicacion.addEventListener('submit', (e) => {
         campo['descripcion'] = false;
         formulario_publicacion.reset();
       }
-
+      listaPublicaciones();
     })
   } else {
     Swal.fire({
@@ -70,3 +72,42 @@ formulario_publicacion.addEventListener('submit', (e) => {
     })
   }
 });
+
+function listaPublicaciones(){
+  fetch('../../modelo/modeloInicioInstructores/listaPublicaciones.php')
+    .then(respuesta => respuesta.json())
+    .then(publicaciones => {
+      let plantilla = '';
+      let plantilla_imagenes = '';
+      publicaciones.forEach((publicacion) => {
+        plantilla += `
+          <div class="publicacion">
+            <p>${publicacion.descripcion}</p>
+            <div class="contenedor_imagenes" id="${publicacion.id_contenido}"></div>
+          </div>
+        `
+
+        let dato = new FormData();
+        dato.append("id_publicacion", publicacion.id_contenido);
+
+        fetch('../../modelo/modeloInicioInstructores/listaImagenes.php', {
+          method: 'POST',
+          body: dato
+        })
+        .then(respuesta_peticion => respuesta_peticion.json())
+        .then(imagen => {
+
+          if(imagen.length > 0){
+            imagen.forEach((ruta_imagenes) => {
+              plantilla_imagenes += `
+                <img src="../../modelo/modeloInicioInstructores/${ruta_imagenes.ruta}" alt="imagen">
+              `
+            });
+            document.getElementById(publicacion.id_contenido).innerHTML = plantilla_imagenes;
+          }
+        })
+
+      });
+      document.getElementById('contenedor_central__publicaciones').innerHTML = plantilla;
+    })
+}

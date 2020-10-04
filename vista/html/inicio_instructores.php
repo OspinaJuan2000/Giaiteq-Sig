@@ -49,6 +49,9 @@ $sesion->accesoGeneral();
           <input type="submit" value="Publicar">
         </div>
       </form>
+      <div class="contenedor_central__publicaciones" id="contenedor_central__publicaciones">
+
+      </div>
     </div>
   </div>
   <script src="../js/sweetalert2.js"></script>
