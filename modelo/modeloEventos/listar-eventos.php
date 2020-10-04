@@ -4,7 +4,7 @@ try {
     $instanciaConexion = new Conexion();
     $conexion = $instanciaConexion->establecer_conexion();
 
-    $statement = $conexion->prepare("SELECT * FROM tbl_eventos");
+    $statement = $conexion->prepare("SELECT * FROM tbl_eventos WHERE estado <> 0");
     $statement->execute();
 
     if ($statement->rowCount() > 0) {
@@ -17,11 +17,10 @@ try {
                 'descripcion' => $evento['descripcion_evento'],
                 'lugar_realizacion' => $evento['lugar_realizacion'],
                 'fecha_comienzo' => $evento['fecha_comienzo'],
-                'hora_comienzo' => $evento['hora_comienzo'],
                 'fecha_finalizacion' => $evento['fecha_finalizacion'],
-                'hora_finalizacion' => $evento['hora_finalizacion']
             );
         }
+
     } else {
         $respuesta = array(
             'mensaje' => 'sin_eventos'

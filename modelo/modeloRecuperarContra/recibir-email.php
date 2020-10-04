@@ -33,8 +33,11 @@ if (isset($_POST) && !empty($_POST)) {
             require('../../externo/sendEmail-PHP/enviar-email.php');
             require('./plantilla-email.php');
 
-            //Función para enviar el correo electrónico.
-            $enviado = enviarEmailPHP('GIAITEQ-SIG', $correoUsuario, 'Instrucciones para restablecer la contraseña de la cuenta GIAITEQ-SIG', $mensaje);
+            /* 
+                Enviar correo electrónico al usuario que está intentando restablecer su contraseña.
+            */
+            $arrayUsuario = [$correoUsuario];
+            $enviado = enviarEmailPHP('GIAITEQ-SIG', $arrayUsuario, 'Instrucciones para restablecer la contraseña de la cuenta GIAITEQ-SIG', $mensaje);
 
             if ($enviado == 1) {
                 $respuesta = array(

@@ -1,5 +1,8 @@
 import * as funciones from './funciones.js';
 
+/*
+    Esta función envía una petición al Backend (PHP) con los datos del usuario que intenta iniciar sesión, de acuerdo a la respuesta mostrará una alerta o dirigirá al usuario a una vista.
+*/
 export function peticion_iniciarSesion(datosUsuario) {
     fetch('./modelo/modeloSesion/inicio-sesion.php', {
         method: 'POST',

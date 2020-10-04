@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST) && $_POST['filtro'] !== '') {
 
-    $filtroBusqueda = $_POST['filtro'];
+    $filtroBusqueda = trim($_POST['filtro']);
 
     try {
         require_once '../conexion.php';

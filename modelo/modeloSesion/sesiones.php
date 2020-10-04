@@ -2,11 +2,17 @@
 
 class Sesiones
 {
+    /*
+        Cuando se instancie la clase Sesiones, usamos la función session_start() para poder trabajar con sesiones.ss
+    */
     public function __construct()
     {
         session_start();
     }
 
+    /*
+        Cuando un usuario inicie sesión, de acuerdo a que perfil ingrese, se creará una sesión para ese usuario.
+    */
     public function crearSesion($datos)
     {
         $perfil = $datos['id_perfil'];
@@ -28,6 +34,9 @@ class Sesiones
         }
     }
 
+    /*
+        Verificar si existe la sesión del instructor, en caso que no exista, redigirir a la vista de inicio de aprendices.
+    */
     public function verificarSesion()
     {
         if (isset($_SESSION['instructor'])) {
@@ -37,6 +46,9 @@ class Sesiones
         }
     }
 
+    /*
+        Verificar si existe la sección del aprendiz.
+    */
     public function accesoAprendiz()
     {
         if (isset($_SESSION['aprendiz'])) {
@@ -44,6 +56,9 @@ class Sesiones
         }
     }
 
+    /*
+        Verificar si no existe ninguna sesión, en caso de que no, se redirige al login.
+    */
     public function accesoGeneral()
     {
         if ($_SESSION == null) {
@@ -51,6 +66,9 @@ class Sesiones
         }
     }
 
+    /*
+        Cuando se presione en cerrar sesión.
+    */
     public function cerrarSesion()
     {
         session_unset();

@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     funciones.validarFormulario();
 
     //Eliminar algún evento.
-    funciones.eliminarEvento();
+    funciones.cancelarEvento();
 
     //Editar algún evento.
     funciones.editarEvento();

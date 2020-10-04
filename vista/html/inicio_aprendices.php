@@ -28,13 +28,19 @@ $sesion->accesoGeneral();
 
     <div class="contenedor_central">
         <div class="contenedor_central__opciones">
+            <div class="nombre">
+                <i class="fas fa-user"></i>
+                <span>
+                    <?php echo isset($_SESSION['instructor']) ?  ucfirst($_SESSION['instructor']['nombre']) : ucfirst($_SESSION['aprendiz']['nombre']) ?>
+                </span>
+            </div>
             <ul class="opciones__menu">
-                <li><a href="#"><i class="far fa-lightbulb"></i> INICIO</a></li>
+                <li><a href="inicio_aprendices.php"><i class="far fa-lightbulb"></i> INICIO</a></li>
                 <li><a href="#"><i class="far fa-file-archive"></i> DOCUMENTOS</a></li>
-                <li><a href="#"><i class="far fa-file-video"></i> VIDEOS</a></li>
+                <li><a href="video_aprendices.php"><i class="far fa-file-video"></i> VIDEOS</a></li>
                 <li><a href="#"><i class="fas fa-link"></i> LINKS</a></li>
                 <li><a href="#"><i class="fas fa-project-diagram"></i> PROYECTOS</a></li>
-                <li><a href="#"><i class="far fa-calendar-alt"></i> EVENTOS</a></li>
+                <li><a href="evento_aprendices.php"><i class="far fa-calendar-alt"></i> EVENTOS</a></li>
                 <li><a href="#"><i class="fas fa-chalkboard-teacher"></i> INSTRUCTORES</a></li>
                 <li class="salir"><a href="../../modelo/modeloSesion/cierre-sesion.php"><i class="fas fa-sign-out-alt"></i> SALIR</a></li>
             </ul>

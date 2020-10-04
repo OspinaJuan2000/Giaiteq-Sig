@@ -4,7 +4,7 @@ if (isset($_POST) && !empty($_POST)) {
 
     if (is_uploaded_file($_FILES['video']['tmp_name'])) {
         $ruta = './videos/';
-        $nombreArchivo = $_POST['nombreVideo'];
+        $nombreArchivo = trim($_POST['nombreVideo']);
         $formato = $_FILES['video']['type'];
         $upload = $ruta . $nombreArchivo;
         $megabytesMaximos = round($_FILES['video']['size'] / 1e+6);

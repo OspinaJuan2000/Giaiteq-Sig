@@ -4,26 +4,22 @@ if (isset($_POST) && !empty($_POST)) {
     $nombre = trim($_POST['nombre']);
     $descripcion = trim($_POST['descripcion']);
     $lugar = trim($_POST['lugar']);
-    $fechaComienzo = $_POST['fecha-comienzo'];
-    $horaComienzo = $_POST['hora-comienzo'];
-    $fechaFinalizacion = $_POST['fecha-finalizacion'];
-    $horaFinalizacion = $_POST['hora-finalizacion'];
+    $fechaComienzo = $_POST['comienzo'];
+    $fechaFinalizacion = $_POST['finalizacion'];
     $idEvento = (int)$_POST['idEvento'];
-    $nombreAnterior = $_POST['nombreEventoAnterior'];
-
+    $nombreAnterior = trim($_POST['nombreEventoAnterior']);
+    
     try {
         require_once('../conexion.php');
         $instanciaConexion = new Conexion();
         $conexion = $instanciaConexion->establecer_conexion();
 
-        $statement =  $conexion->prepare("UPDATE tbl_eventos SET nombre_evento = :nombre_evento, descripcion_evento = :descripcion_evento, lugar_realizacion = :lugar_realizacion, fecha_comienzo = :fecha_comienzo, hora_comienzo = :hora_comienzo, fecha_finalizacion = :fecha_finalizacion, hora_finalizacion = :hora_finalizacion WHERE id_evento = :id_evento");
+        $statement =  $conexion->prepare("UPDATE tbl_eventos SET nombre_evento = :nombre_evento, descripcion_evento = :descripcion_evento, lugar_realizacion = :lugar_realizacion, fecha_comienzo = :fecha_comienzo, fecha_finalizacion = :fecha_finalizacion WHERE id_evento = :id_evento");
         $statement->bindParam(':nombre_evento', $nombre);
         $statement->bindParam(':descripcion_evento', $descripcion);
         $statement->bindParam(':lugar_realizacion', $lugar);
         $statement->bindParam(':fecha_comienzo', $fechaComienzo);
-        $statement->bindParam(':hora_comienzo', $horaComienzo);
         $statement->bindParam(':fecha_finalizacion', $fechaFinalizacion);
-        $statement->bindParam(':hora_finalizacion', $horaFinalizacion);
         $statement->bindParam(':id_evento', $idEvento);
         $statement->execute();
 

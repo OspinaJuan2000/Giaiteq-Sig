@@ -3,7 +3,7 @@
 if (isset($_POST) && !empty($_POST)) {
 
     $idVideo = (int) $_POST['id'];
-    $nombreVideo = $_POST['nombre'];
+    $nombreVideo = trim($_POST['nombre']);
 
     $videoPorEliminar = "./videos/" . "" . $nombreVideo;
 

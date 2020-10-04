@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST) && $_POST['filtro'] !== '') {
 
-    $filtroBusqueda = $_POST['filtro'];
+    $filtroBusqueda = trim($_POST['filtro']);
 
     try {
         require_once '../conexion.php';
@@ -9,7 +9,7 @@ if (isset($_POST) && $_POST['filtro'] !== '') {
         $conexion = $instanciaConexion->establecer_conexion();
         $filtro = "%$filtroBusqueda%";
 
-        $statement = $conexion->prepare("SELECT * FROM tbl_eventos WHERE nombre_evento LIKE :filtro");
+        $statement = $conexion->prepare("SELECT * FROM tbl_eventos WHERE nombre_evento LIKE :filtro AND estado <> 0");
         $statement->bindParam(':filtro', $filtro);
         $statement->execute();
 
@@ -23,9 +23,7 @@ if (isset($_POST) && $_POST['filtro'] !== '') {
                     'descripcion' => $evento['descripcion_evento'],
                     'lugar_realizacion' => $evento['lugar_realizacion'],
                     'fecha_comienzo' => $evento['fecha_comienzo'],
-                    'hora_comienzo' => $evento['hora_comienzo'],
                     'fecha_finalizacion' => $evento['fecha_finalizacion'],
-                    'hora_finalizacion' => $evento['hora_finalizacion']
                 );
             }
         } else {

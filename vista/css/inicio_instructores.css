@@ -1,12 +1,24 @@
 .opciones__menu {
   width: 90%;
   margin-left: 10%;
-  margin-top: 50px;
+  margin-top: 80px;
 }
 
 .opciones__menu li {
   list-style: none;
   margin-bottom: 15px;
+}
+
+.nombre {
+  text-align: center;
+  color: white;
+  position: relative;
+  top: 40px;
+  font-size: 30px;
+}
+
+.nombre > span {
+  margin-left: 10px;
 }
 
 .opciones__menu a {

@@ -1,6 +1,10 @@
 
 const formRecuperar = document.querySelector('.recuperar__form');
 
+
+/*
+    Esta función envía una petición al Backend (PHP) para enviarle un email al correo electrónico del usuario que solicite un cambio de contraseña. Dependiendo la respuesta que reciba, mostrará un mensaje de alerta.
+*/
 export function peticionEnviarEmail(datosRecuperacion) {
     fetch('./modelo/modeloRecuperarContra/recibir-email.php', {
         method: 'POST',

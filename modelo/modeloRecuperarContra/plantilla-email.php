@@ -33,14 +33,13 @@ $mensaje = "
             margin-top: 40px;
             padding: 20px 0;
             text-align: center;
-            height: 30rem;
+            height: auto;
         }
 
         .titulo {
             font-size: 1.2em;
             position: relative;
-            padding: .75rem 1.25rem;
-            margin: 2rem 0;
+            margin: 1rem 0;
             border: 1px solid transparent;
             border-radius: .25rem;
             color: black;
@@ -83,9 +82,6 @@ $mensaje = "
         }
 
         @media (max-width: 768px) {
-            .fondo {
-                height: 35rem;
-            }
 
             .contenedor-correo {
                 width: 100%;
@@ -103,9 +99,6 @@ $mensaje = "
         }
 
         @media (max-width: 400px) {
-            .fondo {
-                height: 40rem;
-            }
 
             .boton {
                 width: 98%;

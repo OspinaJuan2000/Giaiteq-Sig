@@ -2,6 +2,9 @@ import * as peticiones from './fetch.js';
 
 const formIngreso = document.querySelector('#form-inicio');
 
+/*
+    Esta función valida los datos del usuario que ingresa en el formulario de inicio de sesión antes de enviar la petición al Backend.
+*/
 export function validarFormulario() {
     formIngreso.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -19,6 +22,9 @@ export function validarFormulario() {
     });
 }
 
+/*
+    Esta función muestra en el HTML un mensaje indicando que todos los campos son requeridos para iniciar sesión.
+*/
 export function mensajeCamposVacios(mensaje, error, insertar) {
 
     document.querySelector(`.${error}`) ? document.querySelector(`.${error}`).remove() : '';

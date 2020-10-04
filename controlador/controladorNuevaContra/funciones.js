@@ -1,6 +1,10 @@
 
 import * as peticiones from './fetch.js';
 
+
+/*
+    Esta función valida el formulario donde se ingresa la contraseña para actualizarla.
+*/
 export function validarFormRecuperar() {
     const inputNuevaContra = document.querySelector('.recuperar-contra__input');
     const inputConfirmaNuevaContra = document.querySelector('.recuperar-contra__input--confirmar');
@@ -13,6 +17,9 @@ export function validarFormRecuperar() {
 
 }
 
+/*
+    Esta función valida con una expresión regular la nueva contraseña que ingrese un usuario que quiera actualizarla. Dependiendo si coincide con la expresión regular o no, se va a activar el botón para enviar los datos.
+*/
 function validarInputContra(inputNuevaContra, inputConfirmaNuevaContra, botonEnviarNuevaContra) {
     const expresion = /^.{4,40}$/;
 
@@ -33,6 +40,10 @@ function validarInputContra(inputNuevaContra, inputConfirmaNuevaContra, botonEnv
     }
 }
 
+
+/*
+    Esta función se ejecuta cuando se presiona en el botón para actualizar la contraseña, nuevamente se valida que todo esté correcto y se envían los datos al Backend para la actualización.
+*/
 function enviarNuevaContra(e) {
     e.preventDefault();
     const expresion = /^.{4,40}$/;

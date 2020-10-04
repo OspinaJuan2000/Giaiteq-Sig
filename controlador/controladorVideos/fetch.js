@@ -1,8 +1,12 @@
 import * as funciones from './funciones.js';
+import {eliminarValorTextEditor, eliminarValorMediumEditor} from '../controladorEventos/funciones.js';
 
 const formVideos = document.querySelector('#form-videos');
 const buscador = document.querySelector('.buscador__input');
 
+/*
+    Esta función hace una petición al backend (PHP), envía los datos que recoge JavaScript cuando se envía el formulario para subir un vídeo y espera una respuesta en fórmato JSON para mostrar una alerta dependiendo que respuesta obtenga.
+*/
 export function peticionSubirVideo(datosVideo) {
     fetch('../../modelo/modeloVideos/subir-video.php', {
         method: 'POST',
@@ -42,6 +46,8 @@ export function peticionSubirVideo(datosVideo) {
                 mensajeAlerta = `El archivo ${data.nombre} se subió correctamente`;
                 iconoAlerta = 'success';
                 formVideos.reset();
+                eliminarValorMediumEditor(1);
+                eliminarValorTextEditor();
             }
 
             swal.fire({
@@ -58,6 +64,9 @@ export function peticionSubirVideo(datosVideo) {
         .catch(err => console.log(err));
 }
 
+/*
+    Esta función hace una petición al backend (PHP), recibe todos los vídeos que hay en la base de datos y los renderiza en el HTML si hay.
+*/
 export function peticionListarVideos() {
     fetch('../../modelo/modeloVideos/listar-videos.php')
         .then(response => response.json())
@@ -74,6 +83,9 @@ export function peticionListarVideos() {
         .catch(err => console.log(err));
 }
 
+/*
+    Esta función hace una petición al backend (PHP), envía los datos del vídeo para proceder a su eliminación desde el Backend.
+*/
 export function peticionEliminarVideo(datosVideo) {
     fetch('../../modelo/modeloVideos/eliminar-video.php', {
         method: 'POST',
@@ -109,6 +121,9 @@ export function peticionEliminarVideo(datosVideo) {
         .catch(err => console.log(err));
 }
 
+/*
+    Esta función hace una petición al backend (PHP), recibe los datos del formulario y la ID del vídeo anterior para proceder a su actualización.
+*/
 export function peticionEditarVideo(datosVideo) {
     fetch('../../modelo/modeloVideos/editar-video.php', {
         method: 'POST',
@@ -137,9 +152,11 @@ export function peticionEditarVideo(datosVideo) {
                 iconoAlerta = 'info';
             } else if (mensaje === 'actualizado') {
                 tituloAlerta = 'Vídeo actualizado correctamente';
-                mensajeAlerta = `El archivo ${data.nombreActual} actualizó correctamente`;
+                mensajeAlerta = `El archivo ${data.nombreActual} ha sido actualizó correctamente`;
                 iconoAlerta = 'success';
                 formVideos.reset();
+                eliminarValorMediumEditor(1);
+                eliminarValorTextEditor();
                 funciones.videoEditado();
                 funciones.eliminarVideoAnterior();
             } else if (mensaje === 'ya_existe') {
@@ -161,6 +178,9 @@ export function peticionEditarVideo(datosVideo) {
         }).catch(err => console.log(err));
 }
 
+/*
+    Esta función hace una petición al backend (PHP), recibe lo que se ingrese en el campo de buscar y de acuerdo a eso, va a listar los vídeos que coincidan con el criterio de búsqueda.
+*/
 export function peticionBuscarVideos(datosVideo) {
     fetch('../../modelo/modeloVideos/buscar-videos.php', {
         method: 'POST',

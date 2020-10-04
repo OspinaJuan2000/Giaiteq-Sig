@@ -24,10 +24,15 @@ function enviarEmailPHP($nombreOrigen, $correoDestino, $correoAsunto, $correoMen
         $mail->Port       = 587; // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 
         //Correo desde el cual va a ser enviado el correo.
+
         $mail->setFrom('ospinajuan2000@gmail.com', $nombreOrigen);
 
-        //Correo al cual va a ser enviado el correo.
-        $mail->addAddress($correoDestino);
+        //Correos o correo a los cual va a ser enviado el correo.
+
+        foreach ($correoDestino as $usuario) {
+
+            $mail->addAddress($usuario);
+        }
 
         //Enviar archivos.
         // $mail->addAttachment('../../externo/sendEmail-PHP/descarga.jpg');

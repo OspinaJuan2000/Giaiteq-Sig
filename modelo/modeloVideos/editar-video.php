@@ -3,8 +3,8 @@
 if (isset($_POST) && !empty($_POST)) {
 
     $idVideo = (int) $_POST['idVideo'];
-    $nombreArchivoAnterior = $_POST['nombreVideoAnterior'];
-    $nombreArchivo = $_POST['nombreVideo'];
+    $nombreArchivoAnterior = trim($_POST['nombreVideoAnterior']);
+    $nombreArchivo = trim($_POST['nombreVideo']);
     $ruta = './videos/';
 
     try {

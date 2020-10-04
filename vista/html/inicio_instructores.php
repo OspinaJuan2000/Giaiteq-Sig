@@ -29,6 +29,12 @@ $sesion->accesoGeneral();
 
   <div class="contenedor_central">
     <div class="contenedor_central__opciones">
+      <div class="nombre">
+        <i class="fas fa-user"></i>
+        <span>
+            <?php echo $_SESSION['instructor']['nombre'] ?>
+        </span>
+      </div>
       <ul class="opciones__menu">
         <li><a href="inicio_instructores.php"><i class="far fa-lightbulb"></i> INICIO</a></li>
         <li><a href="#"><i class="far fa-file-archive"></i> DOCUMENTOS</a></li>

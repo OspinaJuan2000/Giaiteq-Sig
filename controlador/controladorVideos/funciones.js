@@ -6,8 +6,14 @@ let editarVideos = false;
 const formVideos = document.querySelector('#form-videos');
 const inputVideos = document.querySelector('#video');
 
-
+/*
+    Esta función valida que los campos que ingrese un usuario en el formulario de los vídeos no estén vacíos ni contentan espacios en blanco.
+    - Valida que si un vídeo tiene en su título un # se cambie por "sharp".
+    - Valida que si un vídeo pesa más de 80MB se muestre inmediatamente una alerta indicando esto.
+    Por último, esta función también verifica si un vídeo se quiere editar o no.
+*/
 export function validarFormulario() {
+
     formVideos.addEventListener('submit', (e) => {
         e.preventDefault();
 
@@ -44,7 +50,11 @@ export function validarFormulario() {
     });
 }
 
+/*
+    Esta función renderiza una vista previa del vídeo que se quiere publicar.
+*/
 export function vistaPreviaVideo() {
+
     inputVideos.addEventListener('change', (e) => {
         const video = e.target.files[0];
         const formatoVideo = video.type;
@@ -65,7 +75,11 @@ export function vistaPreviaVideo() {
     });
 }
 
+/*
+    Esta función es encargada de mostrar una barra de progreso del vídeo cuando se suba.
+*/
 export function barraProgreso(data) {
+
     const porcentaje = document.querySelector('#porcentaje');
     let backgroundColor;
 
@@ -93,13 +107,18 @@ export function barraProgreso(data) {
     }, 400);
 }
 
+/*
+    Esta función elimina el porcentaje de la barra de progreso cuando se presione en publicar un vídeo.
+*/ 
 export function eliminarBarraProgreso() {
+
     const porcentaje = document.querySelector('#porcentaje');
 
     porcentaje.style.width = '0';
 }
 
 export function mensajeSinVideos(mensaje, opcion) {
+
     const listaVideos = document.querySelector('.lista-videos');
     const buscadorVideos = document.querySelector('.buscador');
 
@@ -118,13 +137,20 @@ export function mensajeSinVideos(mensaje, opcion) {
     }
 }
 
+/*
+    Esta función elimina el vídeo de la vista previa.
+*/
 export function eliminarVideoRenderizado() {
     const renderVideoHTML = document.querySelector('.renderizar-video');
 
     while (renderVideoHTML.firstChild) renderVideoHTML.removeChild(renderVideoHTML.firstChild);
 }
 
+/*
+    Esta función muestra un mensaje en caso que no se hayan publicado vídeos.
+*/
 export function mensajeVideos(mensaje, error) {
+
     const divMensaje = document.querySelector('.contenedor-publicacion');
     const elemento = document.createElement('p');
 
@@ -140,6 +166,9 @@ export function mensajeVideos(mensaje, error) {
     }, 1500);
 }
 
+/* 
+    Esta función renderiza en la vista los vídeos que vengan de la base de datos.
+*/
 export function renderizarListaVideos(videos) {
 
     manejoElementosListando();
@@ -150,13 +179,13 @@ export function renderizarListaVideos(videos) {
     videos.map(video => {
         listaVideosHTMl += `
         <div class="contenedor-video__info" data-id="${video.id}" data-nombre="${video.ruta}">
-                <h3 class="contenedor-video__titulo">${video.titulo}</h3>
-                <p class="contenedor-video__fecha"><i class="far fa-calendar-alt"></i> ${video.fecha}</p>
+                <div class="contenedor-video__titulo">${video.titulo}</div>
+                <p class="contenedor-video__fecha"><i class="far fa-calendar-alt fa-lg"></i> ${video.fecha}</p>
                 <video class="contenedor-video__video" controls>
                     <source src="../../modelo/modeloVideos/${video.ruta.substring(2)}"type="video/mp4">
                     <source src="../../modelo/modeloVideos/${video.ruta.substring(2)}"type="video/webm">
                 </video>
-                <p class="contenedor-video__descripcion" title="${video.descripcion}">${video.descripcion}</p>
+                <div class="contenedor-video__descripcion">${video.descripcion}</div>
                 <div class="contenedor-video__opciones">
                     <i class="fas fa-trash-alt contenedor-video__eliminar"></i>
                     <i class="far fa-edit contenedor-video__editar"></i>
@@ -168,7 +197,11 @@ export function renderizarListaVideos(videos) {
     contenedorVideos.innerHTML = listaVideosHTMl;
 }
 
+/*
+    Esta función muestra una alerta al usuario y le pregunta si quiere eliminar el vídeo, en caso que decida eliminarlo, se llamará a la función que envía los datos del vídeo al Backend.
+*/
 export function eliminarVideo() {
+
     const contenedorVideos = document.querySelector('.contenedor-video');
 
     contenedorVideos.addEventListener('click', (e) => {
@@ -187,9 +220,10 @@ export function eliminarVideo() {
             }).then(pregunta => {
                 if (pregunta.value) {
                     const datosVideo = new FormData();
-
-                    const idVideo = e.target.parentElement.parentElement.dataset.id;
-                    const nombreVideo = e.target.parentElement.parentElement.dataset.nombre.split('./videos/').join('');
+                    
+                    const referencia = e.target.parentElement.parentElement;
+                    const idVideo = referencia.dataset.id;
+                    const nombreVideo = referencia.dataset.nombre.split('./videos/').join('');
 
                     datosVideo.set('id', idVideo);
                     datosVideo.set('nombre', nombreVideo);
@@ -201,7 +235,12 @@ export function eliminarVideo() {
     });
 }
 
+/*
+    Esta función toma los datos del evento que se quiere editar y los pone en el formulario.
+    También renderiza en el HTML el vídeo anterior.
+*/
 export function editarVideo() {
+
     const contenedorVideos = document.querySelector('.contenedor-video');
 
     contenedorVideos.addEventListener('click', (e) => {
@@ -209,10 +248,14 @@ export function editarVideo() {
 
             editarVideos = true;
 
-            const idVideoAnterior = e.target.parentElement.parentElement.dataset.id;
-            const nombreVideoAnterior = e.target.parentElement.parentElement.dataset.nombre.split('./videos/').join('');
-            const tituloVideo = e.target.parentElement.parentElement.querySelector('.contenedor-video__titulo').textContent;
-            const descripcionVideo = e.target.parentElement.parentElement.querySelector('.contenedor-video__descripcion').textContent;
+            /*
+                Tomar los valores anteriores.
+            */
+            const referencia = e.target.parentElement.parentElement;
+            const idVideoAnterior = referencia.dataset.id;
+            const nombreVideoAnterior = referencia.dataset.nombre.split('./videos/').join('');
+            const tituloVideo = referencia.querySelector('.contenedor-video__titulo').innerHTML.trim();
+            const descripcionVideo = referencia.querySelector('.contenedor-video__descripcion').innerHTML.trim();
 
             insertarDatosEditar(idVideoAnterior, nombreVideoAnterior, tituloVideo, descripcionVideo);
 
@@ -221,6 +264,9 @@ export function editarVideo() {
     });
 }
 
+/*
+    Esta función es la encargada de renderizar el vídeo que se quiere editar en el HTML para que el usuario sepa que vídeo tiene la publicación.
+*/
 export function renderVideoAnterior (nombreVideoAnterior) {
 
     eliminarVideoAnterior();
@@ -240,19 +286,27 @@ export function renderVideoAnterior (nombreVideoAnterior) {
     contenedorPublicacion.insertBefore(divVideo, contenedorPublicacion.childNodes[contenedorPublicacion.childNodes.length -2]);
 }
 
+/*
+    Esta función elimina el vídeo renderizado en el HTML en el momento que un usuario está haciendo el proceso de editar un vídeo
+*/
 export function eliminarVideoAnterior () {
+
     if (document.querySelector('.video-anterior')) {
         document.querySelector('.video-anterior').remove();
     }
 }
 
+/*
+    Esta función se encarga de insertar en poner los datos del vídeo anterior en el formulario en el momento que un usuario lo quiera editar.
+*/
 export function insertarDatosEditar(idVideoAnterior, nombreVideoAnterior, tituloVideo, descripcionVideo) {
 
-    let tituloVideoHtml = formVideos.querySelector('#titulo');
-    let descripcionVideoHtml = formVideos.querySelector('#descripcion');
+    let tituloVideoHtml = formVideos.querySelector('.editable');
+    let descripcionVideoHtml = formVideos.querySelector('trix-editor');
     let botonPublicar = formVideos.querySelector('.publicar button');
-
-    tituloVideoHtml.value = tituloVideo;
+    
+    document.querySelector('#titulo').value = tituloVideo;
+    tituloVideoHtml.innerHTML = tituloVideo;
     descripcionVideoHtml.value = descripcionVideo;
 
     botonPublicar.innerHTML = 'Editar';
@@ -260,7 +314,12 @@ export function insertarDatosEditar(idVideoAnterior, nombreVideoAnterior, titulo
     formVideos.querySelector('#idVideo').setAttribute('data-nombre', nombreVideoAnterior);
 }
 
+
+/*
+    Esta función valida que el campo para buscar un vídeo no este vacío, si no está vacío, hará una búsqueda en la base de datos para buscar el vídeo que coincida con el criterio de búsqueda.
+*/
 export function buscarVideos() {
+
     const buscador = document.querySelector('.buscador__input');
 
     buscador.addEventListener('input', (e) => {
@@ -277,7 +336,11 @@ export function buscarVideos() {
     });
 }
 
-export function manejoElementosListando() { // Mostrar la barra de busqueda y ocultar el mensaje de que no hay vídeos cuando realmente si haya.
+/*
+    Esta función muestra un mensaje si no hay vídeos publicados o si no coincide ningún vídeo con el criterio de búsqueda.
+*/
+export function manejoElementosListando() {
+
     const contenedorVideos = document.querySelector('.contenedor-video');
     const buscadorVideos = document.querySelector('.buscador');
 
@@ -288,21 +351,39 @@ export function manejoElementosListando() { // Mostrar la barra de busqueda y oc
     buscadorVideos.style.display = 'flex';
 }
 
+
+/*
+    Esta función se encarga de desactivar el botón de publicar para que usuarios con alta latencia así presionen dos veces sobre publicar, no se publique más de una vez.
+*/
 export function desactivarBotonPublicar() {
+
     formVideos.querySelector('.publicar button').disabled = true;
 }
 
+/*
+    Esta función activa el botón de publicar luego de que se publique o edite un vídeo.
+*/
 export function activarBotonPublicar() {
+
     formVideos.querySelector('.publicar button').disabled = false;
 }
 
+/*
+    Esta función se encarga de eliminar todo el listado de vídeos.
+*/
 export function eliminarListaVideos() {
+
     const contenedorVideos = document.querySelector('.contenedor-video');
 
     while (contenedorVideos.firstChild) contenedorVideos.removeChild(contenedorVideos.firstChild);
 }
 
+
+/*
+    Esta función cambia el mensaje del botón del formulario a "Publicar" cuando ya se haya editado un vídeo correctamente y también pone la variable de editarvideos en false.
+*/
 export function videoEditado() {
+    
     let botonPublicar = formVideos.querySelector('.publicar button');
     botonPublicar.innerHTML = 'Publicar';
 

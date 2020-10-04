@@ -4,6 +4,10 @@ const botonRecuperarContra = document.querySelector('.recuperar-contra');
 const contenedorInputs = document.querySelector('.contenedorInputs');
 const formRecuperar = document.querySelector('.recuperar');
 
+
+/*
+    Esta función muestra el formulario donde se ingresa el email del usuario que quiere restablecer la contraseña.
+*/
 export function abrirFormRecuperar() {
     botonRecuperarContra.addEventListener('click', () => {
 
@@ -14,6 +18,9 @@ export function abrirFormRecuperar() {
     });
 }
 
+/*
+    Esta función deja de mostrar el formulario donde se ingresa el email del usuario que quiere restablecer la contraseña.
+*/
 export function eliminarFormRecuperar() {
     const botonEliminarForm = document.querySelector('.recuperar__enlace');
 
@@ -23,7 +30,9 @@ export function eliminarFormRecuperar() {
     });
 }
 
-//Leer los datos que ingrese en el input de tipo email para validarlos posteriormente.
+/*
+    Esta función valida con una expresión regular el email que ingresa el usuario, para que sea un email válido.
+*/
 export function validarFormRecuperar() {
     const inputEmail = document.querySelector('.recuperar__input');
     const btnEnviarEmail = document.querySelector('.recuperar__boton');
@@ -48,7 +57,9 @@ export function validarFormRecuperar() {
     });
 }
 
-
+/*
+    Esta función envía los datos una vez validados del email al Backend.
+*/
 function enviarEmail(e) {
     e.preventDefault();
     const expresion = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]+$/;

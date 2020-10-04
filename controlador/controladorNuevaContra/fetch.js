@@ -1,3 +1,7 @@
+
+/*
+    Esta función hace una petición al Backend (PHP), envía los datos de la nueva contraseña que ingresó un usuario y espera una respuesta en fórmato JSON. Finalmente se muestra una alerta dependiendo de la respuesta.
+*/
 export function peticionEnviarNuevaContra(datosNuevaContra) {
     fetch('../../modelo/modeloRecuperarContra/actualizar-contra.php', {
         method: 'POST',

@@ -2,6 +2,9 @@
 
 class Conexion
 {
+    /*
+        Método encargado de establecer la conexión con la base de datos MYSQL llamada giaiteq.
+    */
     public function establecer_conexion()
     {
         $usuario = "root";
