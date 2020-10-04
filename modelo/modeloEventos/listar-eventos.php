@@ -9,6 +9,7 @@ try {
 
     if ($statement->rowCount() > 0) {
         $respuesta = array();
+        setlocale(LC_TIME, 'spanish.UTF-8');
 
         while ($evento = $statement->fetch()) {
             $respuesta[] = array(
@@ -17,7 +18,9 @@ try {
                 'descripcion' => $evento['descripcion_evento'],
                 'lugar_realizacion' => $evento['lugar_realizacion'],
                 'fecha_comienzo' => $evento['fecha_comienzo'],
+                'fecha_comienzo_format' => ucfirst(strftime("%A, %d de %B del %Y - %R", strtotime($evento['fecha_comienzo']))),
                 'fecha_finalizacion' => $evento['fecha_finalizacion'],
+                'fecha_finalizacion_format' => ucfirst(strftime("%A, %d de %B del %Y - %R", strtotime($evento['fecha_finalizacion']))),
             );
         }
 

@@ -9,6 +9,7 @@ try {
 
     if ($statement->rowCount() > 0) {
         $respuesta = array();
+        setlocale(LC_TIME, 'spanish.UTF-8');
 
         while ($video = $statement->fetch()) {
             $respuesta[] = array(
@@ -16,7 +17,7 @@ try {
                 'ruta' => $video['ruta'],
                 'titulo' => $video['titulo'],
                 'descripcion' => $video['descripcion'],
-                'fecha' => $video['fecha_publicacion'],
+                'fecha' => ucfirst(strftime("%A, %d de %B del %Y - %R", strtotime($video['fecha_publicacion']))),
                 'tipo_contenido' => $video['id_tipo_contenido']
             );
         }

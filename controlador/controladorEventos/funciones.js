@@ -72,18 +72,24 @@ export function listarEventos(datosEvento) {
                 </div>
 
                 <div class="contenedor_evento__fecha-comienzo">
-                    <i class="far fa-calendar-alt fa-xl fecha-i"></i>
-                    Fecha y hora de comienzo:
                     <div class="comienzo">
                         ${evento.fecha_comienzo}
+                    </div>
+                    <div class="comienzo_format">
+                        <i class="far fa-calendar-alt fa-xl fecha-i"></i>
+                        Fecha y hora de comienzo:
+                        ${evento.fecha_comienzo_format}
                     </div>
                 </div>
 
                 <div class="contenedor_evento__fecha-finalizacion">
-                    <i class="far fa-clock fa-xl fecha-i"></i>
-                    Fecha y hora de finalizacion:
                     <div class="finalizacion">
                         ${evento.fecha_finalizacion}
+                    </div>
+                    <div class="finalizacion_format">
+                        <i class="far fa-clock fa-xl fecha-i"></i>
+                        Fecha y hora de finalizacion:
+                        ${evento.fecha_finalizacion_format}
                     </div>
                 </div>
 

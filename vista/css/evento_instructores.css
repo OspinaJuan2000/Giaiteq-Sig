@@ -153,8 +153,13 @@
     color: #4e6d44;
 }
 
+
 .comienzo, .finalizacion {
-    font-weight: bold;
+    display: none !important;
+}
+
+.comienzo_format, .finalizacion_format {
+    font-weight: 600;
 }
 
 .contenedor-evento__lugar, .lugar, .lugar > *,
@@ -173,7 +178,7 @@
     font-size: 20px;
     cursor: pointer;
     text-align: center;
-    transition: all .2s;
+    transition: all .5s;
     margin-top: 10px;
 }
 
