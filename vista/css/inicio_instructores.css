@@ -97,3 +97,15 @@
   margin: auto;
   margin-bottom: 1vh;
 }
+
+.editar_publicacion{
+  font-size: 30px;
+  color: #2CB8DE;
+  cursor: pointer;
+}
+
+.eliminar_publicacion{
+  font-size: 30px;
+  color: #DC1341;
+  cursor: pointer;
+}

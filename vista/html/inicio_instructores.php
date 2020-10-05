@@ -52,7 +52,8 @@ $sesion->accesoGeneral();
         <textarea name="texto_publicacion" placeholder="Escribe algo..." id="texto_publicacion"></textarea>
         <div class="formulario__inputs">
           <input type="file" id="imagenes" accept="image/*" multiple>
-          <input type="submit" value="Publicar">
+          <input type="hidden" id="id_actualizacion" value="">
+          <input type="submit" value="Publicar" id="boton_publicaciones">
         </div>
       </form>
       <div class="contenedor_central__publicaciones" id="contenedor_central__publicaciones">
