@@ -1,9 +1,7 @@
-import * as funciones from './funciones.js';
-import * as  peticiones from './fetch.js';
+import * as funciones from "./funciones.js";
+import * as peticiones from "./fetch.js";
 
-document.addEventListener('DOMContentLoaded', () => {
-
-
+document.addEventListener("DOMContentLoaded", () => {
     //Listar los documentos.
     peticiones.peticionListarDocumentos();
 
@@ -12,6 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Eliminar algún documento.
     funciones.eliminarDocumento();
+
+    //Editar algún documento.
+    funciones.editarDocumento();
 
     //Buscar algún documento.
     funciones.buscarDocumentos();

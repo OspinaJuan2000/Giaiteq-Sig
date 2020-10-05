@@ -42,8 +42,7 @@ $sesion->accesoGeneral();
                 <li><a href="inicio_instructores.php"><i class="far fa-lightbulb"></i> INICIO</a></li>
                 <li><a href="documento_instructores.php"><i class="far fa-file-archive"></i> DOCUMENTOS</a></li>
                 <li><a href="video_instructores.php"><i class="far fa-file-video"></i> VIDEOS</a></li>
-                <li><a href="#"><i class="fas fa-link"></i> LINKS</a></li>
-                <li><a href="#"><i class="fas fa-project-diagram"></i> PROYECTOS</a></li>
+                <li><a href="link_instructores.php"><i class="fas fa-link"></i> LINKS</a></li>
                 <li><a href="evento_instructores.php"><i class="far fa-calendar-alt"></i> EVENTOS</a></li>
                 <li><a href="#"><i class="fas fa-chalkboard-teacher"></i> INSTRUCTORES</a></li>
                 <li><a href="gestion_estudiantes.php"><i class="fas fa-user-graduate"></i> ESTUDIANTES</a></li>
@@ -84,8 +83,6 @@ $sesion->accesoGeneral();
                 
             </div>
         </div>
-
-       
     </div>
     <script src="../../vista/js/sweetalert2.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.0/trix-core.min.js" integrity="sha512-6C0JJHOrwdlZ6YMongpJax0kXCfu23TIbEETNjBpoCHJVSw+2NL8eE/CQ0ZNdPbdzrJ/T0HgXhUbBtJl1jyEXQ==" crossorigin="anonymous"></script>

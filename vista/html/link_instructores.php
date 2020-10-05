@@ -15,9 +15,9 @@ $sesion->accesoGeneral();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.3/css/medium-editor.min.css" integrity="sha512-zYqhQjtcNMt8/h4RJallhYRev/et7+k/HDyry20li5fWSJYSExP9O07Ung28MUuXDneIFg0f2/U3HJZWsTNAiw==" crossorigin="anonymous" />
     <link rel="stylesheet" href="../css/estilo_general.css">
     <link rel="stylesheet" href="../css/inicio_instructores.css">
-    <link rel="stylesheet" href="../css/video_instructores.css">
+    <link rel="stylesheet" href="../css/link_instructores.css">
     <link rel="icon" href="../imagenes/icono.png">
-    <title>Videos</title>
+    <title>Links</title>
 </head>
 
 <body>
@@ -51,45 +51,31 @@ $sesion->accesoGeneral();
         </div>
         <div class="contenedor_central__contenido">
             <div class="contenedorPublicaciones">
-                <form id="form-videos" method="POST" enctype="multipart/form-data">
+                <form id="form-links" method="POST" enctype="multipart/form-data">
                     <div class="contenedor-publicacion">
                         <div class="campos">
-                            <label for="titulo">Título del vídeo</label>
+                            <label for="titulo">Título del link</label>
                             <div class="editable"></div>
                             <input type="hidden" name="titulo" id="titulo">
-                            <!-- <input type="text" placeholder="Título" id="titulo" name="titulo" autocomplete="off"> -->
                         </div>
                         <div class="campos">
-                            <input type="hidden" id="descripcion" name="descripcion">
-                            <label for="descripcion">Descripción del vídeo</label>
-                            <trix-editor input="descripcion"></trix-editor>
-                            <!--
-                            <textarea id="descripcion" name="descripcion" placeholder="Descripción"></textarea> -->
+                            <label for="descripcion">Contenido</label>
+                            <div class="editableone"></div>
+                            <input type="hidden" name="descripcion" id="descripcion">
                         </div>
                         <div class="publicar">
-                            <input type="file" id="video" class="input-video" name="video" accept="video/*">
                             <button>Publicar</button>
-                            <input type="hidden" id="idVideo">
-                        </div>
-                        <div class="renderizar-video">
-
-                        </div>
-                        <div class="avance">
-                            <div id="barra-avance" class="barra-avance">
-                                <div id="porcentaje" class="porcentaje">
-
-                                </div>
-                            </div>
+                            <input type="hidden" id="idLink">
                         </div>
                 </form>
             </div>
         </div>
         <div class="buscador">
-            <input class="buscador__input" type="text" placeholder="Buscar un vídeo por el título" id="buscar-video">
-            <label class="buscador__label" for="buscar-video"><i class="fas fa-search buscador__icon"></i></label>
+            <input class="buscador__input" type="text" placeholder="Buscar un link por el título" id="buscar-link">
+            <label class="buscador__label" for="buscar-link"><i class="fas fa-search buscador__icon"></i></label>
         </div>
-        <div class="lista-videos">
-            <div class="contenedor-video">
+        <div class="lista-links">
+            <div class="contenedor-link">
 
             </div>
         </div>
@@ -111,13 +97,29 @@ $sesion->accesoGeneral();
                 }
             })
 
+            const editorOne = new MediumEditor('.editableone', {
+                toolbar: {
+                    buttons: ['bold', 'italic', 'underline', 'quote', 'anchor', 'justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull', 'orderList', 'unorderList', 'h2', 'h3'],
+                    static: true,
+                    sticky: true
+                },
+                placeholder: {
+                    text: ''
+                }
+            })
+
             editor.subscribe('editableInput', function(eventObj, editable) {
                 const content = editor.getContent();
                 document.querySelector('#titulo').value = content;
             })
+
+            editorOne.subscribe('editableInput', function(eventObj, editable) {
+                const content = editorOne.getContent();
+                document.querySelector('#descripcion').value = content;
+            })
         });
     </script>
-    <script src="../../controlador/controladorVideos/controlador.js" type="module"></script>
+    <script src="../../controlador/controladorLinks/controlador.js" type="module"></script>
 </body>
 
 </html>

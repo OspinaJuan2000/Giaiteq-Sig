@@ -11,9 +11,10 @@ $sesion->accesoGeneral();
     <meta charset="utf-8">
     <link rel="stylesheet" href="../css/estilo_general.css">
     <link rel="stylesheet" href="../css/inicio_instructores.css">
+    <link rel="stylesheet" href="../css/documento_instructores.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <link rel="icon" href="../imagenes/icono.png">
-    <title>Inicio</title>
+    <title>Documentos</title>
 </head>
 
 <body>
@@ -45,9 +46,19 @@ $sesion->accesoGeneral();
             </ul>
         </div>
         <div class="contenedor_central__contenido">
-
+            <p class="titulo">Lista de documentos del semillero</p>
+            <div class="buscador">
+                <input class="buscador__input" type="text" placeholder="Buscar un documento por el título" id="buscar-documentos">
+                <label class="buscador__label" for="buscar-documentos"><i class="fas fa-search buscador__icon"></i></label>
+            </div>
+            <div class="lista-documentos">
+                <div class="contenedor-documento">
+                    
+                </div>
+            </div>
         </div>
     </div>
+    <script src="../../controlador/controladorDocumentosAprendices/controlador.js" type="module"></script>
 </body>
 
 </html>

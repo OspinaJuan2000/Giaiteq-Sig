@@ -4,7 +4,7 @@ try {
     $instanciaConexion = new Conexion();
     $conexion = $instanciaConexion->establecer_conexion();
 
-    $statement = $conexion->prepare("SELECT * FROM tbl_eventos WHERE estado <> 0");
+    $statement = $conexion->prepare("SELECT * FROM tbl_eventos WHERE estado <> 0 ORDER BY id_evento DESC");
     $statement->execute();
 
     if ($statement->rowCount() > 0) {

@@ -11,9 +11,10 @@ $sesion->accesoGeneral();
     <meta charset="utf-8">
     <link rel="stylesheet" href="../css/estilo_general.css">
     <link rel="stylesheet" href="../css/inicio_instructores.css">
+    <link rel="stylesheet" href="../css/link_instructores.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <link rel="icon" href="../imagenes/icono.png">
-    <title>Inicio</title>
+    <title>Links</title>
 </head>
 
 <body>
@@ -45,9 +46,19 @@ $sesion->accesoGeneral();
             </ul>
         </div>
         <div class="contenedor_central__contenido">
+            <p class="titulo">Lista de links del semillero</p>
+            <div class="buscador">
+                <input class="buscador__input" type="text" placeholder="Buscar un link por el título" id="buscar-link">
+                <label class="buscador__label" for="buscar-link"><i class="fas fa-search buscador__icon"></i></label>
+            </div>
+            <div class="lista-links">
+                <div class="contenedor-link">
 
+                </div>
+            </div>
         </div>
     </div>
+    <script src="../../controlador/controladorLinksAprendices/controlador.js" type="module"></script>
 </body>
 
 </html>

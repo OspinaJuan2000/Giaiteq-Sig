@@ -23,7 +23,7 @@ if (isset($_POST) && $_POST['filtro'] !== '') {
                     'ruta' => $documento['ruta'],
                     'titulo' => $documento['titulo'],
                     'descripcion' => $documento['descripcion'],
-                    'fecha' => ucfirst(strftime("%A, %d de %B del %Y - %R", strtotime($documento['fecha_publicacion']))),
+                    'fecha' => ucfirst(strftime("%d/%m/%Y", strtotime($documento['fecha_publicacion']))),
                     'tipo_contenido' => $documento['id_tipo_contenido']
                 );
             }

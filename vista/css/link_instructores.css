@@ -121,11 +121,6 @@
     background-color: rgb(236, 236, 236);
 }
 
-.contenedor-documento__opciones > i {
-    margin-right: 15px;
-    cursor: pointer;
-}
-
 .botones__acciones {
     display: inline-block;
     text-decoration: none;
@@ -152,31 +147,7 @@
     background-color: rgb(102, 153, 230);
 }
 
-.botones__acciones-visualizar {
-    background-color: rgb(46, 177, 68);
-}
-
-.botones__acciones-descargar {
-    background-color: rgb(54, 56, 54);
-}
-
-@media (max-width: 1040px) {
-    .contenedor-publicacion {
-        max-width: 75%;
-    }
-    .contenedor-publicacion .publicar {
-        flex-direction: column;
-    }
-    .contenedor-publicacion .publicar button {
-        margin-top: 35px;
-    }
-}
-
-@media (max-width: 768px) {
-    .contenedor-documentos {
-        width: 95%;
-    }
-    .contenedor-documentos__info {
-        width: 98%;
-    }
+.link__descripcion {
+    text-decoration: underline;
+    color: rgb(72, 72, 241);
 }

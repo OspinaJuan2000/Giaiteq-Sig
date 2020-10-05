@@ -67,7 +67,7 @@
                 }
             } else {
                 $respuesta = array(
-                    'mensaje' => 'solo_mp4_webm',
+                    'mensaje' => 'formato_invalido',
                 );
             }
         } else {

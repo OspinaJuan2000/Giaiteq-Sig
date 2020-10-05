@@ -28,6 +28,9 @@ export function renderizarListaVideos(videos) {
     contenedorVideos.innerHTML = listaVideosHTMl;
 }
 
+/*
+    Esta función valida que el campo para buscar un vídeo no este vacío, si no está vacío, hará una búsqueda en la base de datos para buscar el vídeo que coincida con el criterio de búsqueda.
+*/
 export function buscarVideos() {
 
     const buscador = document.querySelector('.buscador__input');

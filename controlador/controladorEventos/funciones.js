@@ -4,7 +4,6 @@ import * as peticiones from './fetch.js';
 const formEventos = document.querySelector('#form-eventos');
 let editarEventos = false;
 
-
 /*
     Esta función verifica que los datos que se ingrese en el formulario no estén vacios, no tengan espacios en blanco para luego llamar la función que envía los datos al Backend. También esta función verifica si se va a editar o no un evento.w
 */
@@ -232,7 +231,7 @@ export function mensajeSinEventos(mensaje, opcion) {
 }
 
 /*
-    Esta función muestra un mensaje si no hay eventos publicados o si no coincide ningún vídeo con el criterio de búsqueda.
+    Esta función muestra un mensaje si no hay eventos publicados o si no coincide ningún evento con el criterio de búsqueda.
 */
 export function manejoElementosListando() {
 
@@ -295,7 +294,7 @@ export function insertarDatosEditar(idEventoAnterior, nombreEventoAnterior, desc
 }
 
 /*
-    Esta función elimina el valor que se guarda en la etiqueta text-editor una vez que se actualice un vídeo.
+    Esta función elimina el valor que se guarda en la etiqueta text-editor una vez que se actualice un documento.
 */
 export function eliminarValorTextEditor () {
 
@@ -303,7 +302,7 @@ export function eliminarValorTextEditor () {
 };
 
 /*
-    Esta función elimina el valor que se guarda en los divs que utilicen Medium Editor una vez que se actualice un vídeo.
+    Esta función elimina el valor que se guarda en los divs que utilicen Medium Editor una vez que se actualice un documento.
 */
 export function eliminarValorMediumEditor (option) {
 
@@ -311,11 +310,15 @@ export function eliminarValorMediumEditor (option) {
 
     if (option === 1) {
         document.querySelector('#titulo').value = '';
-        
+
     } else if (option === 2) {
         while (document.querySelector('.editableone').firstChild) document.querySelector('.editableone').removeChild(document.querySelector('.editableone').firstChild);
-
         document.querySelector('#nombre').value = '';
         document.querySelector('#lugar').value = '';
-    };
+    } else if (option === 3) {
+
+        while (document.querySelector('.editableone').firstChild) document.querySelector('.editableone').removeChild(document.querySelector('.editableone').firstChild);
+        document.querySelector('#titulo').value = '';
+        document.querySelector('#descripcion').value = '';
+    }
 };
