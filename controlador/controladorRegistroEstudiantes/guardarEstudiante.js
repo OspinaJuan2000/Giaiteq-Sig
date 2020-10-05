@@ -159,6 +159,7 @@ function listaPublicaciones(){
               `
             });
             document.getElementById(publicacion.id_contenido).innerHTML = plantilla_imagenes;
+            plantilla_imagenes = '';
           }
         })
 
