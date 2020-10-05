@@ -6,7 +6,7 @@ if (isset($_POST) && !empty($_POST)) {
     $nombreArchivoAnterior = trim($_POST['nombreVideoAnterior']);
     $nombreArchivo = trim($_POST['nombreVideo']);
     $ruta = './videos/';
-
+    
     try {
         require_once '../conexion.php';
         $instanciaConexion = new Conexion();
@@ -17,14 +17,17 @@ if (isset($_POST) && !empty($_POST)) {
         if (is_uploaded_file($_FILES['video']['tmp_name'])) {
 
             $formato = $_FILES['video']['type'];
-            $upload = $ruta . $nombreArchivo;
+            $bytes = random_bytes(15);
+            $tokenUnicoVideos = bin2hex($bytes);
+            $upload = $ruta . $tokenUnicoVideos . $nombreArchivo;
             $megabytesMaximos = round($_FILES['video']['size'] / 1e+6);
+            $formatosPermitidos = ['video/webm', 'video/mp4'];
 
-            if ($formato === 'video/mp4' || $formato === 'video/webm') {
+            if (in_array($formato, $formatosPermitidos)) {
                 if ($megabytesMaximos <= 80) {
                     move_uploaded_file($_FILES['video']['tmp_name'], './videos/' . $nombreArchivoAnterior);
 
-                    rename('./videos/' . $nombreArchivoAnterior, './videos/' . $nombreArchivo);
+                    rename('./videos/' . $nombreArchivoAnterior, './videos/' . $tokenUnicoVideos . $nombreArchivo);
                 } else {
                     $respuesta = array(
                         'mensaje' => 'peso_excedido',

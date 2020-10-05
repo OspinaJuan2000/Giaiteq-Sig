@@ -6,10 +6,13 @@ if (isset($_POST) && !empty($_POST)) {
         $ruta = './videos/';
         $nombreArchivo = trim($_POST['nombreVideo']);
         $formato = $_FILES['video']['type'];
-        $upload = $ruta . $nombreArchivo;
+        $bytes = random_bytes(15);
+        $tokenUnicoVideos = bin2hex($bytes);
+        $upload = $ruta . $tokenUnicoVideos . $nombreArchivo;
         $megabytesMaximos = round($_FILES['video']['size'] / 1e+6);
-
-        if ($formato === 'video/mp4' || $formato === 'video/webm') {
+        $formatosPermitidos = ['video/webm', 'video/mp4'];
+        
+        if (in_array($formato, $formatosPermitidos)) {
             if ($megabytesMaximos > 80) {
                 $respuesta = array(
                     'mensaje' => 'peso_excedido',
