@@ -1,0 +1,182 @@
+.contenedor-publicacion {
+    max-width: 58%;
+    -webkit-box-shadow: 2px 2px 22px -13px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 2px 2px 22px -13px rgba(0, 0, 0, 0.75);
+    box-shadow: 2px 2px 22px -13px rgba(0, 0, 0, 0.75);
+    margin: 8vh auto 0 auto;
+    padding: 32px;
+    border-radius: 4px;
+    font-family: sans-serif;
+    margin-bottom: 20px;
+}
+
+.contenedor_central__contenido {
+    top: 0vh;
+}
+
+.campos label {
+    font-weight: 700;
+    color: #3f3d3d;
+    display: inline-block;
+    margin-bottom: 7px;
+}
+
+.campos textarea {
+    height: 50px;
+    resize: none;
+}
+
+.publicar .input-documentos {
+    margin-left: 0;
+    position: relative;
+    top: 0;
+    font-size: 15.1px;
+    cursor: pointer;
+    border: none;
+}
+
+.publicar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.publicar button {
+    padding: 10px 40px;
+    background-color: #235E3D;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: white;
+    font-size: 17px;
+    transition: background-color 1s, color 1s;
+}
+
+.publicar button:hover {
+    background-color: #88D36E;
+    color: black;
+}
+
+.buscador {
+    margin: 50px 0 -20px 0;
+    display: none;
+    justify-content: center;
+}
+
+.buscador__input {
+    padding: 7px;
+    outline: none;
+    border: 1px solid rgba(179, 179, 179);
+    width: 40%;
+    transition: border .2s;
+    font-family: 'Roboto', sans-serif;
+}
+
+.buscador__input:focus, .campos trix-editor:focus, .medium-editor-element:focus {
+    border: 1px solid #235E3D;
+}
+
+.buscador__label {
+    background-color: rgba(66, 66, 68, .8);
+}
+
+.buscador__icon {
+    cursor: pointer;
+    color: rgb(172, 171, 171);
+    text-align: center;
+    padding: 4px;
+    transition: color .2s;
+    position: relative;
+    top: 2px;
+}
+
+.buscador__icon:hover {
+    color: white;
+}
+
+.contenedor-documento__table {
+    min-width: 100%;
+    font-family: sans-serif;
+    text-align: center;
+    margin-top: 50px;
+    border-collapse: collapse;
+}
+
+.contenedor-documento__table thead {
+    background-color:#235E3D;
+    color: white;
+}
+
+.contenedor-documento__table th {
+    padding: 20px;
+}
+
+.contenedor-documento__table tbody td {
+    padding: 15px 0;
+    word-break: break-all;
+    text-align: center;
+}
+
+.contenedor-documento__table tbody:nth-child(2n) {
+    background-color: rgb(236, 236, 236);
+}
+
+.contenedor-documento__opciones > i {
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.botones__acciones {
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: capitalize;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    color: white;
+    margin-bottom: 10px;
+    border: none;
+    transition: all .4s;
+}
+
+.botones__acciones:hover {
+    opacity: 0.8;
+}
+
+.botones__acciones-eliminar {
+    background-color: red;
+}
+
+.botones__acciones-editar {
+    background-color: rgb(78, 70, 70);
+}
+
+.botones__acciones-visualizar {
+    background-color: rgb(46, 177, 68);
+}
+
+.botones__acciones-descargar {
+    background-color: rgb(54, 56, 54);
+}
+
+@media (max-width: 1040px) {
+    .contenedor-publicacion {
+        max-width: 75%;
+    }
+    .contenedor-publicacion .publicar {
+        flex-direction: column;
+    }
+    .contenedor-publicacion .publicar button {
+        margin-top: 35px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contenedor-documentos {
+        width: 95%;
+    }
+    .contenedor-documentos__info {
+        width: 98%;
+    }
+}

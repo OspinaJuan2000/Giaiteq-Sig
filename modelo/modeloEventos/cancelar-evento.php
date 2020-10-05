@@ -23,12 +23,13 @@ if (isset($_POST) && !empty($_POST)) {
                 'mensaje' => 'evento_cancelado'
             );
 
-            require('../../externo/sendEmail-PHP/enviar-email.php');
-            require('./plantilla-email.php');
-        
             /* 
                 Enviar correo electrónico a los estudiantes e instructores activos notificando que el evento fue cancelado.
             */
+
+            require('../../externo/sendEmail-PHP/enviar-email.php');
+            require('./plantilla-email.php');
+            
             $arrayUsuario = obtenerUsuariosActivos();
             $enviado = enviarEmailPHP('GIAITEQ-SIG', $arrayUsuario, 'Se ha cancelado un evento del semillero GIAITEQ-SIG', $mensaje);
             

@@ -232,7 +232,7 @@ export function mensajeSinEventos(mensaje, opcion) {
 }
 
 /*
-    Esta función oculta el mensaje de que no se han publicado vídeos en el momento que se publique al menos uno y también muestra el buscador.
+    Esta función muestra un mensaje si no hay eventos publicados o si no coincide ningún vídeo con el criterio de búsqueda.
 */
 export function manejoElementosListando() {
 

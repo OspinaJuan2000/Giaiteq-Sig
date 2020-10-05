@@ -15,9 +15,9 @@ $sesion->accesoGeneral();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.3/css/medium-editor.min.css" integrity="sha512-zYqhQjtcNMt8/h4RJallhYRev/et7+k/HDyry20li5fWSJYSExP9O07Ung28MUuXDneIFg0f2/U3HJZWsTNAiw==" crossorigin="anonymous" />
     <link rel="stylesheet" href="../css/estilo_general.css">
     <link rel="stylesheet" href="../css/inicio_instructores.css">
-    <link rel="stylesheet" href="../css/video_instructores.css">
+    <link rel="stylesheet" href="../css/documento_instructores.css">
     <link rel="icon" href="../imagenes/icono.png">
-    <title>Videos</title>
+    <title>Documentos</title>
 </head>
 
 <body>
@@ -52,48 +52,40 @@ $sesion->accesoGeneral();
         </div>
         <div class="contenedor_central__contenido">
             <div class="contenedorPublicaciones">
-                <form id="form-videos" method="POST" enctype="multipart/form-data">
+                <form id="form-documentos" method="POST" enctype="multipart/form-data">
                     <div class="contenedor-publicacion">
                         <div class="campos">
-                            <label for="titulo">Título del vídeo</label>
+                            <label for="titulo">Título del documento</label>
                             <div class="editable"></div>
                             <input type="hidden" name="titulo" id="titulo">
                             <!-- <input type="text" placeholder="Título" id="titulo" name="titulo" autocomplete="off"> -->
                         </div>
                         <div class="campos">
                             <input type="hidden" id="descripcion" name="descripcion">
-                            <label for="descripcion">Descripción del vídeo</label>
+                            <label for="descripcion">Descripción del documento</label>
                             <trix-editor input="descripcion"></trix-editor>
                             <!--
                             <textarea id="descripcion" name="descripcion" placeholder="Descripción"></textarea> -->
                         </div>
                         <div class="publicar">
-                            <input type="file" id="video" class="input-video" name="video" accept="video/*">
+                            <input type="file" id="documento" class="input-documentos" name="documento" accept="application/pdf, .doc, .docx, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, .xlsx, .pptx">
                             <button>Publicar</button>
-                            <input type="hidden" id="idVideo">
-                        </div>
-                        <div class="renderizar-video">
-
-                        </div>
-                        <div class="avance">
-                            <div id="barra-avance" class="barra-avance">
-                                <div id="porcentaje" class="porcentaje">
-
-                                </div>
-                            </div>
+                            <input type="hidden" id="idDocumento">
                         </div>
                 </form>
             </div>
         </div>
         <div class="buscador">
-            <input class="buscador__input" type="text" placeholder="Buscar un vídeo por el título" id="buscar-video">
-            <label class="buscador__label" for="buscar-video"><i class="fas fa-search buscador__icon"></i></label>
+            <input class="buscador__input" type="text" placeholder="Buscar un documento por el título" id="buscar-documentos">
+            <label class="buscador__label" for="buscar-documentos"><i class="fas fa-search buscador__icon"></i></label>
         </div>
-        <div class="lista-videos">
-            <div class="contenedor-video">
-
+        <div class="lista-documentos">
+            <div class="contenedor-documento">
+                
             </div>
         </div>
+
+       
     </div>
     <script src="../../vista/js/sweetalert2.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.0/trix-core.min.js" integrity="sha512-6C0JJHOrwdlZ6YMongpJax0kXCfu23TIbEETNjBpoCHJVSw+2NL8eE/CQ0ZNdPbdzrJ/T0HgXhUbBtJl1jyEXQ==" crossorigin="anonymous"></script>
@@ -118,7 +110,7 @@ $sesion->accesoGeneral();
             })
         });
     </script>
-    <script src="../../controlador/controladorVideos/controlador.js" type="module"></script>
+    <script src="../../controlador/controladorDocumentos/controlador.js" type="module"></script>
 </body>
 
 </html>

@@ -8,19 +8,25 @@ if (isset($_POST) && !empty($_POST)) {
         $instanciaConexion = new Conexion();
         $conexion = $instanciaConexion->establecer_conexion();
 
-        //Preparar una consulta para obtener el correo del usuario y Validar que exista el correo en la base de datos..
+        /*
+            Preparar una consulta para obtener el correo del usuario y Validar que exista el correo en la base de datos..
+        */
         $statement = $conexion->prepare("SELECT correo, primer_nombre FROM tbl_usuarios WHERE correo = :email");
         $statement->bindParam(':email', $email);
         $statement->execute();
 
         if ($statement->rowCount() > 0) {
 
-            //Agarrar los datos del usuario obtenidos en la primer consulta.
+            /*
+                Guardar los datos del usuario obtenidos en la primer consulta.
+            */
             $datosUsuario = $statement->fetch(PDO::FETCH_ASSOC);
             $correoUsuario = $datosUsuario['correo'];
             $primerNombreUsuario = $datosUsuario['primer_nombre'];
 
-            //Generar un token temporal hasta que cambie la contraseña.
+            /*
+                Generar un token temporal hasta que cambie la contraseña.
+            */
             $bytes = random_bytes(15);
             $tokenClave = bin2hex($bytes);
 
@@ -30,12 +36,13 @@ if (isset($_POST) && !empty($_POST)) {
             $actualizarToken->bindParam(':email', $correoUsuario);
             $actualizarToken->execute();
 
-            require('../../externo/sendEmail-PHP/enviar-email.php');
-            require('./plantilla-email.php');
-
             /* 
                 Enviar correo electrónico al usuario que está intentando restablecer su contraseña.
             */
+
+            require('../../externo/sendEmail-PHP/enviar-email.php');
+            require('./plantilla-email.php');
+            
             $arrayUsuario = [$correoUsuario];
             $enviado = enviarEmailPHP('GIAITEQ-SIG', $arrayUsuario, 'Instrucciones para restablecer la contraseña de la cuenta GIAITEQ-SIG', $mensaje);
 

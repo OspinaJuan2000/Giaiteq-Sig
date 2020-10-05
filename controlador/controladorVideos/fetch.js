@@ -42,7 +42,7 @@ export function peticionSubirVideo(datosVideo) {
                 mensajeAlerta = 'Intente nuevamente subiendo el vídeo en fórmato MP4 o formato WEBM';
                 iconoAlerta = 'info';
             } else if (mensaje === 'subido') {
-                tituloAlerta = `Vídeo subido correctamente`;
+                tituloAlerta = 'Vídeo subido correctamente';
                 mensajeAlerta = `El archivo ${data.nombre} se subió correctamente`;
                 iconoAlerta = 'success';
                 formVideos.reset();
@@ -101,12 +101,12 @@ export function peticionEliminarVideo(datosVideo) {
 
             if (mensaje === 'video_eliminado') {
                 tituloAlerta = 'Vídeo eliminado correctamente.';
-                mensajeAlerta = `Se ha eliminado el vídeo ${data.titulo}`;
+                mensajeAlerta = `Se ha eliminado el vídeo ${data.titulo.substring(30)}`;
                 iconoAlerta = 'success';
 
             } else if (mensaje === 'video_noeliminado') {
                 tituloAlerta = 'Error al intentar eliminar';
-                mensajeAlerta = `Ocurrió un error al intentar eliminar el vídeo ${data.titulo}`;
+                mensajeAlerta = `Ocurrió un error al intentar eliminar el vídeo ${data.titulo.substring(30)}`;
                 iconoAlerta = 'error';
             }
 
@@ -144,7 +144,7 @@ export function peticionEditarVideo(datosVideo) {
                 iconoAlerta = 'error';
             } else if (mensaje === 'error_actualizar') {
                 tituloAlerta = 'Error al actualizar el vídeo';
-                mensajeAlerta = `Error al actualizar el vídeo ${data.nombreAnterior}. No se vieron alterados ninguno de los campos o el vídeo fue borrado previamente, actualice nuevamente`;
+                mensajeAlerta = `Error al actualizar el vídeo ${data.nombreAnterior.substring(30)}. No se vieron alterados ninguno de los campos o el vídeo fue borrado previamente, actualice nuevamente`;
                 iconoAlerta = 'error';
             } else if (mensaje === 'solo_mp4_webm') {
                 tituloAlerta = 'Solo se permite fórmato MP4 y WEBM';
@@ -152,7 +152,7 @@ export function peticionEditarVideo(datosVideo) {
                 iconoAlerta = 'info';
             } else if (mensaje === 'actualizado') {
                 tituloAlerta = 'Vídeo actualizado correctamente';
-                mensajeAlerta = `El archivo ${data.nombreActual} ha sido actualizó correctamente`;
+                mensajeAlerta = `El archivo ${data.nombreAnterior.substring(30)} ha sido actualizó correctamente`;
                 iconoAlerta = 'success';
                 formVideos.reset();
                 eliminarValorMediumEditor(1);

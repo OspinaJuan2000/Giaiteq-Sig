@@ -25,7 +25,7 @@ function enviarEmailPHP($nombreOrigen, $correoDestino, $correoAsunto, $correoMen
 
         //Correo desde el cual va a ser enviado el correo.
 
-        $mail->setFrom('ospinajuan2000@gmail.com', $nombreOrigen);
+        $mail->setFrom('', $nombreOrigen);
 
         //Correos o correo a los cual va a ser enviado el correo.
 

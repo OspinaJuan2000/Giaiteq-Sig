@@ -64,7 +64,7 @@ if (isset($_POST) && !empty($_POST)) {
         if ($statement->rowCount() > 0 || $statement2->rowCount() > 0) {
             $respuesta = array(
                 'mensaje' => 'actualizado',
-                'nombreActual' => $nombreArchivoAnterior,
+                'nombreAnterior' => $nombreArchivoAnterior,
             );
 
         } else {

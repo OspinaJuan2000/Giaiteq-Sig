@@ -37,7 +37,7 @@ $sesion->accesoGeneral();
       </div>
       <ul class="opciones__menu">
         <li><a href="inicio_instructores.php"><i class="far fa-lightbulb"></i> INICIO</a></li>
-        <li><a href="#"><i class="far fa-file-archive"></i> DOCUMENTOS</a></li>
+        <li><a href="documento_instructores.php"><i class="far fa-file-archive"></i> DOCUMENTOS</a></li>
         <li><a href="video_instructores.php"><i class="far fa-file-video"></i> VIDEOS</a></li>
         <li><a href="#"><i class="fas fa-link"></i> LINKS</a></li>
         <li><a href="#"><i class="fas fa-project-diagram"></i> PROYECTOS</a></li>

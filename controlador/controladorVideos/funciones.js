@@ -117,6 +117,9 @@ export function eliminarBarraProgreso() {
     porcentaje.style.width = '0';
 }
 
+/*
+    Esta función muestra un mensaje en el HTML de acuerdo a si no hay vídeos publicados o si al momento de buscar un vídeo no coincide con el criterio de búsqueda.
+*/
 export function mensajeSinVideos(mensaje, opcion) {
 
     const listaVideos = document.querySelector('.lista-videos');
@@ -377,7 +380,6 @@ export function eliminarListaVideos() {
 
     while (contenedorVideos.firstChild) contenedorVideos.removeChild(contenedorVideos.firstChild);
 }
-
 
 /*
     Esta función cambia el mensaje del botón del formulario a "Publicar" cuando ya se haya editado un vídeo correctamente y también pone la variable de editarvideos en false.
