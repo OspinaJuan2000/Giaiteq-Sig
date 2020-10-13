@@ -28,6 +28,7 @@ function estudiantesActivos() {
         </div>
         `
       });
+      plantilla += '<button class="exportar"><a href="../../modelo/modeloRegistroEstudiantes/exportarExcel.php" class="exportar">Exportar a Excel</a></button>';
       document.getElementById('estudiantesActivos').innerHTML = plantilla;
       cargarDatosAprendiz();
       inactivarEstudiante();

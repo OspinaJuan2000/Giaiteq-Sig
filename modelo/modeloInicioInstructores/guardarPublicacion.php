@@ -7,7 +7,8 @@
   $imagenes_recibidas = 0;
 
   $texto_publicacion = $_POST['texto_publicacion'];
-  $documento_usuario = "1007318038";
+  session_start();
+  $documento_usuario = $_SESSION['instructor']['documento'];;
   $tipo_contenido = 1;
   $respuesta = "";
   $imagenes_permitidas = 0;

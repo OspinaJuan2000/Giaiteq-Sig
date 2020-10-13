@@ -1,0 +1,63 @@
+.formulario_instructores{
+  width: 100%;
+  border-bottom: 1px solid gray;
+}
+
+.formulario_instructores input, .formulario_instructores select{
+  width: 25%;
+  margin-left: 5%;
+  margin-bottom: 10px;
+  height: 30px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.formulario_instructores input[type="submit"]{
+  display: block;
+  margin: auto;
+  height: 35px;
+  background-color: #235E3D;
+  color: beige;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  transition: all 0.5s;
+  margin-bottom: 1vh;
+}
+
+.formulario_instructores input[type="submit"]:hover{
+  background-color: #318154;
+  transition: all 0.5s;
+}
+
+.contenedor_instructores{
+  width: 60%;
+  margin-top: 2vh;
+  margin: auto;
+}
+
+.instructor{
+  width: 100%;
+  margin-top: 4vh;
+  display: flex;
+}
+
+.instructor__datos{
+  width: 75%;
+}
+
+.instructor__opciones{
+  width: 25%;
+}
+
+.editar_instructor{
+  color: #2CB8DE;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.eliminar_instructor{
+  color: #DC1341;
+  font-size: 30px;
+  cursor: pointer;
+}

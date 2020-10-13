@@ -109,3 +109,9 @@
   color: #DC1341;
   cursor: pointer;
 }
+
+.instructor__datos{
+  width: 50%;
+  margin: auto;
+  margin-top: 4vh;
+}

@@ -18,19 +18,19 @@ const validar_campo = () => {
     campo['descripcion'] = true;
   }
 }
-
+//Acá se detecta cuando se envían los datos para ser enviados
 formulario_publicacion.addEventListener('submit', (e) => {
   e.preventDefault();
   validar_campo();
   if(campo.descripcion){
 
     let accion = document.getElementById('id_actualizacion').value;
-
+    //Esta condición es para saber si están eliminando o actualizando
     if(accion.length > 0){
       let contenido = new FormData(formulario_publicacion);
 
       contenido.append("id_contenido", accion);
-
+      //Se verifica si hay imágenes
       if(imagenes.files.length > 0){
         for(let archivo of imagenes.files){
           contenido.append("archivos[]", archivo);
@@ -174,7 +174,7 @@ function listaPublicaciones(){
       cargarDescripcion();
     })
 }
-
+//Esta función es para eliminar publicaciones
 function eliminarPublicacion(){
   let eliminar_publicacion = document.getElementsByClassName('eliminar_publicacion');
   for (let i = 0; i < eliminar_publicacion.length; i++) {
@@ -212,7 +212,7 @@ function eliminarPublicacion(){
     })
   }
 }
-
+//Esta función es para cargar el texto de la publicación al text area
 function cargarDescripcion(){
   let editar_publicacion = document.getElementsByClassName('editar_publicacion');
   for (let i = 0; i < editar_publicacion.length; i++) {
