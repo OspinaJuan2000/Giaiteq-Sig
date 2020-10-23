@@ -127,10 +127,10 @@ $mensaje = "
                     <p>Hola, el evento con nombre: <b>{$nombreEvento}</b>,
                     <p>Ha sido cancelado en el sitio web de GIAITEQ-SIG por un instrusctor, procura entrar y verificar esta información</p>
                     <a class='boton'
-                        href='http://localhost/GIAITEQ-SIG/index.php'>Ir al sitio web</a>
+                        href='https://giaiteq.herokuapp.com/'>Ir al sitio web</a>
                     <p>Si el botón no funciona copie el siguiente enlace en su navegador</p>
                     <a
-                        href='http://localhost/GIAITEQ-SIG/index.php'>http://localhost/GIAITEQ-SIG/index.php</a>
+                        href='https://giaiteq.herokuapp.com/'>https://giaiteq.herokuapp.com/</a>
                 </div>
 
                 <div class='mas-info-evento'>
